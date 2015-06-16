@@ -1,33 +1,36 @@
 package Control;
+import Model.Article;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Scanner;
 
 import Model.Article;
 import Search.*;
 import Sort.*;
-//testing
+import View.Display;
+
 public class Management {
-	Scanner put;
-	String authors;
-	String titles;
-	String contents;
-	int i = 0;
-	boolean b = true;
+	
 	ArrayList<Article> articles;
 	ArrayList<Integer> indices;
+	private Display display;
 	private ISort sortBy;
 	private ISearch searchBy;
-
+	private ArrayList<Article> subPages;
 	public Management() {
 		articles = new ArrayList<Article>();
+		display = new Display();//
+		display.setTableStyle('\u2554', '\u2557', '\u255A', '\u255D', '\u2566', '\u2569', '\u2560', '\u256C', '\u2563', '\u2551', '\u2550');
+		//display.setTableStyle('╔', '╗', '╚', '╝', '╦', '╩', '╠', '╬', '╣', '║', '═');
+		display.setArticles(articles);
 		indices = new ArrayList<Integer>();
-		/*for(int  i=0; i<10e6; i++){
-			articles.add(new Article("Vichea", "JAVA ", "CBD", "DFSDFKDSFJSDKFJ"));
-		}*/
+		/*for(int  i=0; i<1e6; i++){
+			articles.add(new Article("Vichea", "JAVA ", "CBD"));
+	}*/
 		articles.add(new Article("aPisal", "A", "CBD"));
 		articles.add(new Article("Vichea", "AB", "CBD"));
 		articles.add(new Article("Dara", "E", "CBD"));
@@ -41,171 +44,197 @@ public class Management {
 		articles.add(new Article("aaElit", "P", "CBD"));
 		articles.add(new Article("zhanna", "A", "CBD"));
 		articles.add(new Article("Ally", "X", "CBD"));
-
+		sort(new SortById(), false);
+		
 	}
 
+	/**
+	 * Function Add : For Adding Records to Articles with ValidateData. Not
+	 * Permit for null value
+	 */
 	public void add() {
-		put = new Scanner(System.in);
-
-		while (b) {
-			contents = "";
+		Scanner input = new Scanner(System.in);
+		String author;
+		String title;
+		String content;
+		do{
+			content = "";
 			System.out.println("Please Enter Author : ");
-			authors = put.nextLine();
+			author = input.nextLine();
 			System.out.println("Please Enter Titile : ");
-			titles = put.nextLine();
+			title = input.nextLine();
 			System.out.println("Please Enter Content: ");
-			while (put.hasNext()) {
-				contents += put.nextLine();
-				if (contents.endsWith("."))
+			while (input.hasNext()) {
+				content += input.nextLine();
+				if (content.endsWith("."))
 					break;
 			}
-			this.validateData(articles, authors.trim(), titles.trim(),
-					contents.trim());
-			confirmKey();
-		}
+			this.validateData(articles, author.trim(), title.trim(),
+					content.trim());
+		}while(isExitInput());
+		input.close();
 	}
-
-	private void confirmKey() {
-		// TODO Auto-generated method stub
-		System.out.println("Do you want to continues?(Y/N)");
-		String key = new Scanner(System.in).nextLine().toLowerCase();
-		switch (key) {
+	/**
+	 * Function confirmKey() verified key after each perform (Y/N)
+	 */
+	private boolean isExitInput() {
+		Scanner input = new Scanner(System.in);
+		System.out.print("Do you want to continues?(Y/N)");
+		String option = input.nextLine();
+		switch (option.toLowerCase()) {
 		case "y":
-			i=0;
-			b = true;
-			break;
+			input.close();
+			return true;
 		case "n":
-			i=0;
-			b = false;
-			/* Call Main Menu Back */
-			// display();
-			break;
+			input.close();
+			return false;
 		default:
-			System.out.println("invalid key");
-			i++;
-			if (i == 3) {
-				b = false;
-				/* Call Main Menu Back */
-				return;
-			}
-			confirmKey();
+			System.out.println("Invalid key! Please Input again.");
+			input.close();
+			isExitInput();
 			break;
 		}
+		input.close();
+		return false;
 	}
-
+	/**
+	 * Function with parameter for Validating Data
+	 * 
+	 * @param articles
+	 *            : ArrayList<Article> articles
+	 * @param author
+	 *            : Author Name
+	 * @param title
+	 *            : Title
+	 * @param content
+	 *            : content
+	 */
 	private void validateData(ArrayList<Article> articles, String author,
 			String title, String content) {
-		// TODO Auto-generated method stub
-		String publishdate = new SimpleDateFormat("dd/MM/YYYY HH:mm:ss")
-				.format(new Date());
+		
 		if (author.isEmpty() || title.isEmpty() || content.isEmpty()) {
 			System.out.println("No value");
 		} else {
 			articles.add(new Article(author, title, content));
 		}
 	}
-
+	/**
+	 * Function with parameter For Updating Data Case 1: Updating Author Case 2:
+	 * Updating Title Case 3: Updating Content Case 4: Updating All Fields
+	 * 
+	 * @param SearchBy
+	 *            : SearchById Only
+	 * @param Key
+	 *            : Key as ID
+	 */
 	
 
-	public void update(ISearch searchBy, String key) {
-		String modifiedDate = new SimpleDateFormat("dd/MM/YYYY HH:mm:ss")
-				.format(new Date());
-		put = new Scanner(System.in);
-		int choose = 0;
-		this.searchBy = searchBy;
-		// System.out.println(articles.get(this.searchBy.search(articles,
-		// key).get(0)).toString());
+	public void update(String key) {
+		String author;
+		String title;
+		String content;
+		String modifiedDate = new SimpleDateFormat("dd/MM/YYYY HH:mm:ss").format(new Date());
+		
+		Scanner input = new Scanner(System.in);
+		byte choose = 0;
+		this.searchBy = new SearchById();
 		System.out.println("Update : 1.(Author) 2.(Title) 3.(Content) 4.(All)");
-		choose = put.nextInt();
+		choose = input.nextByte();
 		switch (choose) {
-
+		/* Updating Author by ID */
 		case 1:
 			System.out.println("Enter Author : ");
-			put.nextLine();
-			authors = put.nextLine();
+			input.nextLine();
+			author = input.nextLine();
 			articles.get(this.searchBy.search(articles, key).get(0)).setAuthor(
-					authors);
+					author);
 			articles.get(this.searchBy.search(articles, key).get(0))
 					.setModifiedDate(modifiedDate);
-			System.out.println("Saved");
 			break;
+			/* Updating Title by ID */
 		case 2:
 			System.out.println("Enter Title : ");
-			put.nextLine();
-			titles = put.nextLine();
+			input.nextLine();
+			title = input.nextLine();
 			articles.get(this.searchBy.search(articles, key).get(0)).setTitle(
-					titles);
+					title);
 			articles.get(this.searchBy.search(articles, key).get(0))
 					.setModifiedDate(modifiedDate);
-			System.out.println("Saved");
 			break;
+			/* Updating Content by ID */
 		case 3:
-			contents = "";
 			System.out.println("Enter Content : ");
-			put.nextLine();
-			contents = put.nextLine();
-			while (put.hasNext()) {
-				contents += put.nextLine();
-				if (contents.endsWith("."))
+			input.nextLine();
+			content = input.nextLine();
+			while (input.hasNext()) {
+				content += input.nextLine();
+				if (content.endsWith("."))
 					break;
 			}
 			articles.get(this.searchBy.search(articles, key).get(0))
-					.setContent(contents);
+					.setContent(content);
 			articles.get(this.searchBy.search(articles, key).get(0))
 					.setModifiedDate(modifiedDate);
-			System.out.println("Saved");
 			break;
-		case 4: // Upated All Elements
-			b = true;
-			contents = "";
-			while (b) {
-				System.out.println("Please Enter Author : ");
-				put.nextLine();
-				authors = put.nextLine();
-				System.out.println("Please Enter Titile : ");
-				titles = put.nextLine();
-				System.out.println("Please Enter Content: ");
-				while (put.hasNext()) {
-					contents += put.nextLine();
-					if (contents.endsWith("."))
-						break;
+			/* Updating All Fields by ID */
+		case 4: 
+			content = "";
+			System.out.println("Please Enter Author : ");
+			input.nextLine();
+			author = input.nextLine();
+			System.out.println("Please Enter Titile : ");
+			title = input.nextLine();
+			System.out.println("Please Enter Content: ");
+			while (input.hasNext()) {
+				content += input.nextLine();
+				if (content.endsWith("."))
+					break;
 				}
-				if (authors.isEmpty() || titles.isEmpty() || contents.isEmpty()) {
-					System.out.println("No value");
-				} else {
-
-					articles.get(this.searchBy.search(articles, key).get(0))
-							.setAuthor(authors);
-					articles.get(this.searchBy.search(articles, key).get(0))
-							.setTitle(titles);
-					articles.get(this.searchBy.search(articles, key).get(0))
-							.setContent(contents);
-					articles.get(this.searchBy.search(articles, key).get(0))
-							.setModifiedDate(modifiedDate);
-				}
-				confirmKey();
+			if (author.isEmpty() || title.isEmpty() || content.isEmpty()) {
+				System.out.println("Invalid value!");
+				break;
+			} else {
+				articles.get(this.searchBy.search(articles, key).get(0)).setData(author, title, content, modifiedDate);
 			}
 			break;
+			/* Not Permit invalid Key */
 		default:
 			System.err.println("Invalid");
 			// update(searchBy, key);
 			break;
 		}
+		input.close();
+		System.out.println("Saved");
 	}
-
+	/**
+	 * Function with parameter For Searching Data By All kind of Searching By ID
+	 * By Author By Title By PublishDate By ModifiedDate
+	 * 
+	 * @param SearchBy
+	 *            : new Objects search By
+	 * @param Key
+	 *            : Key as Value
+	 */
 	public void search(ISearch searchBy, String key) {
 		this.searchBy = searchBy;
-		//long start = System.currentTimeMillis();
 		indices = this.searchBy.search(articles, key);
-		//long end = System.currentTimeMillis();
-		//System.err.println(end - start);
-		/*Iterator<Integer> it = indices.iterator();
-		while(it.hasNext()){
-			System.out.println(articles.get(it.next()).toString());
-		}/*Show all of elements found*/
-		
-		//System.out.println(articles.get((int)indices.get(0)));/*Search by ID, Show only 1 elements*/
+		if(indices.size() < 0){
+			System.err.println("Search not found!");
+			//return;
+		}
+		subPages = new ArrayList<Article>();
+		for(int index : indices){
+			subPages.add(articles.get(index));
+		}
+		display.setArticles(subPages);
 	}
+
+	/**
+	 * Function with parameter For Deleting Data follow by Key
+	 * 
+	 * @param Key
+	 *            : Key as ID
+	 */
 	public void remove(String key) {
 		search(new SearchById(), key);
 		if (indices.get(0) < 0) { // If value < 0 it means search not found;
@@ -219,40 +248,131 @@ public class Management {
 		System.out.println("Remove Completed!");
 		//display();
 	}
+	/**
+	 * Function with parameter For Sorting Data By ID By Author By Title By
+	 * PublishDate BY ModifiedDate
+	 * 
+	 * @param SortBy
+	 *            : new Objects sort By
+	 * @param isAscending
+	 *            : true Ascending, false Descending
+	 */
 	public void sort(ISort sortBy, boolean isAscending) {
 		this.sortBy = sortBy;
 		this.sortBy.sort(articles, isAscending);
 		display();
 	}
-
+	/**
+	 * Function without parameter for display all of elements
+	 */
 	public void display() {
-		/* System.out.println(articles.size()); */
-		//long start = System.currentTimeMillis();
-		Iterator<Article>  it = articles.iterator();
-		while(it.hasNext()){System.out.println(it.next());}
-		for(int index : indices){
-			System.out.println(articles.get(index));
-		}
-		//System.err.println(indices.size());
-		//long stop = System.currentTimeMillis();
-	}
+		Scanner input = new Scanner(System.in);
+		String option;
+		String key;
+		display.process();
+		do{
+			System.out.print("Please, Input Your Option-->");
+			option = input.next();
+			switch(option.toLowerCase()){
+			case "a":
+				add();
+				break;
+			case "r":
+				System.out.print("Input ID: ");
+				key = input.next();
+				remove(key);
+				break;
+			case "u":
+				System.out.print("Input ID: ");
+				key = input.next();
+				update(key);
+				break;
+			case "s":
+				System.out.print("a) Author, t) Title, pd) Publish Date, md)Modified Date");
+				String search = input.next();
+				ISearch searchBy;
+				switch(search.toLowerCase()){
+				case "a":
+					searchBy = new SearchByAuthor();
+					break;
+				case "t":
+					searchBy = new SearchByTitle();
+					break;
+				case "pd":
+					searchBy = new SearchByPublishDate();
+					break;
+				case "md":
+					searchBy = new SearchByModifiedDate();
+					break;
+				default:
+					searchBy = new SearchById();
+					break;
+				}
+				System.out.print("Please, Input Key: ");
+				key = input.next();
+				search(searchBy, key);
+				break;
+			case "ss":
+				System.out.print("a(Author, t(Title, pd(Publish Date, md(Modified Date");
+				String sort = input.next();
+				ISort sortBy;
+				switch(sort.toLowerCase()){
+				case "a":
+					sortBy = new SortByAuthor();
+					break;
+				case "t":
+					sortBy = new SortByTitle();
+					break;
+				case "pd":
+					sortBy = new SortByPublishDate();
+					break;
+				case "md":
+					sortBy = new SortByModifiedDate();
+					break;
+				default:
+					sortBy = new SortById();
+					break;
+				}
+				boolean isAscending;
+				System.out.print("ASC or DSC"); 
+				String isAsc = input.next();
+				if(isAsc.equalsIgnoreCase("asc")){
+					isAscending = true;
+				}
+					
+				else {
+					isAscending = false;
+				}
+				sort(sortBy, isAscending);
+				break;
+			case "g":
+				System.out.print("Input Page Number: ");
+				int pageNumber = input.nextInt();
+				display.gotoPage(pageNumber);
+				break;
+			case "#":
+				System.out.print("Input Page Size: ");
+				int pageSize = input.nextInt();
+				display.setPageSize(pageSize);
+				break;
+			case "p":
+				display.gotoPreviousPage();
+				break;
+			case "n":
+				display.gotoNextPage();
+				break;
+			case "f": 
+				display.gotoFirstPage();
+				break;
+			case "l": 
+				display.gotoLastPage();
+				break;
+			case "e":
+				input.close();
+				return;
+			}
+			display.process();
 
-	public static void main(String[] args) {
-		Management management = new Management();
-		System.out.println("-------------------");
-		//management.search(new SearchByAuthor(), "S");
-		//management.display();
-		System.out.println("----------");
-		//management.update(new SearchById(), "1");
-		management.display();
-		System.out.println("----------");
-		//management.search(new SearchById(), "11");
-		//management.display();
-		//management.remove("11");
-		//management.search(new SearchById(), "11");
-		//management.sort(new SortByAuthor(), false);
-		System.out.println("----------");
-		management.update(new SearchById(), "10");
-		management.display();
+		}while(true);
 	}
 }// End of class;

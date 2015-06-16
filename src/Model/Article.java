@@ -17,10 +17,18 @@ public class Article {
 		this.author = author;
 		this.title = title;
 		this.content = content;
-		this.publishDate=publishDate;
+		publishDate = new SimpleDateFormat("dd/MM/YYYY HH:mm:ss")
+				.format(new Date());
 		modifiedDate = publishDate;
 	}
 
+	public void setData(String author, String title, String content, String modifiedDate) {
+		this.author = author;
+		this.title = title;
+		this.content = content;
+		this.modifiedDate = modifiedDate;
+	}
+	
 	public int getId() {
 		return id;
 	}
