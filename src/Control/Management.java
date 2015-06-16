@@ -1,4 +1,4 @@
-package Control;
+﻿package Control;
 import Model.Article;
 
 import java.text.SimpleDateFormat;
