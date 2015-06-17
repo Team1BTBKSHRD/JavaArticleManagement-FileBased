@@ -16,14 +16,12 @@ public class Management {
 	ArrayList<Article> articles;
 	ArrayList<Integer> indices;
 	private Display display;
-	private ISort sortBy;
-	private ArrayList<Article> subPages;
+	private ArrayList<Article> tempArticles;
 	public Management() {
 		articles = new ArrayList<Article>();
 		display = new Display();//
 		display.setTableStyle('\u2554', '\u2557', '\u255A', '\u255D', '\u2566', '\u2569', '\u2560', '\u256C', '\u2563', '\u2551', '\u2550');
 		//display.setTableStyle('╔', '╗', '╚', '╝', '╦', '╩', '╠', '╬', '╣', '║', '═');
-		display.setArticles(articles);
 		indices = new ArrayList<Integer>();
 		/*for(int  i=0; i<1e6; i++){
 			articles.add(new Article("Vichea", "JAVA ", "CBD" , now));
@@ -42,8 +40,10 @@ public class Management {
 		articles.add(new Article("Elite Chorn", "Management Information System", "CBD" , now));
 		articles.add(new Article("Ros Channa", "Software Engineering", "CBD" , now));
 		articles.add(new Article("Hem Sarin", "C Programming", "CBD" , now));
-		//sort(new SortById(), false);
-		
+
+		tempArticles = articles;
+		//sort("i", false);
+		display.setArticles(tempArticles);
 	}
 
 	/**
@@ -340,8 +340,7 @@ public class Management {
 		switch (sortBy) {
 		// sort by id
 		case "i":
-			Collections.sort(articles, new Comparator<Article>() {
-
+			Collections.sort(tempArticles, new Comparator<Article>() {
 				@Override
 				public int compare(Article art1, Article art2) {
 					// TODO Auto-generated method stub
@@ -357,7 +356,7 @@ public class Management {
 		// sort by author
 		case "au":
 			System.err.println("Author");
-			Collections.sort(articles, new Comparator<Article>() {
+			Collections.sort(tempArticles, new Comparator<Article>() {
 
 				@Override
 				public int compare(Article art1, Article art2) {
@@ -371,7 +370,7 @@ public class Management {
 		// sort by title
 		case "t":
 			// TODO Auto-generated method stub
-			Collections.sort(articles, new Comparator<Article>() {
+			Collections.sort(tempArticles, new Comparator<Article>() {
 
 				@Override
 				public int compare(Article art1, Article art2) {
@@ -384,7 +383,7 @@ public class Management {
 			
 		// sort by Publish Date
 		case "p":
-			Collections.sort(articles, new Comparator<Article>() {
+			Collections.sort(tempArticles, new Comparator<Article>() {
 
 				@Override
 				public int compare(Article art1, Article art2) {
@@ -400,7 +399,7 @@ public class Management {
 		
 		} //end switch
 		if(!isAscending)
-			Collections.reverse(articles);
+			Collections.reverse(tempArticles);
 		display();
 		
 	}
@@ -435,13 +434,13 @@ public class Management {
 				int searchBy = input.nextInt();
 				System.out.print("Input Key:");
 				key = input.next();
-				subPages  = new ArrayList<Article>();
 				ArrayList<Integer>ss = search(searchBy, key);
+				tempArticles  = new ArrayList<Article>();
 				for(Integer s : ss){
 					//System.out.println(articles.get(s));
-					subPages.add(articles.get(s));
+					tempArticles.add(articles.get(s));
 				}
-				display.setArticles(subPages);
+				display.setArticles(tempArticles);
 				break;
 			case "ss":
 				System.out.print("Sort By: I)D, Au)thor, T)itle, P)ublish Date --> ");
@@ -484,7 +483,8 @@ public class Management {
 				display.gotoLastPage();
 				break;
 			case "h":
-				display.setArticles(articles);
+				tempArticles = articles;
+				display.setArticles(tempArticles);
 				display.gotoFirstPage();
 				break;
 			case "v":
