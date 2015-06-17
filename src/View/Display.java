@@ -8,8 +8,8 @@ public class Display {
 	public static final String ORGANIZATION_NAME = "KOREAN SOFTWARE HRD CENTER";
 	public static final String PROJECT_NAME = "ARTICLES MANAGEMENT SYSTEM";
 	public static final String MENU1 = "F) First | P) Previous | N) Next | L) Last";
-	public static final String MENU2 = "A) Add | R) Remove | S)Search |  U) Update ";
-	public static final String MENU3 = "SS) Sort | G) Goto | #) Set Row | H) Home | E) Exit";
+	public static final String MENU2 = "A) Add | R) Remove | S)Search |  U) Update | SS) Sort";
+	public static final String MENU3 = "H) Home | V) View Detail | G) Goto | #) Set Row | E) Exit";
 	
 	private char topLeft;
 	private char topRight;
@@ -445,5 +445,12 @@ public class Display {
 		System.out.println();
 		//Menu bar;
 		menu(maxColumns, totalLenght); /* Output Menu Bar */
+	}
+	public void viewDetail(Article article){
+		System.out.println("ID: " + article.getId());
+		System.out.println("Author: " + article.getAuthor());
+		System.out.println("Title: " + article.getTitle());
+		System.out.println("Publish Date: " + article.getPublishDate());
+		System.out.println("Content: " + article.getContent());
 	}
 }
