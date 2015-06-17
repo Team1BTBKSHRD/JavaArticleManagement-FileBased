@@ -7,7 +7,6 @@ import java.util.Comparator;
 import java.util.Date;
 import java.util.Scanner;
 
-import Search.*;
 import Sort.*;
 import View.Display;
 
@@ -17,7 +16,6 @@ public class Management {
 	ArrayList<Integer> indices;
 	private Display display;
 	private ISort sortBy;
-	private ISearch searchBy;
 	private ArrayList<Article> subPages;
 	public Management() {
 		articles = new ArrayList<Article>();
@@ -27,22 +25,22 @@ public class Management {
 		display.setArticles(articles);
 		indices = new ArrayList<Integer>();
 		/*for(int  i=0; i<1e6; i++){
-			articles.add(new Article("Vichea", "JAVA ", "CBD"));
+			articles.add(new Article("Vichea", "JAVA ", "CBD" , now));
 	}*/
-		articles.add(new Article("Srey LeangHeng", "Web Application Development", "CBD"));
-		articles.add(new Article("Sun VicheyChetra", "Java Programming Language", "CBD"));
-	
-		articles.add(new Article("Dara Po", "Object Oreinted Analysis & Design", "CBD"));
-		articles.add(new Article("Ke Pisal", "Unix System & Administrator", "CBD"));
-		articles.add(new Article("Sok Lungdy", "Database Analysis & Design", "CBD"));
-		articles.add(new Article("Sokngim Sa", "Data Communication", "CBD"));
-		articles.add(new Article("Polyvan Ouk", "Data Structure & Algorithm", "CBD"));
-		articles.add(new Article("Nita Best", "Computer Artchitecture", "CBD"));
-		articles.add(new Article("Mom Kunthy", "C++ Programming", "CBD"));
-		articles.add(new Article("Sambo Siang", "Visual Basic .Net Prgramming", "CBD"));
-		articles.add(new Article("Elite Chorn", "Management Information System", "CBD"));
-		articles.add(new Article("Ros Channa", "Software Engineering", "CBD"));
-		articles.add(new Article("Hem Sarin", "C Programming", "CBD"));
+		String now = new SimpleDateFormat("dd/MM/YYYY HH:mm:ss").format(new Date());;
+		articles.add(new Article("Srey LeangHeng", "Web Application Development", "CBD" , now));
+		articles.add(new Article("Sun VicheyChetra", "Java Programming Language", "CBD" , now));	
+		articles.add(new Article("Dara Po", "Object Oreinted Analysis & Design", "CBD" , now));
+		articles.add(new Article("Ke Pisal", "Unix System & Administrator", "CBD" , now));
+		articles.add(new Article("Sok Lungdy", "Database Analysis & Design", "CBD" , now));
+		articles.add(new Article("Sokngim Sa", "Data Communication", "CBD" , now));
+		articles.add(new Article("Polyvan Ouk", "Data Structure & Algorithm", "CBD" , now));
+		articles.add(new Article("Nita Best", "Computer Artchitecture", "CBD" , now));
+		articles.add(new Article("Mom Kunthy", "C++ Programming", "CBD" , now));
+		articles.add(new Article("Sambo Siang", "Visual Basic .Net Prgramming", "CBD" , now));
+		articles.add(new Article("Elite Chorn", "Management Information System", "CBD" , now));
+		articles.add(new Article("Ros Channa", "Software Engineering", "CBD" , now));
+		articles.add(new Article("Hem Sarin", "C Programming", "CBD" , now));
 		//sort(new SortById(), false);
 		
 	}
@@ -114,7 +112,7 @@ public class Management {
 		if (author.isEmpty() || title.isEmpty() || content.isEmpty()) {
 			System.out.println("No value");
 		} else {
-			articles.add(new Article(author, title, content));
+			articles.add(new Article(author, title, content,"asdf"));
 		}
 	}
 	/**
@@ -136,7 +134,7 @@ public class Management {
 		
 		Scanner input = new Scanner(System.in);
 		byte choose = 0;
-		this.searchBy = new SearchById();
+		//this.searchBy = new SearchById();
 		System.out.println("Update : 1.(Author) 2.(Title) 3.(Content) 4.(All)");
 		choose = input.nextByte();
 		switch (choose) {
@@ -145,20 +143,16 @@ public class Management {
 			System.out.println("Enter Author : ");
 			input.nextLine();
 			author = input.nextLine();
-			articles.get(this.searchBy.search(articles, key).get(0)).setAuthor(
-					author);
-			articles.get(this.searchBy.search(articles, key).get(0))
-					.setModifiedDate(modifiedDate);
+			//articles.get(this.searchBy.search(articles, key).get(0)).setAuthor(author);
+			//articles.get(this.searchBy.search(articles, key).get(0)).setModifiedDate(modifiedDate);
 			break;
 			/* Updating Title by ID */
 		case 2:
 			System.out.println("Enter Title : ");
 			input.nextLine();
 			title = input.nextLine();
-			articles.get(this.searchBy.search(articles, key).get(0)).setTitle(
-					title);
-			articles.get(this.searchBy.search(articles, key).get(0))
-					.setModifiedDate(modifiedDate);
+			//articles.get(this.searchBy.search(articles, key).get(0)).setTitle(title);
+			//articles.get(this.searchBy.search(articles, key).get(0)).setModifiedDate(modifiedDate);
 			break;
 			/* Updating Content by ID */
 		case 3:
@@ -170,10 +164,8 @@ public class Management {
 				if (content.endsWith("."))
 					break;
 			}
-			articles.get(this.searchBy.search(articles, key).get(0))
-					.setContent(content);
-			articles.get(this.searchBy.search(articles, key).get(0))
-					.setModifiedDate(modifiedDate);
+			//articles.get(this.searchBy.search(articles, key).get(0)).setContent(content);
+			//articles.get(this.searchBy.search(articles, key).get(0)).setModifiedDate(modifiedDate);
 			break;
 			/* Updating All Fields by ID */
 		case 4: 
@@ -193,7 +185,7 @@ public class Management {
 				System.out.println("Invalid value!");
 				break;
 			} else {
-				articles.get(this.searchBy.search(articles, key).get(0)).setData(author, title, content, modifiedDate);
+				//articles.get(this.searchBy.search(articles, key).get(0)).setData(author, title, content, modifiedDate);
 			}
 			break;
 			/* Not Permit invalid Key */
@@ -222,7 +214,7 @@ public class Management {
 	    switch(searchBy){    
 	      case 0:	//search ID
 	     		int index = Collections.binarySearch(articles, 
-	                                             new Article("", "", "").clone(Integer.parseInt(key)),
+	                                             new Article("", "", "", "").clone(Integer.parseInt(key)),
 	                                             new Comparator<Article>() {
 	          public int compare(Article art1, Article art2) {
 	            return art1.getId() < art2.getId() ? -1 : art1.getId() > art2.getId() ? 1 : 0; 
@@ -374,29 +366,29 @@ public class Management {
 				update(key);
 				break;
 			case "s":
-				System.out.print("a) Author, t) Title, pd) Publish Date, md)Modified Date");
-				String search = input.next();
-				ISearch searchBy;
-				switch(search.toLowerCase()){
-				case "a":
-					searchBy = new SearchByAuthor();
-					break;
-				case "t":
-					searchBy = new SearchByTitle();
-					break;
-				case "pd":
-					searchBy = new SearchByPublishDate();
-					break;
-				case "md":
-					searchBy = new SearchByModifiedDate();
-					break;
-				default:
-					searchBy = new SearchById();
-					break;
-				}
-				System.out.print("Please, Input Key: ");
-				key = input.next();
-				//search(searchBy, key);
+//				System.out.print("a) Author, t) Title, pd) Publish Date, md)Modified Date");
+//				String search = input.next();
+//				ISearch searchBy;
+//				switch(search.toLowerCase()){
+//				case "a":
+//					searchBy = new SearchByAuthor();
+//					break;
+//				case "t":
+//					searchBy = new SearchByTitle();
+//					break;
+//				case "pd":
+//					searchBy = new SearchByPublishDate();
+//					break;
+//				case "md":
+//					searchBy = new SearchByModifiedDate();
+//					break;
+//				default:
+//					searchBy = new SearchById();
+//					break;
+//				}
+//				System.out.print("Please, Input Key: ");
+//				key = input.next();
+//				//search(searchBy, key);
 				break;
 			case "ss":
 				System.out.print("a(Author, t(Title, pd(Publish Date, md(Modified Date");
