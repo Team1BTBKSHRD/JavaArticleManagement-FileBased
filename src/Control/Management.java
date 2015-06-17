@@ -1,5 +1,6 @@
 ﻿package Control;
 import Model.Article;
+
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -335,11 +336,77 @@ public class Management {
 	 * @param isAscending
 	 *            : true Ascending, false Descending
 	 */
-	public void sort(ISort sortBy, boolean isAscending) {
-		this.sortBy = sortBy;
-		this.sortBy.sort(articles, isAscending);
+	public void sort(String sortBy,boolean isAscending) {
+		switch (sortBy) {
+		// sort by id
+		case "i":
+			Collections.sort(articles, new Comparator<Article>() {
+
+				@Override
+				public int compare(Article art1, Article art2) {
+					// TODO Auto-generated method stub
+
+					return art1.getId() > art2.getId() ? 1 : -1;
+					/* Sort Object By Ascending */
+
+				}
+
+			});
+			
+			break;
+		// sort by author
+		case "au":
+			System.err.println("Author");
+			Collections.sort(articles, new Comparator<Article>() {
+
+				@Override
+				public int compare(Article art1, Article art2) {
+					// TODO Auto-generated method stub
+					//System.out.println(art1.getAuthor().compareTo(art2.getAuthor()));
+					return art1.getAuthor().compareTo(art2.getAuthor());
+					/* Sort Object By Ascending */
+				}
+			});
+			
+		// sort by title
+		case "t":
+			// TODO Auto-generated method stub
+			Collections.sort(articles, new Comparator<Article>() {
+
+				@Override
+				public int compare(Article art1, Article art2) {
+					// TODO Auto-generated method stub
+
+					return art1.getTitle().compareTo(art2.getTitle());
+					/* Sort Object By Ascending */
+				}
+			});
+			
+		// sort by Publish Date
+		case "p":
+			Collections.sort(articles, new Comparator<Article>() {
+
+				@Override
+				public int compare(Article art1, Article art2) {
+					// TODO Auto-generated method stub
+
+					return art1.getPublishDate().compareTo(
+							art2.getPublishDate());
+					/* Sort Object By Ascending */
+				}
+			});
+			
+		
+		
+		} //end switch
+		if(!isAscending)
+			Collections.reverse(articles);
 		display();
+		
 	}
+
+	/**
+	 * Function without parameter for display all 
 	/**
 	 * Function without parameter for display all of elements
 	 */
@@ -391,34 +458,22 @@ public class Management {
 //				//search(searchBy, key);
 				break;
 			case "ss":
-				System.out.print("a(Author, t(Title, pd(Publish Date, md(Modified Date");
-				String sort = input.next();
-				ISort sortBy;
-				switch(sort.toLowerCase()){
-				case "a":
-					sortBy = new SortByAuthor();
-					break;
-				case "t":
-					sortBy = new SortByTitle();
-					break;
-				case "pd":
-					sortBy = new SortByPublishDate();
-					break;
-				default:
-					sortBy = new SortById();
-					break;
-				}
-				boolean isAscending;
-				System.out.print("ASC or DSC"); 
+				System.out.print("Sort By: I)D, Au)thor, T)itle, P)ublish Date --> ");
+				String sortBy = input.next();
+				
+				System.out.print("Order By: ASC or DSC --> ");
 				String isAsc = input.next();
-				if(isAsc.equalsIgnoreCase("asc")){
-					isAscending = true;
+				if (isAsc.equalsIgnoreCase("asc")) {
+					sort(sortBy.toLowerCase(), true);
 				}
-					
-				else {
-					isAscending = false;
+
+				else if(isAsc.equalsIgnoreCase("dsc")) {
+					sort(sortBy.toLowerCase(), false);
 				}
-				sort(sortBy, isAscending);
+				else{
+					System.err.println("Invalid Input!!!");
+				}
+				
 				break;
 			case "g":
 				System.out.print("Input Page Number: ");
