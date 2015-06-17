@@ -404,9 +404,6 @@ public class Management {
 				case "pd":
 					sortBy = new SortByPublishDate();
 					break;
-				case "md":
-					sortBy = new SortByModifiedDate();
-					break;
 				default:
 					sortBy = new SortById();
 					break;
