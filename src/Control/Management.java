@@ -406,14 +406,13 @@ public class Management {
 	}
 
 	/**
-	 * Function without parameter for display all 
-	/**
 	 * Function without parameter for display all of elements
 	 */
 	public void display() {
 		Scanner input = new Scanner(System.in);
 		String option;
-		String key;		
+		String key;
+		display.process();	
 		do{
 			System.out.print("Please, Input Your Option-->");
 			option = input.next();
