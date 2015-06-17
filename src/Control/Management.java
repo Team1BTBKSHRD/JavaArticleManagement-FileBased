@@ -1,14 +1,12 @@
 ﻿package Control;
 import Model.Article;
-
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Date;
-import java.util.Iterator;
-import java.util.List;
 import java.util.Scanner;
 
-import Model.Article;
 import Search.*;
 import Sort.*;
 import View.Display;
@@ -211,23 +209,110 @@ public class Management {
 	 * Function with parameter For Searching Data By All kind of Searching By ID
 	 * By Author By Title By PublishDate By ModifiedDate
 	 * 
-	 * @param SearchBy
-	 *            : new Objects search By
-	 * @param Key
-	 *            : Key as Value
+	 * @param articles
+	 *            : arraylist of object to search
+	 * @param searchBy
+	 *            : option to choose from 0 - 3
+	 * @param key
+	 *            : keyword to search
 	 */
-	public void search(ISearch searchBy, String key) {
-		this.searchBy = searchBy;
-		indices = this.searchBy.search(articles, key);
-		if(indices.size() < 0){
-			System.err.println("Search not found!");
-			//return;
-		}
-		subPages = new ArrayList<Article>();
-		for(int index : indices){
-			subPages.add(articles.get(index));
-		}
-		display.setArticles(subPages);
+	public static ArrayList<Integer> search(ArrayList<Article> articles, int searchBy, String key) {
+		ArrayList<Integer> resultList = new ArrayList<Integer>();
+		key = key.toLowerCase(); 
+	    switch(searchBy){    
+	      case 0:	//search ID
+	     		int index = Collections.binarySearch(articles, 
+	                                             new Article("", "", "").clone(Integer.parseInt(key)),
+	                                             new Comparator<Article>() {
+	          public int compare(Article art1, Article art2) {
+	            return art1.getId() < art2.getId() ? -1 : art1.getId() > art2.getId() ? 1 : 0; 
+	          }
+	        });
+	        resultList.add(index);
+	        break;
+	      case 1:	//search Authorname
+	        for (int startIndex = 0, halfIndex = articles.size() / 2; 
+	             startIndex < articles.size() / 2; 
+	             startIndex++, halfIndex++) {
+	          if (articles.get(startIndex)
+	                      .getAuthor()
+	                      .toLowerCase()
+	                      .startsWith(key)) {
+	            resultList.add(startIndex);
+	          }
+	          if (articles.get(halfIndex)
+	                      .getAuthor()
+	                      .toLowerCase()
+	                      .startsWith(key)) {
+	            resultList.add(halfIndex);
+	          }
+	        }   
+	        if ((articles.size() % 2) != 0) {
+	          if (articles.get(articles.size() - 1)
+	                      .getAuthor()
+	                      .toLowerCase()
+	                      .startsWith(key)) {
+	            resultList.add(articles.size() - 1);            
+	          }
+	        }
+	        break;
+	      case 2:	//search PublishDate        	
+	        for (int startIndex = 0, halfIndex = articles.size() / 2; 
+	             startIndex < articles.size() / 2; 
+	             startIndex++, halfIndex++) {
+	          if (articles.get(startIndex)
+	              .getPublishDate()
+	              .toLowerCase()
+	              .startsWith(key)) {
+	            resultList.add(startIndex);
+	          }
+	          if (articles.get(halfIndex)
+	              .getPublishDate()
+	              .toLowerCase()
+	              .startsWith(key)) {
+	            resultList.add(halfIndex);
+	          }
+	        }
+	        if ((articles.size() % 2) != 0) {
+	          if (articles.get(articles.size() - 1)
+	              .getPublishDate()
+	              .toLowerCase()
+	              .startsWith(key)) {
+	            resultList.add(articles.size() - 1);
+	          }
+	        }
+	        break;
+	      case 3:	//search Title
+	        for (int startIndex = 0, halfIndex = articles.size() / 2; 
+	             startIndex < articles.size() / 2; 
+	             startIndex++, halfIndex++) {
+	          if (articles.get(startIndex)
+	                      .getTitle()
+	                      .toLowerCase()
+	                      .startsWith(key)) {
+	            resultList.add(startIndex);
+	          }
+	          if (articles.get(halfIndex)
+	                      .getTitle()
+	                      .toLowerCase()
+	                      .startsWith(key)) {
+	            resultList.add(halfIndex);
+	          }
+	        }
+	        if ((articles.size() % 2) != 0) {
+	          if (articles.get(articles.size() - 1)
+	                      .getTitle()
+	                      .toLowerCase()
+	                      .startsWith(key)) {
+	            resultList.add(articles.size() - 1);
+	          }
+	        }
+	        break;
+	      default:				
+	        System.out.println("No Option. Please Input Again.");
+	        return null;
+	    }
+		return resultList; 
 	}
 
 	/**
@@ -237,7 +322,7 @@ public class Management {
 	 *            : Key as ID
 	 */
 	public void remove(String key) {
-		search(new SearchById(), key);
+		//search(new SearchById(), key);
 		if (indices.get(0) < 0) { // If value < 0 it means search not found;
 			System.err.println("Invalid Key");
 			return;
@@ -311,7 +396,7 @@ public class Management {
 				}
 				System.out.print("Please, Input Key: ");
 				key = input.next();
-				search(searchBy, key);
+				//search(searchBy, key);
 				break;
 			case "ss":
 				System.out.print("a(Author, t(Title, pd(Publish Date, md(Modified Date");
