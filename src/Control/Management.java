@@ -209,7 +209,7 @@ public class Management {
 	 * @param key
 	 *            : keyword to search
 	 */
-	public static ArrayList<Integer> search(ArrayList<Article> articles, int searchBy, String key) {
+	public ArrayList<Integer> search(int searchBy, String key) {
 		ArrayList<Integer> resultList = new ArrayList<Integer>();
 		key = key.toLowerCase(); 
 	    switch(searchBy){    
@@ -413,8 +413,7 @@ public class Management {
 	public void display() {
 		Scanner input = new Scanner(System.in);
 		String option;
-		String key;
-		display.process();
+		String key;		
 		do{
 			System.out.print("Please, Input Your Option-->");
 			option = input.next();
@@ -433,29 +432,17 @@ public class Management {
 				update(key);
 				break;
 			case "s":
-//				System.out.print("a) Author, t) Title, pd) Publish Date, md)Modified Date");
-//				String search = input.next();
-//				ISearch searchBy;
-//				switch(search.toLowerCase()){
-//				case "a":
-//					searchBy = new SearchByAuthor();
-//					break;
-//				case "t":
-//					searchBy = new SearchByTitle();
-//					break;
-//				case "pd":
-//					searchBy = new SearchByPublishDate();
-//					break;
-//				case "md":
-//					searchBy = new SearchByModifiedDate();
-//					break;
-//				default:
-//					searchBy = new SearchById();
-//					break;
-//				}
-//				System.out.print("Please, Input Key: ");
-//				key = input.next();
-//				//search(searchBy, key);
+				System.out.print("0 (ID, 1(Author, 2(Publish Date, 3)Title");
+				int searchBy = input.nextInt();
+				System.out.print("Input Key:");
+				key = input.next();
+				subPages  = new ArrayList<Article>();
+				ArrayList<Integer>ss = search(searchBy, key);
+				for(Integer s : ss){
+					//System.out.println(articles.get(s));
+					subPages.add(articles.get(s));
+				}
+				display.setArticles(subPages);
 				break;
 			case "ss":
 				System.out.print("Sort By: I)D, Au)thor, T)itle, P)ublish Date --> ");
@@ -497,12 +484,23 @@ public class Management {
 			case "l": 
 				display.gotoLastPage();
 				break;
+			case "h":
+				display.setArticles(articles);
+				display.gotoFirstPage();
+				break;
+			case "v":
+				System.out.print("Input ID:");
+				String id = input.next();
+				Article art = articles.get(search(0, id).get(0));
+				display.viewDetail(art);
+				input.next();
+				break;
 			case "e":
 				input.close();
 				return;
-			}
+			}//End of switch;
 			display.process();
 
 		}while(true);
-	}
+	}//End of function display;
 }// End of class;

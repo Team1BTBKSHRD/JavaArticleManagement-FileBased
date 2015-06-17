@@ -5,11 +5,6 @@ import java.util.List;
 import Model.Article;
 
 public class Display {
-	public static final String ORGANIZATION_NAME = "KOREAN SOFTWARE HRD CENTER";
-	public static final String PROJECT_NAME = "ARTICLES MANAGEMENT SYSTEM";
-	public static final String MENU1 = "F) First | P) Previous | N) Next | L) Last";
-	public static final String MENU2 = "A) Add | R) Remove | S)Search |  U) Update | SS) Sort";
-	public static final String MENU3 = "H) Home | V) View Detail | G) Goto | #) Set Row | E) Exit";
 	
 	private char topLeft;
 	private char topRight;
@@ -202,6 +197,8 @@ public class Display {
 	/* Method header()
 	 * Use for output the organization's name and the project's name*/
 	public void header(int []maxColumns, int totalLenght) {
+		final String ORGANIZATION_NAME = "KOREAN SOFTWARE HRD CENTER";
+		final String PROJECT_NAME = "ARTICLES MANAGEMENT SYSTEM";
 		String head = "";
 		//head = addHorizontalLine(head, maxColumns, topLeft, horizontalLine, topRight);
 		//head = addLetter(head, verticalLine, 1);
@@ -221,6 +218,9 @@ public class Display {
 	}
 
 	public void menu(int[] maxColumns, int totalLenght) {
+		final String MENU1 = "F) First | P) Previous | N) Next | L) Last";
+		final String MENU2 = "A) Add | R) Remove | S)Search |  U) Update | SS) Sort";
+		final String MENU3 = "H) Home | V) View Detail | G) Goto | #) Set Row | E) Exit";
 		String strMenu = "";
 		strMenu = addHorizontalLine(strMenu, maxColumns, topLeft, horizontalLine, topRight);
 		//strMenu = addLetter(strMenu, verticalLine, 1);
