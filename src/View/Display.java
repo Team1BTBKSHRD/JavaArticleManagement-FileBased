@@ -9,7 +9,7 @@ public class Display {
 	public static final String PROJECT_NAME = "ARTICLES MANAGEMENT SYSTEM";
 	public static final String MENU1 = "F) First | P) Previous | N) Next | L) Last";
 	public static final String MENU2 = "A) Add | R) Remove | S)Search |  U) Update ";
-	public static final String MENU3 = "SS) Sort | G) Goto #) Set Row | E) Exit";
+	public static final String MENU3 = "SS) Sort | G) Goto | #) Set Row | H) Home | E) Exit";
 	
 	private char topLeft;
 	private char topRight;
@@ -26,8 +26,7 @@ public class Display {
 	private char verticalLine;
 	private char horizontalLine;
 
-	private static final String[] headers = { "ID", "AUTHOR ", "TITLE ", "PUBLISH DATE",
-			"MODIFIED DATE" };
+	private static final String[] headers = { "ID", "AUTHOR ", "TITLE ", "PUBLISH DATE"};
 
 	ArrayList<Article> articles;
 	List<Article> subPages; /* Use for store a set of articles for view */
@@ -254,8 +253,7 @@ public class Display {
 	 */
 	private int[] maxColumnsLength(List<Article> articles) {
 		int[] maxLengths = new int[] { headers[0].length(),
-				headers[1].length(), headers[2].length(), headers[3].length(),
-				headers[4].length() };
+				headers[1].length(), headers[2].length(), headers[3].length()};
 
 		for (Article article : articles) {
 			if (Integer.toString(article.getId()).length() > maxLengths[0]) /*
@@ -273,14 +271,20 @@ public class Display {
 															 * length of column
 															 * Author
 															 */
-				maxLengths[1] = article.getAuthor().length();
+				if(article.getAuthor().length() > 10)
+					maxLengths[1] = 13;
+				else
+					maxLengths[1] = article.getAuthor().length();
 
 			if (article.getTitle().length() > maxLengths[2]) /*
 															 * Find maximum
 															 * length of column
 															 * Title
 															 */
-				maxLengths[2] = article.getTitle().length();
+				if(article.getTitle().length() > 23)
+					maxLengths[2] = 23;
+				else
+					maxLengths[2] = article.getTitle().length();
 
 			if (article.getPublishDate().length() > maxLengths[3]) /*
 																	 * Find
@@ -292,15 +296,6 @@ public class Display {
 																	 */
 				maxLengths[3] = article.getPublishDate().length();
 
-			if (article.getModifiedDate().length() > maxLengths[4]) /*
-																	 * Find
-																	 * maximum
-																	 * length of
-																	 * column
-																	 * Modified
-																	 * Date
-																	 */
-				maxLengths[4] = article.getModifiedDate().length();
 		}
 		return maxLengths; /* return maximum length of every columns */
 	}
@@ -416,11 +411,17 @@ public class Display {
 			table = addLetter(table, ' ',
 					maxColumns[0] - Integer.toString(article.getId()).length());
 
-			table += Character.toString(verticalLine) + article.getAuthor(); //Add Author
+			if(article.getAuthor().length() > 13)
+				table += Character.toString(verticalLine) + article.getAuthor().substring(0, 10) + "..."; //Add Author
+			else
+				table += Character.toString(verticalLine) + article.getAuthor();
 			table = addLetter(table, ' ', maxColumns[1]
 					- article.getAuthor().length());
 
-			table += Character.toString(verticalLine) + article.getTitle(); //Add Title
+			if(article.getTitle().length() > 23)
+				table += Character.toString(verticalLine) + article.getTitle().substring(0, 20) + "..."; //Add Title
+			else
+				table += Character.toString(verticalLine) + article.getTitle();
 			table = addLetter(table, ' ', maxColumns[2]
 					- article.getTitle().length());
 
@@ -428,11 +429,6 @@ public class Display {
 					+ article.getPublishDate();
 			table = addLetter(table, ' ', maxColumns[3]
 					- article.getPublishDate().length());
-
-			table += Character.toString(verticalLine) //Add Modified Date
-					+ article.getModifiedDate();
-			table = addLetter(table, ' ', maxColumns[4]
-					- article.getModifiedDate().length());
 
 			table += Character.toString(verticalLine);
 			table += "\n";

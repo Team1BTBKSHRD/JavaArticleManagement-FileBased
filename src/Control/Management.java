@@ -31,20 +31,21 @@ public class Management {
 		/*for(int  i=0; i<1e6; i++){
 			articles.add(new Article("Vichea", "JAVA ", "CBD"));
 	}*/
-		articles.add(new Article("aPisal", "A", "CBD"));
-		articles.add(new Article("Vichea", "AB", "CBD"));
-		articles.add(new Article("Dara", "E", "CBD"));
-		articles.add(new Article("Sal", "F", "CBD"));
-		articles.add(new Article("Sok", "AG", "CBD"));
-		articles.add(new Article("Kit", "E", "CBD"));
-		articles.add(new Article("Poly", "G", "CBD"));
-		articles.add(new Article("abNita", "U", "CBD"));
-		articles.add(new Article("Chetra", "I", "CBD"));
-		articles.add(new Article("Sambo", "J", "CBD"));
-		articles.add(new Article("aaElit", "P", "CBD"));
-		articles.add(new Article("zhanna", "A", "CBD"));
-		articles.add(new Article("Ally", "X", "CBD"));
-		sort(new SortById(), false);
+		articles.add(new Article("Srey LeangHeng", "Web Application Development", "CBD"));
+		articles.add(new Article("Sun VicheyChetra", "Java Programming Language", "CBD"));
+	
+		articles.add(new Article("Dara Po", "Object Oreinted Analysis & Design", "CBD"));
+		articles.add(new Article("Ke Pisal", "Unix System & Administrator", "CBD"));
+		articles.add(new Article("Sok Lungdy", "Database Analysis & Design", "CBD"));
+		articles.add(new Article("Sokngim Sa", "Data Communication", "CBD"));
+		articles.add(new Article("Polyvan Ouk", "Data Structure & Algorithm", "CBD"));
+		articles.add(new Article("Nita Best", "Computer Artchitecture", "CBD"));
+		articles.add(new Article("Mom Kunthy", "C++ Programming", "CBD"));
+		articles.add(new Article("Sambo Siang", "Visual Basic .Net Prgramming", "CBD"));
+		articles.add(new Article("Elite Chorn", "Management Information System", "CBD"));
+		articles.add(new Article("Ros Channa", "Software Engineering", "CBD"));
+		articles.add(new Article("Hem Sarin", "C Programming", "CBD"));
+		//sort(new SortById(), false);
 		
 	}
 
