@@ -8,25 +8,22 @@ public class Article {
 	private String author;
 	private String title;
 	private String publishDate;
-	private String modifiedDate;
 	private String content;
 	private static int MAX_ID = 1;
 
-	public Article(String author, String title, String content) {
+	public Article(String author, String title, String content, String publishDate){
 		this.id = MAX_ID++;
 		this.author = author;
 		this.title = title;
 		this.content = content;
-		publishDate = new SimpleDateFormat("dd/MM/YYYY HH:mm:ss")
-				.format(new Date());
-		modifiedDate = publishDate;
+		this.publishDate = publishDate;		 
 	}
 
-	public void setData(String author, String title, String content, String modifiedDate) {
+	public void setData(String author, String title, String content) {
 		this.author = author;
 		this.title = title;
 		this.content = content;
-		this.modifiedDate = modifiedDate;
+
 	}
 	
 	public int getId() {
@@ -59,14 +56,6 @@ public class Article {
 		return publishDate;
 	}
 
-	public String getModifiedDate() {
-		return modifiedDate;
-	}
-
-	public void setModifiedDate(String modifiedDate) {
-		this.modifiedDate = modifiedDate;
-	}
-
 	public String getContent() {
 		return content;
 	}
@@ -77,8 +66,8 @@ public class Article {
 
 	public String toString() {
 		return String
-				.format("ID:%d, Author:%s, Title:%s, Publish Date:%s, Modified Date:%s, Content:%s",
-						id, author, title, publishDate, modifiedDate, content);
+				.format("ID:%d, Author:%s, Title:%s, Publish Date:%s, Content:%s",
+						id, author, title, publishDate, content);
 	}
 
 }
