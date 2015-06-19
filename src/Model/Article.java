@@ -1,8 +1,5 @@
 package Model;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
-
 public class Article {
 	private int id;
 	private String author;

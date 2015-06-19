@@ -7,8 +7,6 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.Date;
 import java.util.Scanner;
-
-import Sort.*;
 import View.Display;
 
 public class Management {
@@ -25,7 +23,7 @@ public class Management {
 		indices = new ArrayList<Integer>();
 		/*for(int  i=0; i<1e6; i++){
 			articles.add(new Article("Vichea", "JAVA ", "CBD" , now));
-	}*/
+		}*/
 		String now = new SimpleDateFormat("dd/MM/YYYY HH:mm:ss").format(new Date());;
 		articles.add(new Article("Srey LeangHeng", "Web Application Development", "CBD" , now));
 		articles.add(new Article("Sun VicheyChetra", "Java Programming Language", "CBD" , now));	
@@ -50,51 +48,35 @@ public class Management {
 	 * Function Add : For Adding Records to Articles with ValidateData. Not
 	 * Permit for null value
 	 */
-	public void add() {
+	public void add(){
 		Scanner input = new Scanner(System.in);
 		String author;
 		String title;
 		String content;
 		do{
 			content = "";
-			System.out.println("Please Enter Author : ");
-			author = input.nextLine();
-			System.out.println("Please Enter Titile : ");
-			title = input.nextLine();
-			System.out.println("Please Enter Content: ");
-			while (input.hasNext()) {
-				content += input.nextLine();
-				if (content.endsWith("."))
-					break;
+			System.out.print("Please Enter Author : ");
+			author = input.next();
+			System.out.print("Please Enter Titile : ");
+			title = input.next();
+			System.out.print("Please Enter Content: ");
+			while(input.hasNext()) {
+				content += input.next();
+				if (content.endsWith(".")) break;
 			}
-			this.validateData(articles, author.trim(), title.trim(),
-					content.trim());
-		}while(isExitInput());
-		input.close();
-	}
-	/**
-	 * Function confirmKey() verified key after each perform (Y/N)
-	 */
-	private boolean isExitInput() {
-		Scanner input = new Scanner(System.in);
-		System.out.print("Do you want to continues?(Y/N)");
-		String option = input.nextLine();
-		switch (option.toLowerCase()) {
-		case "y":
-			input.close();
-			return true;
-		case "n":
-			input.close();
-			return false;
-		default:
-			System.out.println("Invalid key! Please Input again.");
-			input.close();
-			isExitInput();
-			break;
-		}
-		input.close();
-		return false;
-	}
+			insertArticle(author, title, content);
+			System.out.print("Do you want to continues?(Y/N)");
+			String confirm = input.next();
+			switch(confirm.toLowerCase()){
+			case "y":
+				break;
+			default:
+				return;
+			}//End switch;
+		}while(true);
+		
+	}//End of add();
+	
 	/**
 	 * Function with parameter for Validating Data
 	 * 
@@ -107,13 +89,11 @@ public class Management {
 	 * @param content
 	 *            : content
 	 */
-	private void validateData(ArrayList<Article> articles, String author,
-			String title, String content) {
-		
+	private void insertArticle(String author, String title, String content) {
 		if (author.isEmpty() || title.isEmpty() || content.isEmpty()) {
-			System.out.println("No value");
+			System.out.println("Invalid value");
 		} else {
-			articles.add(new Article(author, title, content,"asdf"));
+			articles.add(new Article(author, title, content, new SimpleDateFormat("dd/MM/YYYY HH:mm:ss").format(new Date())));
 		}
 	}
 	/**
@@ -127,75 +107,64 @@ public class Management {
 	 */
 	
 
-	public void update(String key) {
+	public void update() {
 		String author;
 		String title;
 		String content;
-//		String modifiedDate = new SimpleDateFormat("dd/MM/YYYY HH:mm:ss").format(new Date());
 		
 		Scanner input = new Scanner(System.in);
-		byte choose = 0;
-		//this.searchBy = new SearchById();
-		System.out.println("Update : 1.(Author) 2.(Title) 3.(Content) 4.(All)");
-		choose = input.nextByte();
-		switch (choose) {
-		/* Updating Author by ID */
-		case 1:
-			System.out.println("Enter Author : ");
-			input.nextLine();
-			author = input.nextLine();
-			//articles.get(this.searchBy.search(articles, key).get(0)).setAuthor(author);
-			//articles.get(this.searchBy.search(articles, key).get(0)).setModifiedDate(modifiedDate);
+		System.out.print("Input ID:");
+		String id = input.next();
+		int index = search(0, id).get(0);
+		
+		byte option = 0;
+		System.out.print("Update : 1) Author | 2) Title) | 3) Content | 4) All");
+		option = input.nextByte();
+		switch (option) {
+		case 1:/* Updating Author by ID */
+			System.out.print("Enter Author: ");
+			author = input.next();
+			articles.get(index).setAuthor(author);
 			break;
-			/* Updating Title by ID */
-		case 2:
-			System.out.println("Enter Title : ");
-			input.nextLine();
-			title = input.nextLine();
-			//articles.get(this.searchBy.search(articles, key).get(0)).setTitle(title);
-			//articles.get(this.searchBy.search(articles, key).get(0)).setModifiedDate(modifiedDate);
+		case 2:/* Updating Title by ID */
+			System.out.print("Enter Title : ");
+			title = input.next();
+			articles.get(index).setTitle(title);
 			break;
-			/* Updating Content by ID */
-		case 3:
-			System.out.println("Enter Content : ");
-			input.nextLine();
-			content = input.nextLine();
+			
+		case 3:/* Updating Content by ID */
+			System.out.print("Enter Content :");
+			content = "";
 			while (input.hasNext()) {
 				content += input.nextLine();
 				if (content.endsWith("."))
 					break;
 			}
-			//articles.get(this.searchBy.search(articles, key).get(0)).setContent(content);
-			//articles.get(this.searchBy.search(articles, key).get(0)).setModifiedDate(modifiedDate);
+			articles.get(index).setContent(content);
 			break;
-			/* Updating All Fields by ID */
-		case 4: 
+		case 4: /* Updating All Fields by ID */
+			System.out.print("Please Enter Author: ");
+			author = input.next();
+			System.out.print("Please Enter Titile: ");
+			title = input.next();
+			System.out.print("Please Enter Content: ");
 			content = "";
-			System.out.println("Please Enter Author : ");
-			input.nextLine();
-			author = input.nextLine();
-			System.out.println("Please Enter Titile : ");
-			title = input.nextLine();
-			System.out.println("Please Enter Content: ");
 			while (input.hasNext()) {
 				content += input.nextLine();
 				if (content.endsWith("."))
 					break;
-				}
+			}//End while;
 			if (author.isEmpty() || title.isEmpty() || content.isEmpty()) {
 				System.out.println("Invalid value!");
 				break;
 			} else {
-				//articles.get(this.searchBy.search(articles, key).get(0)).setData(author, title, content, modifiedDate);
+				articles.get(index).setData(author, title, content);
 			}
 			break;
-			/* Not Permit invalid Key */
-		default:
+		default:/* Not Permit invalid Key */
 			System.err.println("Invalid");
-			// update(searchBy, key);
 			break;
 		}
-		input.close();
 		System.out.println("Saved");
 	}
 	/**
@@ -210,7 +179,7 @@ public class Management {
 	 *            : keyword to search
 	 */
 	public ArrayList<Integer> search(int searchBy, String key) {
-		ArrayList<Integer> resultList = new ArrayList<Integer>();
+		ArrayList<Integer> searchList = new ArrayList<Integer>();
 		key = key.toLowerCase(); 
 	    switch(searchBy){    
 	      case 0:	//search ID
@@ -221,9 +190,9 @@ public class Management {
 	            return art1.getId() < art2.getId() ? -1 : art1.getId() > art2.getId() ? 1 : 0; 
 	          }
 	        });
-	        resultList.add(index);
+	        searchList.add(index);
 	        break;
-	      case 1:	//search Authorname
+	      case 1:	//search Author name
 	        for (int startIndex = 0, halfIndex = articles.size() / 2; 
 	             startIndex < articles.size() / 2; 
 	             startIndex++, halfIndex++) {
@@ -231,13 +200,13 @@ public class Management {
 	                      .getAuthor()
 	                      .toLowerCase()
 	                      .startsWith(key)) {
-	            resultList.add(startIndex);
+	            searchList.add(startIndex);
 	          }
 	          if (articles.get(halfIndex)
 	                      .getAuthor()
 	                      .toLowerCase()
 	                      .startsWith(key)) {
-	            resultList.add(halfIndex);
+	            searchList.add(halfIndex);
 	          }
 	        }   
 	        if ((articles.size() % 2) != 0) {
@@ -245,7 +214,7 @@ public class Management {
 	                      .getAuthor()
 	                      .toLowerCase()
 	                      .startsWith(key)) {
-	            resultList.add(articles.size() - 1);            
+	            searchList.add(articles.size() - 1);            
 	          }
 	        }
 	        break;
@@ -257,13 +226,13 @@ public class Management {
 	              .getPublishDate()
 	              .toLowerCase()
 	              .startsWith(key)) {
-	            resultList.add(startIndex);
+	            searchList.add(startIndex);
 	          }
 	          if (articles.get(halfIndex)
 	              .getPublishDate()
 	              .toLowerCase()
 	              .startsWith(key)) {
-	            resultList.add(halfIndex);
+	            searchList.add(halfIndex);
 	          }
 	        }
 	        if ((articles.size() % 2) != 0) {
@@ -271,7 +240,7 @@ public class Management {
 	              .getPublishDate()
 	              .toLowerCase()
 	              .startsWith(key)) {
-	            resultList.add(articles.size() - 1);
+	            searchList.add(articles.size() - 1);
 	          }
 	        }
 	        break;
@@ -283,13 +252,13 @@ public class Management {
 	                      .getTitle()
 	                      .toLowerCase()
 	                      .startsWith(key)) {
-	            resultList.add(startIndex);
+	            searchList.add(startIndex);
 	          }
 	          if (articles.get(halfIndex)
 	                      .getTitle()
 	                      .toLowerCase()
 	                      .startsWith(key)) {
-	            resultList.add(halfIndex);
+	            searchList.add(halfIndex);
 	          }
 	        }
 	        if ((articles.size() % 2) != 0) {
@@ -297,15 +266,15 @@ public class Management {
 	                      .getTitle()
 	                      .toLowerCase()
 	                      .startsWith(key)) {
-	            resultList.add(articles.size() - 1);
+	            searchList.add(articles.size() - 1);
 	          }
 	        }
 	        break;
 	      default:				
-	        System.out.println("No Option. Please Input Again.");
+	        //System.out.println("No Option. Please Input Again.");
 	        return null;
 	    }
-		return resultList; 
+		return searchList; 
 	}
 
 	/**
@@ -315,17 +284,16 @@ public class Management {
 	 *            : Key as ID
 	 */
 	public void remove(String key) {
-		//search(new SearchById(), key);
-		if (indices.get(0) < 0) { // If value < 0 it means search not found;
+		int index = search(0, key).get(0);
+		if (index < 0) { // If value < 0 it means search not found;
 			System.err.println("Invalid Key");
 			return;
 		}
-		articles.remove((int) indices.get(0)); /*
+		articles.remove(index); /*
 												 * indices value came from
 												 * method search()
 												 */
 		System.out.println("Remove Completed!");
-		//display();
 	}
 	/**
 	 * Function with parameter For Sorting Data By ID By Author By Title By
@@ -360,14 +328,13 @@ public class Management {
 				@Override
 				public int compare(Article art1, Article art2) {
 					// TODO Auto-generated method stub
-					//System.out.println(art1.getAuthor().compareTo(art2.getAuthor()));
 					return art1.getAuthor().compareTo(art2.getAuthor());
 					/* Sort Object By Ascending */
 				}
 			});
 			break;
 			
-		// sort by title
+		// Sort by title
 		case "t":
 			// TODO Auto-generated method stub
 			Collections.sort(tempArticles, new Comparator<Article>() {
@@ -389,15 +356,14 @@ public class Management {
 				public int compare(Article art1, Article art2) {
 					// TODO Auto-generated method stub
 
-					return art1.getPublishDate().compareTo(
-							art2.getPublishDate());
+					return art1.getPublishDate().compareTo(art2.getPublishDate());
 					/* Sort Object By Ascending */
 				}
 			});			
 			break;		
 		} //end switch
 		if(!isAscending)
-			Collections.reverse(tempArticles);
+			Collections.reverse(tempArticles); /* Sort Object by Descending */
 		display();
 		
 	}
@@ -423,9 +389,7 @@ public class Management {
 				remove(key);
 				break;
 			case "u":
-				System.out.print("Input ID: ");
-				key = input.next();
-				update(key);
+				update();
 				break;
 			case "s":
 				System.out.print("0 (ID, 1(Author, 2(Publish Date, 3)Title");
@@ -493,7 +457,6 @@ public class Management {
 				input.next();
 				break;
 			case "e":
-				input.close();
 				return;
 			}//End of switch;
 			display.process();
