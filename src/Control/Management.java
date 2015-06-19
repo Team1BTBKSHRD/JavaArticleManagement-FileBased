@@ -12,18 +12,17 @@ import Sort.*;
 import View.Display;
 
 public class Management {
-	
+	private Scanner put;
 	ArrayList<Article> articles;
 	ArrayList<Integer> indices;
 	private Display display;
-	private ISort sortBy;
-	private ArrayList<Article> subPages;
+	private ArrayList<Article> tempArticles;
+	
 	public Management() {
 		articles = new ArrayList<Article>();
 		display = new Display();//
 		display.setTableStyle('\u2554', '\u2557', '\u255A', '\u255D', '\u2566', '\u2569', '\u2560', '\u256C', '\u2563', '\u2551', '\u2550');
 		//display.setTableStyle('╔', '╗', '╚', '╝', '╦', '╩', '╠', '╬', '╣', '║', '═');
-		display.setArticles(articles);
 		indices = new ArrayList<Integer>();
 		/*for(int  i=0; i<1e6; i++){
 			articles.add(new Article("Vichea", "JAVA ", "CBD" , now));
@@ -42,161 +41,48 @@ public class Management {
 		articles.add(new Article("Elite Chorn", "Management Information System", "CBD" , now));
 		articles.add(new Article("Ros Channa", "Software Engineering", "CBD" , now));
 		articles.add(new Article("Hem Sarin", "C Programming", "CBD" , now));
-		//sort(new SortById(), false);
-		
-	}
 
+		tempArticles = articles;
+		//sort("i", false);
+		display.setArticles(tempArticles);
+	}
 	/**
-	 * Function Add : For Adding Records to Articles with ValidateData. Not
-	 * Permit for null value
+	 * Function Add : For Adding Records to Articles with ValidateData. 
 	 */
 	public void add() {
-		Scanner input = new Scanner(System.in);
-		String author;
-		String title;
-		String content;
-		do{
-			content = "";
-			System.out.println("Please Enter Author : ");
-			author = input.nextLine();
-			System.out.println("Please Enter Titile : ");
-			title = input.nextLine();
-			System.out.println("Please Enter Content: ");
-			while (input.hasNext()) {
-				content += input.nextLine();
-				if (content.endsWith("."))
-					break;
-			}
-			this.validateData(articles, author.trim(), title.trim(),
-					content.trim());
-		}while(isExitInput());
-		input.close();
+		String title = getStringKeyboard("Title: ");
+		String author = getStringKeyboard("Author: ");
+		String content = getMultiLineStringKeyboard("Type ... to Stop\nContent: ");
+		Article newArticle = new Article(title,author,content,getCurrentDate());		
+		articles.add(newArticle);				
 	}
 	/**
-	 * Function confirmKey() verified key after each perform (Y/N)
+	 * Function update: articles with
+	 * 4 choice : author,title,content,all
+	 * @param idArgs : specific id of object article to update
 	 */
-	private boolean isExitInput() {
-		Scanner input = new Scanner(System.in);
-		System.out.print("Do you want to continues?(Y/N)");
-		String option = input.nextLine();
-		switch (option.toLowerCase()) {
-		case "y":
-			input.close();
-			return true;
-		case "n":
-			input.close();
-			return false;
-		default:
-			System.out.println("Invalid key! Please Input again.");
-			input.close();
-			isExitInput();
-			break;
-		}
-		input.close();
-		return false;
-	}
-	/**
-	 * Function with parameter for Validating Data
-	 * 
-	 * @param articles
-	 *            : ArrayList<Article> articles
-	 * @param author
-	 *            : Author Name
-	 * @param title
-	 *            : Title
-	 * @param content
-	 *            : content
-	 */
-	private void validateData(ArrayList<Article> articles, String author,
-			String title, String content) {
-		
-		if (author.isEmpty() || title.isEmpty() || content.isEmpty()) {
-			System.out.println("No value");
-		} else {
-			articles.add(new Article(author, title, content,"asdf"));
-		}
-	}
-	/**
-	 * Function with parameter For Updating Data Case 1: Updating Author Case 2:
-	 * Updating Title Case 3: Updating Content Case 4: Updating All Fields
-	 * 
-	 * @param SearchBy
-	 *            : SearchById Only
-	 * @param Key
-	 *            : Key as ID
-	 */
-	
-
-	public void update(String key) {
-		String author;
-		String title;
-		String content;
-		String modifiedDate = new SimpleDateFormat("dd/MM/YYYY HH:mm:ss").format(new Date());
-		
-		Scanner input = new Scanner(System.in);
-		byte choose = 0;
-		//this.searchBy = new SearchById();
-		System.out.println("Update : 1.(Author) 2.(Title) 3.(Content) 4.(All)");
-		choose = input.nextByte();
-		switch (choose) {
-		/* Updating Author by ID */
-		case 1:
-			System.out.println("Enter Author : ");
-			input.nextLine();
-			author = input.nextLine();
-			//articles.get(this.searchBy.search(articles, key).get(0)).setAuthor(author);
-			//articles.get(this.searchBy.search(articles, key).get(0)).setModifiedDate(modifiedDate);
-			break;
-			/* Updating Title by ID */
-		case 2:
-			System.out.println("Enter Title : ");
-			input.nextLine();
-			title = input.nextLine();
-			//articles.get(this.searchBy.search(articles, key).get(0)).setTitle(title);
-			//articles.get(this.searchBy.search(articles, key).get(0)).setModifiedDate(modifiedDate);
-			break;
-			/* Updating Content by ID */
-		case 3:
-			System.out.println("Enter Content : ");
-			input.nextLine();
-			content = input.nextLine();
-			while (input.hasNext()) {
-				content += input.nextLine();
-				if (content.endsWith("."))
-					break;
-			}
-			//articles.get(this.searchBy.search(articles, key).get(0)).setContent(content);
-			//articles.get(this.searchBy.search(articles, key).get(0)).setModifiedDate(modifiedDate);
-			break;
-			/* Updating All Fields by ID */
-		case 4: 
-			content = "";
-			System.out.println("Please Enter Author : ");
-			input.nextLine();
-			author = input.nextLine();
-			System.out.println("Please Enter Titile : ");
-			title = input.nextLine();
-			System.out.println("Please Enter Content: ");
-			while (input.hasNext()) {
-				content += input.nextLine();
-				if (content.endsWith("."))
-					break;
-				}
-			if (author.isEmpty() || title.isEmpty() || content.isEmpty()) {
-				System.out.println("Invalid value!");
+	public void update(int idArgs) {
+		switch (getStringKeyboard("Update : A) Author, T) Title, C) Content, AA) All\nPress any key to cancel : ").toLowerCase()) {
+			case "a":	
+				articles.get(idArgs-1).setAuthor(getStringKeyboard("Enter Author : "));
+				System.out.println("Saved");
 				break;
-			} else {
-				//articles.get(this.searchBy.search(articles, key).get(0)).setData(author, title, content, modifiedDate);
-			}
-			break;
-			/* Not Permit invalid Key */
-		default:
-			System.err.println("Invalid");
-			// update(searchBy, key);
-			break;
+			case "t":	
+				articles.get(idArgs-1).setTitle(getStringKeyboard("Enter Title : "));
+				System.out.println("Saved");
+				break;
+			case "c":				
+				articles.get(idArgs-1).setContent(getMultiLineStringKeyboard("Type ... to Stop\nContent: "));
+				System.out.println("Saved");
+				break;
+			case "aa":
+				Article oldArticle = articles.get(idArgs-1);
+				oldArticle.setTitle(getStringKeyboard("Title: "));
+				oldArticle.setAuthor(getStringKeyboard("Author: "));
+				oldArticle.setContent(getMultiLineStringKeyboard("Type ... to Stop\nContent: "));
+				System.out.println("Saved");
+				break;
 		}
-		input.close();
-		System.out.println("Saved");
 	}
 	/**
 	 * Function with parameter For Searching Data By All kind of Searching By ID
@@ -209,7 +95,7 @@ public class Management {
 	 * @param key
 	 *            : keyword to search
 	 */
-	public static ArrayList<Integer> search(ArrayList<Article> articles, int searchBy, String key) {
+	public ArrayList<Integer> search(int searchBy, String key) {
 		ArrayList<Integer> resultList = new ArrayList<Integer>();
 		key = key.toLowerCase(); 
 	    switch(searchBy){    
@@ -307,7 +193,6 @@ public class Management {
 	    }
 		return resultList; 
 	}
-
 	/**
 	 * Function with parameter For Deleting Data follow by Key
 	 * 
@@ -340,8 +225,7 @@ public class Management {
 		switch (sortBy) {
 		// sort by id
 		case "i":
-			Collections.sort(articles, new Comparator<Article>() {
-
+			Collections.sort(tempArticles, new Comparator<Article>() {
 				@Override
 				public int compare(Article art1, Article art2) {
 					// TODO Auto-generated method stub
@@ -350,14 +234,13 @@ public class Management {
 					/* Sort Object By Ascending */
 
 				}
-
 			});
 			
 			break;
 		// sort by author
 		case "au":
 			System.err.println("Author");
-			Collections.sort(articles, new Comparator<Article>() {
+			Collections.sort(tempArticles, new Comparator<Article>() {
 
 				@Override
 				public int compare(Article art1, Article art2) {
@@ -367,11 +250,12 @@ public class Management {
 					/* Sort Object By Ascending */
 				}
 			});
+			break;
 			
 		// sort by title
 		case "t":
 			// TODO Auto-generated method stub
-			Collections.sort(articles, new Comparator<Article>() {
+			Collections.sort(tempArticles, new Comparator<Article>() {
 
 				@Override
 				public int compare(Article art1, Article art2) {
@@ -381,10 +265,10 @@ public class Management {
 					/* Sort Object By Ascending */
 				}
 			});
-			
+			break;
 		// sort by Publish Date
 		case "p":
-			Collections.sort(articles, new Comparator<Article>() {
+			Collections.sort(tempArticles, new Comparator<Article>() {
 
 				@Override
 				public int compare(Article art1, Article art2) {
@@ -394,27 +278,22 @@ public class Management {
 							art2.getPublishDate());
 					/* Sort Object By Ascending */
 				}
-			});
-			
-		
-		
+			});			
+			break;		
 		} //end switch
 		if(!isAscending)
-			Collections.reverse(articles);
+			Collections.reverse(tempArticles);
 		display();
 		
 	}
-
-	/**
-	 * Function without parameter for display all 
 	/**
 	 * Function without parameter for display all of elements
-	 */
+	 */	
 	public void display() {
 		Scanner input = new Scanner(System.in);
 		String option;
 		String key;
-		display.process();
+		display.process();	
 		do{
 			System.out.print("Please, Input Your Option-->");
 			option = input.next();
@@ -429,33 +308,21 @@ public class Management {
 				break;
 			case "u":
 				System.out.print("Input ID: ");
-				key = input.next();
-				update(key);
+				int key1 = input.nextInt();
+				update(key1);
 				break;
 			case "s":
-//				System.out.print("a) Author, t) Title, pd) Publish Date, md)Modified Date");
-//				String search = input.next();
-//				ISearch searchBy;
-//				switch(search.toLowerCase()){
-//				case "a":
-//					searchBy = new SearchByAuthor();
-//					break;
-//				case "t":
-//					searchBy = new SearchByTitle();
-//					break;
-//				case "pd":
-//					searchBy = new SearchByPublishDate();
-//					break;
-//				case "md":
-//					searchBy = new SearchByModifiedDate();
-//					break;
-//				default:
-//					searchBy = new SearchById();
-//					break;
-//				}
-//				System.out.print("Please, Input Key: ");
-//				key = input.next();
-//				//search(searchBy, key);
+				System.out.print("0 (ID, 1(Author, 2(Publish Date, 3)Title");
+				int searchBy = input.nextInt();
+				System.out.print("Input Key:");
+				key = input.next();
+				ArrayList<Integer>ss = search(searchBy, key);
+				tempArticles  = new ArrayList<Article>();
+				for(Integer s : ss){
+					//System.out.println(articles.get(s));
+					tempArticles.add(articles.get(s));
+				}
+				display.setArticles(tempArticles);
 				break;
 			case "ss":
 				System.out.print("Sort By: I)D, Au)thor, T)itle, P)ublish Date --> ");
@@ -497,12 +364,76 @@ public class Management {
 			case "l": 
 				display.gotoLastPage();
 				break;
+			case "h":
+				tempArticles = articles;
+				display.setArticles(tempArticles);
+				display.gotoFirstPage();
+				break;
+			case "v":
+				System.out.print("Input ID:");
+				String id = input.next();
+				Article art = articles.get(search(0, id).get(0));
+				display.viewDetail(art);
+				input.next();
+				break;
 			case "e":
 				input.close();
 				return;
-			}
+			}//End of switch;
 			display.process();
 
 		}while(true);
+	}//End of function display;
+	
+	//#####################################################new input function#################################################
+	/**
+	 * return current Date as String
+	 */
+	public String getCurrentDate(){
+		return new SimpleDateFormat("dd/MM/YYYY HH:mm:ss").format(new Date());
+	}
+	/**
+	 * get number from input keyboard 
+	 * if error/mismatch input again
+	 * @param message : message to show on console screen
+	 * @return : number from keyboard
+	 */
+	public int getNumberKeyboard(String message){
+	    put = new Scanner(System.in);
+	    while (true) {
+	      System.out.print(message);
+	      try	{	return put.nextInt();	}
+	      catch (java.util.InputMismatchException e) {
+	        System.out.println("Input Mismatch. Please Input Again.");
+	        put.nextLine();
+	      }
+	    }
+	}
+	/**
+	 * get String from input keyboard
+	 * @param message : message to show on console screen
+	 * @return : string from keyboard
+	 */
+	public String getStringKeyboard(String message){
+		put = new Scanner(System.in);
+		System.out.print(message);
+		return put.next();
+	}	
+	/**
+	 * get MultiLine of String from keyboard
+	 * using stringBuilder
+	 * @param message : message to show on console screen
+	 * @return : contents of object Article as string
+	 */
+	public String getMultiLineStringKeyboard(String message){
+		put = new Scanner(System.in);
+		StringBuilder contents = new StringBuilder();
+		System.out.print(message);
+		while (put.hasNext()) {
+			contents.append(put.next());
+			if (contents.toString().endsWith("..."))	break;
+			contents.append("\n");
+		}
+		return contents.toString();	
 	}
 }// End of class;

@@ -10,7 +10,7 @@ public class Article {
 	private String publishDate;
 	private String content;
 	private static int MAX_ID = 1;
-
+	public Article(){}
 	public Article(String author, String title, String content, String publishDate){
 		this.id = MAX_ID++;
 		this.author = author;
