@@ -113,10 +113,13 @@ public class Management {
 		String content;
 		
 		Scanner input = new Scanner(System.in);
-		System.out.print("Input ID:");
+		System.out.print("Input ID to Update:");
 		String id = input.next();
 		int index = search(0, id).get(0);
-		
+		if(index < 0){
+			System.out.println("ID not found!");
+			return;
+		}
 		byte option = 0;
 		System.out.print("Update : 1) Author | 2) Title) | 3) Content | 4) All");
 		option = input.nextByte();
