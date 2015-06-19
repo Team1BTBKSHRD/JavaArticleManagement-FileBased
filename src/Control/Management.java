@@ -14,7 +14,7 @@ public class Management {
 	ArrayList<Article> articles;
 	ArrayList<Integer> indices;
 	private Display display;
-	private ArrayList<Article> tempArticles;
+	public ArrayList<Article> tempArticles;
 	public Management() {
 		articles = new ArrayList<Article>();
 		display = new Display();//
@@ -186,7 +186,18 @@ public class Management {
 		key = key.toLowerCase(); 
 	    switch(searchBy){    
 	      case 0:	//search ID
-	     		int index = Collections.binarySearch(articles, 
+				Collections.sort(articles, new Comparator<Article>() {
+					@Override
+					public int compare(Article art1, Article art2) {
+						// TODO Auto-generated method stub
+
+						return art1.getId() > art2.getId() ? 1 : -1;
+						/* Sort Object By Ascending */
+
+					}
+				});
+
+				int index = Collections.binarySearch(articles, 
 	                                             new Article("", "", "", "").clone(Integer.parseInt(key)),
 	                                             new Comparator<Article>() {
 	          public int compare(Article art1, Article art2) {
@@ -367,7 +378,7 @@ public class Management {
 		} //end switch
 		if(!isAscending)
 			Collections.reverse(tempArticles); /* Sort Object by Descending */
-		display();
+
 		
 	}
 
