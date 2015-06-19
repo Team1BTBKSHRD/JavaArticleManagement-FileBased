@@ -131,7 +131,7 @@ public class Management {
 		String author;
 		String title;
 		String content;
-		String modifiedDate = new SimpleDateFormat("dd/MM/YYYY HH:mm:ss").format(new Date());
+//		String modifiedDate = new SimpleDateFormat("dd/MM/YYYY HH:mm:ss").format(new Date());
 		
 		Scanner input = new Scanner(System.in);
 		byte choose = 0;
@@ -349,7 +349,6 @@ public class Management {
 					/* Sort Object By Ascending */
 
 				}
-
 			});
 			
 			break;
@@ -366,6 +365,7 @@ public class Management {
 					/* Sort Object By Ascending */
 				}
 			});
+			break;
 			
 		// sort by title
 		case "t":
@@ -380,7 +380,7 @@ public class Management {
 					/* Sort Object By Ascending */
 				}
 			});
-			
+			break;
 		// sort by Publish Date
 		case "p":
 			Collections.sort(tempArticles, new Comparator<Article>() {
@@ -393,10 +393,8 @@ public class Management {
 							art2.getPublishDate());
 					/* Sort Object By Ascending */
 				}
-			});
-			
-		
-		
+			});			
+			break;		
 		} //end switch
 		if(!isAscending)
 			Collections.reverse(tempArticles);
