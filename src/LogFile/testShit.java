@@ -1,3 +1,5 @@
+package LogFile;
+
 import java.io.IOException;
 import java.util.logging.*;
 import java.lang.reflect.*;

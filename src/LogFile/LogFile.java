@@ -1,3 +1,5 @@
+package LogFile;
+
 import java.nio.file.Path;
 import java.util.Date;
 import java.text.SimpleDateFormat;
