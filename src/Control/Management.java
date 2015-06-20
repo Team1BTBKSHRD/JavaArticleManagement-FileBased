@@ -56,7 +56,7 @@ public class Management {
 		System.out.print("\nTesting Read objects inside file (r)");
 		String choose = new Scanner(System.in).next();
 		if(choose.equalsIgnoreCase("o")){
-			for(int  i=0; i<1_000_000; i++){
+			for(int  i=0; i<100_000; i++){
 				articles.add(new Article("Srey LeangHeng", "Web Application Development", "CBD" , now));	
 			}
 		}else if(choose.equalsIgnoreCase("r")){
