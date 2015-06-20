@@ -49,15 +49,14 @@ public class Management {
 	 */
 	public void add(){
 		Scanner input = new Scanner(System.in);
-		//input.useDelimiter("\n");
 		String author;
 		String title;
 		String content;
 		do{
 			System.out.print("Please Enter Author : ");
-			author = input.next();
+			author = input.nextLine();
 			System.out.print("Please Enter Titile : ");
-			title = input.next();
+			title = input.nextLine();
 			System.out.print("Please Enter Content: ");
 			content = inputContent();
 			insertArticle(author, title, content);
@@ -88,6 +87,7 @@ public class Management {
 	private void insertArticle(String author, String title, String content) {
 		if (author.isEmpty() || title.isEmpty() || content.isEmpty()) {
 			System.out.println("Invalid value");
+			waiting();
 		} else {
 			articles.add(new Article(author, title, content, new SimpleDateFormat("dd/MM/YYYY HH:mm:ss").format(new Date())));
 		}
@@ -115,38 +115,40 @@ public class Management {
 		int index = search("i", id).get(0);
 		if(index < 0){
 			System.out.println("ID not found!");
+			waiting();
 			return;
 		}
-		byte option = 0;
-		System.out.print("Update : 1) Author | 2) Title) | 3) Content | 4) All: ");
-		option = input.nextByte();
-		switch (option) {
-		case 1:/* Updating Author by ID */
+		String option = "";
+		System.out.print("Update : Au) Author | T) Title) | C) Content | Al) All: ");
+		option = input.next();
+		switch (option.toLowerCase()) {
+		case "au":/* Updating Author by ID */
 			System.out.print("Enter Author: ");
-			author = input.next();
+			author = input.nextLine();
 			articles.get(index).setAuthor(author);
 			break;
-		case 2:/* Updating Title by ID */
+		case "t":/* Updating Title by ID */
 			System.out.print("Enter Title : ");
-			title = input.next();
+			title = input.nextLine();
 			articles.get(index).setTitle(title);
 			break;
 			
-		case 3:/* Updating Content by ID */
+		case "c":/* Updating Content by ID */
 			System.out.print("Enter Content :");
 			content = inputContent();
 			articles.get(index).setContent(content);
 			break;
-		case 4: /* Updating All Fields by ID */
+		case "al": /* Updating All Fields by ID */
 			System.out.print("Please Enter Author: ");
-			author = input.next();
+			author = input.nextLine();
 			System.out.print("Please Enter Titile: ");
-			title = input.next();
+			title = input.nextLine();
 			System.out.print("Please Enter Content: ");
 			content = inputContent();
 			
 			if (author.isEmpty() || title.isEmpty() || content.isEmpty()) {
 				System.out.println("Invalid value!");
+				waiting();
 				break;
 			} else {
 				articles.get(index).setData(author, title, content);
@@ -154,9 +156,11 @@ public class Management {
 			break;
 		default:/* Not Permit invalid Key */
 			System.err.println("Invalid");
+			waiting();
 			break;
 		}
-		System.out.println("Saved");
+		System.out.println("Update Completed!");
+		waiting();
 	}
 	
 	private String inputContent(){
@@ -274,7 +278,8 @@ public class Management {
 	        }
 	        break;
 	      default:				
-	        //System.out.println("No Option. Please Input Again.");
+	        System.out.println("No Option. Please Input Again.");
+	        waiting();
 	        return null;
 	    }
 		return searchList; 
@@ -290,7 +295,8 @@ public class Management {
 		sort("i", true);
 		int index = search("i", key).get(0);
 		if (index < 0) { // If value < 0 it means search not found;
-			System.err.println("Invalid Key" + index);
+			System.out.println("Invalid Key");
+			waiting();
 			return;
 		}
 		articles.remove(index); /*
@@ -298,6 +304,7 @@ public class Management {
 												 * method search()
 												 */
 		System.out.println("Remove Completed!");
+		waiting();
 	}
 	/**
 	 * Function with parameter For Sorting Data By ID By Author By Title By
@@ -345,7 +352,10 @@ public class Management {
 					return art1.getPublishDate().compareTo(art2.getPublishDate());/* Sort Object By Ascending */
 				}
 			});			
-			break;		
+			break;	
+		default:
+			System.out.println("Invalid Type!");
+			waiting();
 		}//End of switch
 		if(!isAscending)
 			Collections.reverse(articles); /* Sort Object by Descending */
@@ -388,6 +398,7 @@ public class Management {
 				for(Integer index : searchList){
 					if(index < 0){
 						System.err.println("Key not found!");
+						waiting();
 						tempArticles = articles;
 						break;
 					}
@@ -440,22 +451,28 @@ public class Management {
 				int index = search("i", id).get(0);
 				if(index < 0){
 					System.out.println("ID not found!");
+					waiting();
 					break;
 				}
 				Article art = articles.get(index);
 				display.viewDetail(art);
-				System.out.print("Press Enter to continue...");
-				try
-		        {
-		            System.in.read();
-		        }  
-		        catch(Exception e){}  
+				waiting(); 
 				break;
-			case "e":
+			case "e" :
+				return;
+			default:
 				return;
 			}//End of switch;
 			sort(sortBy, isAscending);
 			display.process();
 		}while(true);
 	}//End of function display;
+	private void waiting(){
+		System.out.print("Press Enter to continue...");
+		try
+        {
+            System.in.read();
+        }  
+        catch(Exception e){}
+	}
 }// End of class;
