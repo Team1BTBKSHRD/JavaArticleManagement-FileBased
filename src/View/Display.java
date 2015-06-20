@@ -220,8 +220,7 @@ public class Display {
 	public void menu(int[] maxColumns, int totalLenght) {
 		final String MENU1 = "F) First | P) Previous | N) Next | L) Last";
 		final String MENU2 = "A) Add | R) Remove | S)Search |  U) Update | SS) Sort";
-		final String MENU3 = "H) Home | V) View Detail | G) Goto | #) Set Row";
-		final String MENU4 = "W) Write | Re) Read | B) Backup | E) Exit";
+		final String MENU3 = "H) Home | V) View Detail | G) Goto | #) Set Row | E) Exit";
 		String strMenu = "";
 		strMenu = addHorizontalLine(strMenu, maxColumns, topLeft, horizontalLine, topRight);
 		//strMenu = addLetter(strMenu, verticalLine, 1);
@@ -244,11 +243,6 @@ public class Display {
 		strMenu = addLetter(strMenu, ' ', totalLenght - ((totalLenght - MENU3.length())));
 		//strMenu = addLetter(strMenu, verticalLine, 1) + "\n";
 		strMenu += "\n";
-		strMenu = addLetter(strMenu, ' ', (totalLenght - MENU4.length()) / 2);
-		strMenu += MENU4;
-		strMenu = addLetter(strMenu, ' ', totalLenght - ((totalLenght - MENU4.length())));
-		
-		strMenu += "\n";
 		
 		strMenu += addHorizontalLine(strMenu, maxColumns, buttomLeft, horizontalLine, buttomRight);
 		System.out.println(strMenu);
@@ -259,7 +253,7 @@ public class Display {
 	 */
 	private int[] maxColumnsLength(List<Article> articles) {
 		int[] maxLengths = new int[] { headers[0].length(),
-				headers[1].length(), headers[2].length(), headers[3].length()};
+				13, 23, headers[3].length()};
 
 		for (Article article : articles) {
 			if (Integer.toString(article.getId()).length() > maxLengths[0]) /*
@@ -272,25 +266,26 @@ public class Display {
 																			 */
 				maxLengths[0] = Integer.toString(article.getId()).length();
 
-			if (article.getAuthor().length() > maxLengths[1]) /*
+			
+			/*if (article.getAuthor().length() > maxLengths[1]) 
 															 * Find maximum
 															 * length of column
 															 * Author
-															 */
+															 
 				if(article.getAuthor().length() > 10)
 					maxLengths[1] = 13;
 				else
 					maxLengths[1] = article.getAuthor().length();
 
-			if (article.getTitle().length() > maxLengths[2]) /*
+			if (article.getTitle().length() > maxLengths[2]) 
 															 * Find maximum
 															 * length of column
 															 * Title
-															 */
+															 
 				if(article.getTitle().length() > 23)
 					maxLengths[2] = 23;
 				else
-					maxLengths[2] = article.getTitle().length();
+					maxLengths[2] = article.getTitle().length();*/
 
 			if (article.getPublishDate().length() > maxLengths[3]) /*
 																	 * Find
