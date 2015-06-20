@@ -1,0 +1,1 @@
+writeLog	11:59:08 Jun 20, 2015	LogFile
