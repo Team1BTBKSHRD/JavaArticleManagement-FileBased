@@ -8,8 +8,8 @@ public class testShit {
 
 
    public static void main(String[] args) throws IOException {
-      LogFile m = LogFile.getInstance();
-      m.writeLog();
+      LogFile logFile = LogFile.getLogFile();
+      logFile.writeLogClosingFile();
 
    }
       // System.out.println(Thread.currentThread().getStackTrace()[1].getMethodName());   
