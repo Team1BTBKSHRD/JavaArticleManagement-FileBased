@@ -120,7 +120,8 @@ public class Management {
 		}
 		String option = "";
 		System.out.print("Update : Au) Author | T) Title) | C) Content | Al) All: ");
-		option = input.next();
+		option = input.nextLine();
+		option = input.nextLine();
 		switch (option.toLowerCase()) {
 		case "au":/* Updating Author by ID */
 			System.out.print("Enter Author: ");
@@ -375,7 +376,7 @@ public class Management {
 		display.process();	
 		do{
 			System.out.print("Please, Input Your Option-->");
-			option = input.next();
+			option = input.nextLine();
 			switch(option.toLowerCase()){
 			case "a":
 				add();
@@ -390,9 +391,9 @@ public class Management {
 				break;
 			case "s": //Search
 				System.out.print("I) ID | Au)Author | T)Title | P)Publish Date--> ");
-				String searchBy = input.next();
+				String searchBy = input.nextLine();
 				System.out.print("Input Key to search: ");
-				key = input.next();
+				key = input.nextLine();
 				ArrayList<Integer>searchList = search(searchBy, key);
 				tempArticles = new ArrayList<Article>();
 				for(Integer index : searchList){
@@ -461,7 +462,7 @@ public class Management {
 			case "e" :
 				return;
 			default:
-				return;
+				break;
 			}//End of switch;
 			sort(sortBy, isAscending);
 			display.process();
