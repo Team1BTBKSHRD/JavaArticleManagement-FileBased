@@ -61,7 +61,7 @@ public class Management {
 			content = inputContent();
 			insertArticle(author, title, content);
 			System.out.print("Do you want to continues?(Y/N)");
-			String confirm = input.next();
+			String confirm = input.nextLine();
 			switch(confirm.toLowerCase()){
 			case "y":
 				break;
