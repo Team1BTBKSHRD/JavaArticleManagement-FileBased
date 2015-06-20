@@ -1,12 +1,15 @@
 ﻿package Control;
 import Model.Article;
 
+import java.io.File;
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.Date;
 import java.util.Scanner;
+
 import View.Display;
 
 public class Management {
@@ -14,16 +17,22 @@ public class Management {
 	ArrayList<Article> articles;
 	private Display display;
 	private ArrayList<Article> tempArticles;
-	
+	private File logfile;
 	public Management() {
+		System.gc();
+		String now = new SimpleDateFormat("dd/MM/YYYY HH:mm:ss").format(new Date());
+		logfile=new File("log.txt");
 		articles = new ArrayList<Article>();
 		display = new Display();//
 		//display.setTableStyle('\u2554', '\u2557', '\u255A', '\u255D', '\u2566', '\u2569', '\u2560', '\u256C', '\u2563', '\u2551', '\u2550');
 		display.setTableStyle('╔', '╗', '╚', '╝', '╦', '╩', '╠', '╬', '╣', '║', '═');
-		/*for(int  i=0; i<1e6; i++){
-			articles.add(new Article("Vichea", "JAVA ", "CBD" , now));
+		
+		/*for(int  i=0; i<100_000_000; i++){
+			//articles.add(new Article("Vichea", "JAVA ", "CBD" , now));
+			articles.add(new Article("Srey LeangHeng", "Web Application Development", "CBD" , now));
+			//articles.add(new Article("Sun VicheyChetra", "Java Programming Language", "CBD" , now));	
 		}*/
-		String now = new SimpleDateFormat("dd/MM/YYYY HH:mm:ss").format(new Date());;
+		/*String now = new SimpleDateFormat("dd/MM/YYYY HH:mm:ss").format(new Date());
 		articles.add(new Article("Srey LeangHeng", "Web Application Development", "CBD" , now));
 		articles.add(new Article("Sun VicheyChetra", "Java Programming Language", "CBD" , now));	
 		articles.add(new Article("Dara Po", "Object Oreinted Analysis & Design", "CBD" , now));
@@ -36,8 +45,28 @@ public class Management {
 		articles.add(new Article("Sambo Siang", "Visual Basic .Net Prgramming", "CBD" , now));
 		articles.add(new Article("Elite Chorn", "Management Information System", "CBD" , now));
 		articles.add(new Article("Ros Channa", "Software Engineering", "CBD" , now));
-		articles.add(new Article("Hem Sarin", "C Programming", "CBD" , now));
-
+		articles.add(new Article("Hem Sarin", "C Programming", "CBD" , now));*/
+		//long st=System.currentTimeMillis();
+		//FileArticle.getInstance().writeFile(articles);
+		//long ed=System.currentTimeMillis();
+		//System.out.println((ed-st)/1000);
+		System.out.print("Testing 1 000 000 objects (o)");
+		System.out.print("\nTesting Read objects inside file (r)");
+		String choose=new Scanner(System.in).next();
+		if(choose.equalsIgnoreCase("o")){
+			for(int  i=0; i<1_000_000; i++){
+				articles.add(new Article("Srey LeangHeng", "Web Application Development", "CBD" , now));	
+			}
+		}else if(choose.equalsIgnoreCase("r")){
+			if(FileArticle.getInstance().readFile().size()!=0){
+				articles=FileArticle.getInstance().readFile();
+			}else{
+				System.out.print("No Data");				
+			}
+		}
+		
+		//long ed1=System.currentTimeMillis();
+		//System.out.println((ed1-ed)/1000);
 		//tempArticles = articles;
 		//sort("i", false);
 		display.setArticles(articles);
@@ -104,9 +133,9 @@ public class Management {
 	
 
 	public void update() {
-		String author;
-		String title;
-		String content;
+		String author="";
+		String title = "";
+		String content="";
 		
 		Scanner input = new Scanner(System.in);
 		System.out.print("Input ID to Update:");
@@ -161,6 +190,7 @@ public class Management {
 			break;
 		}
 		System.out.println("Update Completed!");
+/*Pisal*/FileArticle.getInstance().writeLog(logfile, new String[]{"Update-->",""+articles.get(index).getId(),author,title,content});
 		waiting();
 	}
 	
@@ -300,6 +330,7 @@ public class Management {
 			waiting();
 			return;
 		}
+/*Pisal*/FileArticle.getInstance().writeLog(logfile, new String[]{"Remove-->",articles.get(index).toString()});
 		articles.remove(index); /*
 												 * index value came from
 												 * method search()
@@ -365,8 +396,9 @@ public class Management {
 
 	/**
 	 * Function without parameter for display all of elements
+	 * @
 	 */
-	public void display() {
+	public void display(){
 		Scanner input = new Scanner(System.in);
 		String option;
 		String key;
@@ -459,6 +491,33 @@ public class Management {
 				display.viewDetail(art);
 				waiting(); 
 				break;
+/*Pisal*/	/*Menu File*/
+			case "w":// Write To File
+				FileArticle.getInstance().writeFile(articles);
+				break;
+			case "re":// Read From File
+				System.out.print("Read from Backup File (Y/N)? : ");
+				String choice=input.next();
+				if(choice.equalsIgnoreCase("y")){
+					System.out.print("Please input file name : ");
+					String filename=input.next();
+					articles=FileArticle.getInstance().readFile(new File(filename));
+				}else{
+					articles=FileArticle.getInstance().readFile();
+				}				
+				display.setArticles(articles);
+				break;
+			case "b":// Back Up File
+				System.out.print("Please input destination file : ");
+				String destination = input.next();
+				try {
+					FileArticle.getInstance().copyFile(FileArticle.getInstance().sourceFile(), new File(destination));
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				break;
+			/*End Menu File*/
 			case "e" :
 				return;
 			default:
@@ -476,4 +535,8 @@ public class Management {
         }  
         catch(Exception e){}
 	}
+	/*public static void main(String[] args) {
+		//new Management();
+		System.out.println(1111);
+	}*/
 }// End of class;

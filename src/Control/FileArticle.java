@@ -25,7 +25,9 @@ public class FileArticle {
 	private File file;
 	private static FileArticle fileArticle;
 	private static final String FILE_NAME = "ArticleManagement.bin";
-
+/**
+ * Apply SingleTon pattern
+ * */
 	public static FileArticle getInstance() {
 		if (fileArticle == null)
 			fileArticle = new FileArticle();
@@ -38,7 +40,11 @@ public class FileArticle {
 		} catch (Exception e) {
 		}
 	}
-
+/**
+ * @param: ArrayList<Article>
+ * write Object collection to File
+ * using writeObject method of ObjectOutputStream
+ * */
 	public void writeFile(ArrayList<Article> articles) {
 		try (ObjectOutputStream objectOutput = new ObjectOutputStream(
 				new BufferedOutputStream(new FileOutputStream(file)))) {
@@ -47,26 +53,53 @@ public class FileArticle {
 			// TODO: handle exception
 			e.printStackTrace();
 		}
-		System.out.println("Write Completed!!!");
 	}// End of writeFile();
 
 	@SuppressWarnings("unchecked")
+/**
+ * Read Object from File
+ * return object as ArrayList
+ * */
 	public ArrayList<Article> readFile() {
 		ArrayList<Article> list = new ArrayList<Article>();
+		if(file.exists()){
 		try (ObjectInputStream objectInput = new ObjectInputStream(
 				new BufferedInputStream(new FileInputStream(file)))) {
 			list = (ArrayList<Article>) objectInput.readObject();
 		} catch (Exception e) {
-			e.printStackTrace();
+			//e.printStackTrace();
+		}
+		}else{
+			System.out.println("File not found!!!");
 		}
 		return list;
 	}// End of readFile();
 
-	/*
-	 * public String getDateTime() { return new
-	 * SimpleDateFormat("dd/MM/YYYY HH:mm:ss").format(new Date()); }
-	 */
-
+/*Pisal*/
+	/**
+	 *@
+	 *param readFile(filename)
+	 *allow users can choose file for reading
+	 *return as object of ArrayList collection 
+	 * */
+	public ArrayList<Article> readFile(File filename) {
+		ArrayList<Article> list = new ArrayList<Article>();
+		if(file.exists()){
+		try (ObjectInputStream objectInput = new ObjectInputStream(
+				new BufferedInputStream(new FileInputStream(filename)))) {
+			list = (ArrayList<Article>) objectInput.readObject();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		}else{
+			System.out.println("File not found!!!");
+		}
+		return list;
+	}// End of readFile();
+/**
+ * @param: filelog, String[] data
+ * writeLog function : write information when objects edited, remove 
+ * */
 	public void writeLog(File fileLog, String[] data) {
 		try (FileWriter fileWriter = new FileWriter(fileLog, true)) {
 			String record = new SimpleDateFormat("dd/MM/YYYY HH:mm:ss").format(new Date())+" ";
@@ -79,9 +112,12 @@ public class FileArticle {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		System.out.println("Write LogFile Completed");
+		//System.out.println("Write LogFile Completed");
 	}// End of writeLog();
-
+/**
+ *@param : File source, File desctination
+ *CopyFile function : use for copyFile or backUp File
+ * */
 	public void copyFile(File source, File destination) throws IOException {
 		FileChannel inChannel = null;
 		FileChannel outputChannel = null;
@@ -89,7 +125,7 @@ public class FileArticle {
 			inChannel = new FileInputStream(source).getChannel();
 			outputChannel = new FileOutputStream(destination).getChannel();
 			outputChannel.transferFrom(inChannel, 0, inChannel.size());
-			System.out.println("Completed");
+			System.out.println("Backup Completed");
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
@@ -97,11 +133,7 @@ public class FileArticle {
 			outputChannel.close();
 		}
 	}// End of copyFile();
-	public static void main(String[] args) {
-		//System.out.println(FileArticle.getInstance().readFile().size());
-		ArrayList<Article> at=FileArticle.getInstance().readFile();
-		for(Article a : at)
-			System.out.println(a);
-		
+	public File sourceFile(){
+		return file;
 	}
 }// End of class;
