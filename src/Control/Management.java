@@ -12,15 +12,14 @@ import View.Display;
 public class Management {
 	
 	ArrayList<Article> articles;
-	ArrayList<Integer> indices;
 	private Display display;
 	private ArrayList<Article> tempArticles;
+	
 	public Management() {
 		articles = new ArrayList<Article>();
 		display = new Display();//
-		display.setTableStyle('\u2554', '\u2557', '\u255A', '\u255D', '\u2566', '\u2569', '\u2560', '\u256C', '\u2563', '\u2551', '\u2550');
-		//display.setTableStyle('╔', '╗', '╚', '╝', '╦', '╩', '╠', '╬', '╣', '║', '═');
-		indices = new ArrayList<Integer>();
+		//display.setTableStyle('\u2554', '\u2557', '\u255A', '\u255D', '\u2566', '\u2569', '\u2560', '\u256C', '\u2563', '\u2551', '\u2550');
+		display.setTableStyle('╔', '╗', '╚', '╝', '╦', '╩', '╠', '╬', '╣', '║', '═');
 		/*for(int  i=0; i<1e6; i++){
 			articles.add(new Article("Vichea", "JAVA ", "CBD" , now));
 		}*/
@@ -39,9 +38,9 @@ public class Management {
 		articles.add(new Article("Ros Channa", "Software Engineering", "CBD" , now));
 		articles.add(new Article("Hem Sarin", "C Programming", "CBD" , now));
 
-		tempArticles = articles;
-		//sort("i", false);
-		display.setArticles(tempArticles);
+		//tempArticles = articles;
+		sort("i", false);
+		display.setArticles(articles);
 	}
 
 	/**
@@ -50,20 +49,17 @@ public class Management {
 	 */
 	public void add(){
 		Scanner input = new Scanner(System.in);
+		//input.useDelimiter("\n");
 		String author;
 		String title;
 		String content;
 		do{
-			content = "";
 			System.out.print("Please Enter Author : ");
 			author = input.next();
 			System.out.print("Please Enter Titile : ");
 			title = input.next();
 			System.out.print("Please Enter Content: ");
-			while(input.hasNext()) {
-				content += input.next();
-				if (content.endsWith(".")) break;
-			}
+			content = inputContent();
 			insertArticle(author, title, content);
 			System.out.print("Do you want to continues?(Y/N)");
 			String confirm = input.next();
@@ -115,7 +111,8 @@ public class Management {
 		Scanner input = new Scanner(System.in);
 		System.out.print("Input ID to Update:");
 		String id = input.next();
-		int index = search(0, id).get(0);
+		sort("i", true);
+		int index = search(1, id).get(0);
 		if(index < 0){
 			System.out.println("ID not found!");
 			return;
@@ -137,12 +134,7 @@ public class Management {
 			
 		case 3:/* Updating Content by ID */
 			System.out.print("Enter Content :");
-			content = "";
-			while (input.hasNext()) {
-				content += input.nextLine();
-				if (content.endsWith("."))
-					break;
-			}
+			content = inputContent();
 			articles.get(index).setContent(content);
 			break;
 		case 4: /* Updating All Fields by ID */
@@ -151,12 +143,8 @@ public class Management {
 			System.out.print("Please Enter Titile: ");
 			title = input.next();
 			System.out.print("Please Enter Content: ");
-			content = "";
-			while (input.hasNext()) {
-				content += input.nextLine();
-				if (content.endsWith("."))
-					break;
-			}//End while;
+			content = inputContent();
+			
 			if (author.isEmpty() || title.isEmpty() || content.isEmpty()) {
 				System.out.println("Invalid value!");
 				break;
@@ -170,32 +158,43 @@ public class Management {
 		}
 		System.out.println("Saved");
 	}
+	
+	private String inputContent(){
+		String content = "";
+		Scanner input = new Scanner(System.in);
+		while (input.hasNext()) {
+			content += input.nextLine();
+			if (content.endsWith("."))
+				break;
+		}//End while;
+		return content;
+	}//End of inputContent();
 	/**
 	 * Function with parameter For Searching Data By All kind of Searching By ID
 	 * By Author By Title By PublishDate By ModifiedDate
 	 * 
 	 * @param articles
 	 *            : arraylist of object to search
-	 * @param searchBy
+	 * @param i
 	 *            : option to choose from 0 - 3
 	 * @param key
 	 *            : keyword to search
 	 */
-	public ArrayList<Integer> search(int searchBy, String key) {
+	public ArrayList<Integer> search(int i, String key) {
 		ArrayList<Integer> searchList = new ArrayList<Integer>();
 		key = key.toLowerCase(); 
-	    switch(searchBy){    
-	      case 0:	//search ID
-	     		int index = Collections.binarySearch(articles, 
+	    switch(i){    
+	      case 1:	//search ID
+	     	int index = Collections.binarySearch(articles, 
 	                                             new Article("", "", "", "").clone(Integer.parseInt(key)),
 	                                             new Comparator<Article>() {
-	          public int compare(Article art1, Article art2) {
-	            return art1.getId() < art2.getId() ? -1 : art1.getId() > art2.getId() ? 1 : 0; 
-	          }
-	        });
+	     		public int compare(Article article1, Article article2) {
+	     			return article1.getId() < article2.getId() ? -1 : article1.getId() > article2.getId() ? 1 : 0;
+	     		}
+	     	});
 	        searchList.add(index);
 	        break;
-	      case 1:	//search Author name
+	      case 2:	//search Author name
 	        for (int startIndex = 0, halfIndex = articles.size() / 2; 
 	             startIndex < articles.size() / 2; 
 	             startIndex++, halfIndex++) {
@@ -221,7 +220,7 @@ public class Management {
 	          }
 	        }
 	        break;
-	      case 2:	//search PublishDate        	
+	      case 3:	//search PublishDate        	
 	        for (int startIndex = 0, halfIndex = articles.size() / 2; 
 	             startIndex < articles.size() / 2; 
 	             startIndex++, halfIndex++) {
@@ -247,7 +246,7 @@ public class Management {
 	          }
 	        }
 	        break;
-	      case 3:	//search Title
+	      case 4:	//search Title
 	        for (int startIndex = 0, halfIndex = articles.size() / 2; 
 	             startIndex < articles.size() / 2; 
 	             startIndex++, halfIndex++) {
@@ -287,13 +286,14 @@ public class Management {
 	 *            : Key as ID
 	 */
 	public void remove(String key) {
-		int index = search(0, key).get(0);
+		sort("i", true);
+		int index = search(1, key).get(0);
 		if (index < 0) { // If value < 0 it means search not found;
-			System.err.println("Invalid Key");
+			System.err.println("Invalid Key" + index);
 			return;
 		}
 		articles.remove(index); /*
-												 * indices value came from
+												 * index value came from
 												 * method search()
 												 */
 		System.out.println("Remove Completed!");
@@ -308,68 +308,48 @@ public class Management {
 	 *            : true Ascending, false Descending
 	 */
 	public void sort(String sortBy,boolean isAscending) {
-		switch (sortBy) {
-		// sort by id
-		case "i":
-			Collections.sort(tempArticles, new Comparator<Article>() {
+		switch (sortBy.toLowerCase()) {
+		
+		case "i":// sort by id
+			Collections.sort(articles, new Comparator<Article>() {
 				@Override
 				public int compare(Article art1, Article art2) {
-					// TODO Auto-generated method stub
-
-					return art1.getId() > art2.getId() ? 1 : -1;
-					/* Sort Object By Ascending */
-
+					return art1.getId() > art2.getId() ? 1 : -1; /* Sort Object By Ascending */
+				}
+			});	
+			break;
+		
+		case "au":// sort by author
+			Collections.sort(articles, new Comparator<Article>() {
+				@Override
+				public int compare(Article art1, Article art2) {
+					return art1.getAuthor().compareTo(art2.getAuthor());/* Sort Object By Ascending */
 				}
 			});
-			
-			break;
-		// sort by author
-		case "au":
-			System.err.println("Author");
-			Collections.sort(tempArticles, new Comparator<Article>() {
-
+			break;	
+		
+		case "t":// Sort by title
+			Collections.sort(articles, new Comparator<Article>() {
 				@Override
 				public int compare(Article art1, Article art2) {
-					// TODO Auto-generated method stub
-					return art1.getAuthor().compareTo(art2.getAuthor());
-					/* Sort Object By Ascending */
-				}
-			});
-			break;
-			
-		// Sort by title
-		case "t":
-			// TODO Auto-generated method stub
-			Collections.sort(tempArticles, new Comparator<Article>() {
-
-				@Override
-				public int compare(Article art1, Article art2) {
-					// TODO Auto-generated method stub
-
-					return art1.getTitle().compareTo(art2.getTitle());
-					/* Sort Object By Ascending */
+					return art1.getTitle().compareTo(art2.getTitle());/* Sort Object By Ascending */
 				}
 			});
 			break;
-		// sort by Publish Date
-		case "p":
-			Collections.sort(tempArticles, new Comparator<Article>() {
-
+		
+		case "p":// sort by Publish Date
+			Collections.sort(articles, new Comparator<Article>() {
 				@Override
 				public int compare(Article art1, Article art2) {
-					// TODO Auto-generated method stub
-
-					return art1.getPublishDate().compareTo(art2.getPublishDate());
-					/* Sort Object By Ascending */
+					return art1.getPublishDate().compareTo(art2.getPublishDate());/* Sort Object By Ascending */
 				}
 			});			
 			break;		
-		} //end switch
+		}//End of switch
 		if(!isAscending)
-			Collections.reverse(tempArticles); /* Sort Object by Descending */
-		display();
-		
-	}
+			Collections.reverse(articles); /* Sort Object by Descending */
+		//display();
+	}//End of sort();
 
 	/**
 	 * Function without parameter for display all of elements
@@ -387,7 +367,7 @@ public class Management {
 				add();
 				break;
 			case "r":
-				System.out.print("Input ID: ");
+				System.out.print("Input ID to remove: ");
 				key = input.next();
 				remove(key);
 				break;
@@ -395,35 +375,36 @@ public class Management {
 				update();
 				break;
 			case "s":
-				System.out.print("0 (ID, 1(Author, 2(Publish Date, 3)Title");
-				int searchBy = input.nextInt();
-				System.out.print("Input Key:");
+				System.out.print("1) ID | 2)Author | 3)Publish Date | 4)Title--> ");
+				byte searchBy = input.nextByte();
+				
+				System.out.print("Input Key to search: ");
 				key = input.next();
-				ArrayList<Integer>ss = search(searchBy, key);
-				tempArticles  = new ArrayList<Article>();
-				for(Integer s : ss){
-					//System.out.println(articles.get(s));
-					tempArticles.add(articles.get(s));
+				
+				ArrayList<Integer>searchList = search(searchBy, key);
+				tempArticles = new ArrayList<Article>();
+				for(Integer index : searchList){
+					if(index < 0){
+						System.out.println("Key not found!");
+						display.setArticles(articles);
+						break;
+					}
+					tempArticles.add(articles.get(index));
 				}
+				
 				display.setArticles(tempArticles);
 				break;
 			case "ss":
-				System.out.print("Sort By: I)D, Au)thor, T)itle, P)ublish Date --> ");
+				System.out.print("Sort By: I) ID | Au) Author | T) Title | P) Publish Date --> ");
 				String sortBy = input.next();
 				
 				System.out.print("Order By: ASC or DSC --> ");
 				String isAsc = input.next();
-				if (isAsc.equalsIgnoreCase("asc")) {
-					sort(sortBy.toLowerCase(), true);
-				}
-
-				else if(isAsc.equalsIgnoreCase("dsc")) {
-					sort(sortBy.toLowerCase(), false);
-				}
-				else{
-					System.err.println("Invalid Input!!!");
-				}
 				
+				if (isAsc.equalsIgnoreCase("asc")) 
+					sort(sortBy.toLowerCase(), true);
+				else
+					sort(sortBy.toLowerCase(), false);
 				break;
 			case "g":
 				System.out.print("Input Page Number: ");
@@ -448,14 +429,20 @@ public class Management {
 				display.gotoLastPage();
 				break;
 			case "h":
-				tempArticles = articles;
-				display.setArticles(tempArticles);
+				//tempArticles = articles;
+				display.setArticles(articles);
 				display.gotoFirstPage();
 				break;
 			case "v":
-				System.out.print("Input ID:");
+				System.out.print("Input ID to view: ");
 				String id = input.next();
-				Article art = articles.get(search(0, id).get(0));
+				sort("i", true);
+				int index = search(1, id).get(0);
+				if(index < 0){
+					System.out.println("ID not found!");
+					break;
+				}
+				Article art = articles.get(index);
 				display.viewDetail(art);
 				input.next();
 				break;
