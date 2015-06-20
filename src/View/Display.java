@@ -253,7 +253,7 @@ public class Display {
 	 */
 	private int[] maxColumnsLength(List<Article> articles) {
 		int[] maxLengths = new int[] { headers[0].length(),
-				headers[1].length(), headers[2].length(), headers[3].length()};
+				13, 23, headers[3].length()};
 
 		for (Article article : articles) {
 			if (Integer.toString(article.getId()).length() > maxLengths[0]) /*
@@ -266,25 +266,26 @@ public class Display {
 																			 */
 				maxLengths[0] = Integer.toString(article.getId()).length();
 
-			if (article.getAuthor().length() > maxLengths[1]) /*
+			
+			/*if (article.getAuthor().length() > maxLengths[1]) 
 															 * Find maximum
 															 * length of column
 															 * Author
-															 */
+															 
 				if(article.getAuthor().length() > 10)
 					maxLengths[1] = 13;
 				else
 					maxLengths[1] = article.getAuthor().length();
 
-			if (article.getTitle().length() > maxLengths[2]) /*
+			if (article.getTitle().length() > maxLengths[2]) 
 															 * Find maximum
 															 * length of column
 															 * Title
-															 */
+															 
 				if(article.getTitle().length() > 23)
 					maxLengths[2] = 23;
 				else
-					maxLengths[2] = article.getTitle().length();
+					maxLengths[2] = article.getTitle().length();*/
 
 			if (article.getPublishDate().length() > maxLengths[3]) /*
 																	 * Find
