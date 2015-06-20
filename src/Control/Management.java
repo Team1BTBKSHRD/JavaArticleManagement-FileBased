@@ -14,7 +14,7 @@ public class Management {
 	ArrayList<Article> articles;
 	private Display display;
 	private ArrayList<Article> tempArticles;
-	
+	private FileArticle fileArticle;
 	public Management() {
 		articles = new ArrayList<Article>();
 		display = new Display();//
@@ -23,6 +23,7 @@ public class Management {
 		/*for(int  i=0; i<1e6; i++){
 			articles.add(new Article("Vichea", "JAVA ", "CBD" , now));
 		}*/
+		/*
 		String now = new SimpleDateFormat("dd/MM/YYYY HH:mm:ss").format(new Date());;
 		articles.add(new Article("Srey LeangHeng", "Web Application Development", "CBD" , now));
 		articles.add(new Article("Sun VicheyChetra", "Java Programming Language", "CBD" , now));	
@@ -36,11 +37,15 @@ public class Management {
 		articles.add(new Article("Sambo Siang", "Visual Basic .Net Prgramming", "CBD" , now));
 		articles.add(new Article("Elite Chorn", "Management Information System", "CBD" , now));
 		articles.add(new Article("Ros Channa", "Software Engineering", "CBD" , now));
-		articles.add(new Article("Hem Sarin", "C Programming", "CBD" , now));
-
+		articles.add(new Article("Hem Sarin", "C Programming", "CBD" , now));*/
+		fileArticle = FileArticle.getInstance();
+		
+		articles = fileArticle.readFile();
+						//System.out.println(fileArticle.readFile().size());
 		//tempArticles = articles;
 		//sort("i", false);
 		display.setArticles(articles);
+		//display.process();
 	}
 
 	/**
@@ -49,19 +54,20 @@ public class Management {
 	 */
 	public void add(){
 		Scanner input = new Scanner(System.in);
+		//input.useDelimiter("\n");
 		String author;
 		String title;
 		String content;
 		do{
 			System.out.print("Please Enter Author : ");
-			author = input.nextLine();
+			author = input.next();
 			System.out.print("Please Enter Titile : ");
-			title = input.nextLine();
+			title = input.next();
 			System.out.print("Please Enter Content: ");
 			content = inputContent();
 			insertArticle(author, title, content);
 			System.out.print("Do you want to continues?(Y/N)");
-			String confirm = input.nextLine();
+			String confirm = input.next();
 			switch(confirm.toLowerCase()){
 			case "y":
 				break;
@@ -87,7 +93,6 @@ public class Management {
 	private void insertArticle(String author, String title, String content) {
 		if (author.isEmpty() || title.isEmpty() || content.isEmpty()) {
 			System.out.println("Invalid value");
-			waiting();
 		} else {
 			articles.add(new Article(author, title, content, new SimpleDateFormat("dd/MM/YYYY HH:mm:ss").format(new Date())));
 		}
@@ -115,41 +120,38 @@ public class Management {
 		int index = search("i", id).get(0);
 		if(index < 0){
 			System.out.println("ID not found!");
-			waiting();
 			return;
 		}
-		String option = "";
-		System.out.print("Update : Au) Author | T) Title) | C) Content | Al) All: ");
-		option = input.nextLine();
-		option = input.nextLine();
-		switch (option.toLowerCase()) {
-		case "au":/* Updating Author by ID */
+		byte option = 0;
+		System.out.print("Update : 1) Author | 2) Title) | 3) Content | 4) All: ");
+		option = input.nextByte();
+		switch (option) {
+		case 1:/* Updating Author by ID */
 			System.out.print("Enter Author: ");
-			author = input.nextLine();
+			author = input.next();
 			articles.get(index).setAuthor(author);
 			break;
-		case "t":/* Updating Title by ID */
+		case 2:/* Updating Title by ID */
 			System.out.print("Enter Title : ");
-			title = input.nextLine();
+			title = input.next();
 			articles.get(index).setTitle(title);
 			break;
 			
-		case "c":/* Updating Content by ID */
+		case 3:/* Updating Content by ID */
 			System.out.print("Enter Content :");
 			content = inputContent();
 			articles.get(index).setContent(content);
 			break;
-		case "al": /* Updating All Fields by ID */
+		case 4: /* Updating All Fields by ID */
 			System.out.print("Please Enter Author: ");
-			author = input.nextLine();
+			author = input.next();
 			System.out.print("Please Enter Titile: ");
-			title = input.nextLine();
+			title = input.next();
 			System.out.print("Please Enter Content: ");
 			content = inputContent();
 			
 			if (author.isEmpty() || title.isEmpty() || content.isEmpty()) {
 				System.out.println("Invalid value!");
-				waiting();
 				break;
 			} else {
 				articles.get(index).setData(author, title, content);
@@ -157,13 +159,12 @@ public class Management {
 			break;
 		default:/* Not Permit invalid Key */
 			System.err.println("Invalid");
-			waiting();
 			break;
 		}
-		System.out.println("Update Completed!");
-		waiting();
+		//writeLogFile({"Update", articles.get(index).getId(),author, title, content});
+		System.out.println("Saved");
+		
 	}
-	
 	private String inputContent(){
 		String content = "";
 		Scanner input = new Scanner(System.in);
@@ -279,8 +280,7 @@ public class Management {
 	        }
 	        break;
 	      default:				
-	        System.out.println("No Option. Please Input Again.");
-	        waiting();
+	        //System.out.println("No Option. Please Input Again.");
 	        return null;
 	    }
 		return searchList; 
@@ -296,8 +296,7 @@ public class Management {
 		sort("i", true);
 		int index = search("i", key).get(0);
 		if (index < 0) { // If value < 0 it means search not found;
-			System.out.println("Invalid Key");
-			waiting();
+			System.err.println("Invalid Key" + index);
 			return;
 		}
 		articles.remove(index); /*
@@ -305,7 +304,6 @@ public class Management {
 												 * method search()
 												 */
 		System.out.println("Remove Completed!");
-		waiting();
 	}
 	/**
 	 * Function with parameter For Sorting Data By ID By Author By Title By
@@ -353,10 +351,7 @@ public class Management {
 					return art1.getPublishDate().compareTo(art2.getPublishDate());/* Sort Object By Ascending */
 				}
 			});			
-			break;	
-		default:
-			System.out.println("Invalid Type!");
-			waiting();
+			break;		
 		}//End of switch
 		if(!isAscending)
 			Collections.reverse(articles); /* Sort Object by Descending */
@@ -376,7 +371,7 @@ public class Management {
 		display.process();	
 		do{
 			System.out.print("Please, Input Your Option-->");
-			option = input.nextLine();
+			option = input.next();
 			switch(option.toLowerCase()){
 			case "a":
 				add();
@@ -391,15 +386,14 @@ public class Management {
 				break;
 			case "s": //Search
 				System.out.print("I) ID | Au)Author | T)Title | P)Publish Date--> ");
-				String searchBy = input.nextLine();
+				String searchBy = input.next();
 				System.out.print("Input Key to search: ");
-				key = input.nextLine();
+				key = input.next();
 				ArrayList<Integer>searchList = search(searchBy, key);
 				tempArticles = new ArrayList<Article>();
 				for(Integer index : searchList){
 					if(index < 0){
 						System.err.println("Key not found!");
-						waiting();
 						tempArticles = articles;
 						break;
 					}
@@ -452,28 +446,32 @@ public class Management {
 				int index = search("i", id).get(0);
 				if(index < 0){
 					System.out.println("ID not found!");
-					waiting();
 					break;
 				}
 				Article art = articles.get(index);
 				display.viewDetail(art);
-				waiting(); 
+				System.out.print("Press Enter to continue...");
+				try
+		        {
+		            System.in.read();
+		        }  
+		        catch(Exception e){}  
 				break;
-			case "e" :
+			case "w":
+				
+				break;
+			case "re":
+				
+				break;
+			case "b":
+				
+				break;
+			case "e":
 				return;
-			default:
-				break;
 			}//End of switch;
 			sort(sortBy, isAscending);
 			display.process();
 		}while(true);
 	}//End of function display;
-	private void waiting(){
-		System.out.print("Press Enter to continue...");
-		try
-        {
-            System.in.read();
-        }  
-        catch(Exception e){}
-	}
+
 }// End of class;
