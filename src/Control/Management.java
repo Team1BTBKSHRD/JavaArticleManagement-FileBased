@@ -39,7 +39,7 @@ public class Management {
 		articles.add(new Article("Hem Sarin", "C Programming", "CBD" , now));
 
 		//tempArticles = articles;
-		sort("i", false);
+		//sort("i", false);
 		display.setArticles(articles);
 	}
 
@@ -112,13 +112,13 @@ public class Management {
 		System.out.print("Input ID to Update:");
 		String id = input.next();
 		sort("i", true);
-		int index = search(1, id).get(0);
+		int index = search("i", id).get(0);
 		if(index < 0){
 			System.out.println("ID not found!");
 			return;
 		}
 		byte option = 0;
-		System.out.print("Update : 1) Author | 2) Title) | 3) Content | 4) All");
+		System.out.print("Update : 1) Author | 2) Title) | 3) Content | 4) All: ");
 		option = input.nextByte();
 		switch (option) {
 		case 1:/* Updating Author by ID */
@@ -180,11 +180,12 @@ public class Management {
 	 * @param key
 	 *            : keyword to search
 	 */
-	public ArrayList<Integer> search(int i, String key) {
+	public ArrayList<Integer> search(String searchBy, String key) {
 		ArrayList<Integer> searchList = new ArrayList<Integer>();
 		key = key.toLowerCase(); 
-	    switch(i){    
-	      case 1:	//search ID
+		sort("i", true);
+	    switch(searchBy.toLowerCase()){    
+	      case "i":	//search ID
 	     	int index = Collections.binarySearch(articles, 
 	                                             new Article("", "", "", "").clone(Integer.parseInt(key)),
 	                                             new Comparator<Article>() {
@@ -194,7 +195,7 @@ public class Management {
 	     	});
 	        searchList.add(index);
 	        break;
-	      case 2:	//search Author name
+	      case "au":	//search Author name
 	        for (int startIndex = 0, halfIndex = articles.size() / 2; 
 	             startIndex < articles.size() / 2; 
 	             startIndex++, halfIndex++) {
@@ -220,7 +221,7 @@ public class Management {
 	          }
 	        }
 	        break;
-	      case 3:	//search PublishDate        	
+	      case "p":	//search PublishDate        	
 	        for (int startIndex = 0, halfIndex = articles.size() / 2; 
 	             startIndex < articles.size() / 2; 
 	             startIndex++, halfIndex++) {
@@ -246,7 +247,7 @@ public class Management {
 	          }
 	        }
 	        break;
-	      case 4:	//search Title
+	      case "t":	//search Title
 	        for (int startIndex = 0, halfIndex = articles.size() / 2; 
 	             startIndex < articles.size() / 2; 
 	             startIndex++, halfIndex++) {
@@ -287,7 +288,7 @@ public class Management {
 	 */
 	public void remove(String key) {
 		sort("i", true);
-		int index = search(1, key).get(0);
+		int index = search("i", key).get(0);
 		if (index < 0) { // If value < 0 it means search not found;
 			System.err.println("Invalid Key" + index);
 			return;
@@ -358,6 +359,9 @@ public class Management {
 		Scanner input = new Scanner(System.in);
 		String option;
 		String key;
+		String sortBy = "i";
+		boolean isAscending = false;
+		sort(sortBy, isAscending);
 		display.process();	
 		do{
 			System.out.print("Please, Input Your Option-->");
@@ -374,37 +378,33 @@ public class Management {
 			case "u":
 				update();
 				break;
-			case "s":
-				System.out.print("1) ID | 2)Author | 3)Publish Date | 4)Title--> ");
-				byte searchBy = input.nextByte();
-				
+			case "s": //Search
+				System.out.print("I) ID | Au)Author | T)Title | P)Publish Date--> ");
+				String searchBy = input.next();
 				System.out.print("Input Key to search: ");
 				key = input.next();
-				
 				ArrayList<Integer>searchList = search(searchBy, key);
 				tempArticles = new ArrayList<Article>();
 				for(Integer index : searchList){
 					if(index < 0){
-						System.out.println("Key not found!");
-						display.setArticles(articles);
+						System.err.println("Key not found!");
+						tempArticles = articles;
 						break;
 					}
 					tempArticles.add(articles.get(index));
 				}
-				
 				display.setArticles(tempArticles);
 				break;
 			case "ss":
 				System.out.print("Sort By: I) ID | Au) Author | T) Title | P) Publish Date --> ");
-				String sortBy = input.next();
-				
+				sortBy = input.next();
 				System.out.print("Order By: ASC or DSC --> ");
-				String isAsc = input.next();
+				String orderBy = input.next();
 				
-				if (isAsc.equalsIgnoreCase("asc")) 
-					sort(sortBy.toLowerCase(), true);
+				if (orderBy.equalsIgnoreCase("asc")) 
+					isAscending = true;
 				else
-					sort(sortBy.toLowerCase(), false);
+					isAscending = false;
 				break;
 			case "g":
 				System.out.print("Input Page Number: ");
@@ -437,20 +437,25 @@ public class Management {
 				System.out.print("Input ID to view: ");
 				String id = input.next();
 				sort("i", true);
-				int index = search(1, id).get(0);
+				int index = search("i", id).get(0);
 				if(index < 0){
 					System.out.println("ID not found!");
 					break;
 				}
 				Article art = articles.get(index);
 				display.viewDetail(art);
-				input.next();
+				System.out.print("Press Enter to continue...");
+				try
+		        {
+		            System.in.read();
+		        }  
+		        catch(Exception e){}  
 				break;
 			case "e":
 				return;
 			}//End of switch;
+			sort(sortBy, isAscending);
 			display.process();
-
 		}while(true);
 	}//End of function display;
 }// End of class;
