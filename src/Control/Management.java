@@ -1,5 +1,6 @@
 ﻿package Control;
 import Model.Article;
+import View.Display;
 
 import java.io.File;
 import java.io.IOException;
@@ -10,23 +11,13 @@ import java.util.Comparator;
 import java.util.Date;
 import java.util.Scanner;
 
-import View.Display;
-
-public class Management {
-	
+public class Management {	
 	ArrayList<Article> articles;
 	private Display display;
 	private ArrayList<Article> tempArticles;
 	private File logfile;
 	public Management() {
-		System.gc();
-		String now = new SimpleDateFormat("dd/MM/YYYY HH:mm:ss").format(new Date());
-		logfile=new File("log.txt");
-		articles = new ArrayList<Article>();
-		display = new Display();//
-		//display.setTableStyle('\u2554', '\u2557', '\u255A', '\u255D', '\u2566', '\u2569', '\u2560', '\u256C', '\u2563', '\u2551', '\u2550');
-		display.setTableStyle('╔', '╗', '╚', '╝', '╦', '╩', '╠', '╬', '╣', '║', '═');
-		
+		//display.setTableStyle('\u2554', '\u2557', '\u255A', '\u255D', '\u2566', '\u2569', '\u2560', '\u256C', '\u2563', '\u2551', '\u2550');		
 		/*for(int  i=0; i<100_000_000; i++){
 			//articles.add(new Article("Vichea", "JAVA ", "CBD" , now));
 			articles.add(new Article("Srey LeangHeng", "Web Application Development", "CBD" , now));
@@ -50,9 +41,20 @@ public class Management {
 		//FileArticle.getInstance().writeFile(articles);
 		//long ed=System.currentTimeMillis();
 		//System.out.println((ed-st)/1000);
+		//long ed1=System.currentTimeMillis();
+		//System.out.println((ed1-ed)/1000);
+		//tempArticles = articles;
+		//sort("i", false);
+		System.gc();
+		String now = new SimpleDateFormat("dd/MM/YYYY HH:mm:ss").format(new Date());
+		logfile=new File("log.txt");
+		articles = new ArrayList<Article>();
+		display = new Display();
+		display.setTableStyle('╔', '╗', '╚', '╝', '╦', '╩', '╠', '╬', '╣', '║', '═');
+		
 		System.out.print("Testing 1 000 000 objects (o)");
 		System.out.print("\nTesting Read objects inside file (r)");
-		String choose=new Scanner(System.in).next();
+		String choose = new Scanner(System.in).next();
 		if(choose.equalsIgnoreCase("o")){
 			for(int  i=0; i<1_000_000; i++){
 				articles.add(new Article("Srey LeangHeng", "Web Application Development", "CBD" , now));	
@@ -63,18 +65,12 @@ public class Management {
 			}else{
 				System.out.print("No Data");				
 			}
-		}
-		
-		//long ed1=System.currentTimeMillis();
-		//System.out.println((ed1-ed)/1000);
-		//tempArticles = articles;
-		//sort("i", false);
+		}	
 		display.setArticles(articles);
 	}
-
 	/**
-	 * Function Add : For Adding Records to Articles with ValidateData. Not
-	 * Permit for null value
+	 * Function add new article object with no parameter and no return type
+	 * inputing multiple object using do while loop
 	 */
 	public void add(){
 		Scanner input = new Scanner(System.in);
@@ -100,10 +96,9 @@ public class Management {
 		}while(true);
 		
 	}//End of add();
-	
 	/**
-	 * Function with parameter for Validating Data
-	 * 
+	 * Function insertArticle with 3 parameter with no return type
+	 * it's used for Validating Data
 	 * @param articles
 	 *            : ArrayList<Article> articles
 	 * @param author
@@ -122,16 +117,12 @@ public class Management {
 		}
 	}
 	/**
-	 * Function with parameter For Updating Data Case 1: Updating Author Case 2:
-	 * Updating Title Case 3: Updating Content Case 4: Updating All Fields
-	 * 
-	 * @param SearchBy
-	 *            : SearchById Only
-	 * @param Key
-	 *            : Key as ID
+	 * Function update one article object with no parameter and no return type  
+	 * Case 1: Updating Author 
+	 * Case 2: Updating Title 
+	 * Case 3: Updating Content 
+	 * Case 4: Updating All Fields
 	 */
-	
-
 	public void update() {
 		String author="";
 		String title = "";
@@ -193,7 +184,11 @@ public class Management {
 /*Pisal*/FileArticle.getInstance().writeLog(logfile, new String[]{"Update-->",""+articles.get(index).getId(),author,title,content});
 		waiting();
 	}
-	
+	/**
+	 * Function inputContent  
+	 * @return content as multiple line of String from Keyboard
+	 * Stop Scanner when user input period
+	 */
 	private String inputContent(){
 		String content = "";
 		Scanner input = new Scanner(System.in);
@@ -205,15 +200,15 @@ public class Management {
 		return content;
 	}//End of inputContent();
 	/**
-	 * Function with parameter For Searching Data By All kind of Searching By ID
-	 * By Author By Title By PublishDate By ModifiedDate
-	 * 
-	 * @param articles
-	 *            : arraylist of object to search
-	 * @param i
-	 *            : option to choose from 0 - 3
+	 * Function search with two parameter with 4 options 
+	 * By ID, By Author, By Title, and By PublishDate 
+	 * each options split 2 condition in the linear loop 
+	 * @param searchBy
+	 *            : option to choose such as i, au, p, t
 	 * @param key
 	 *            : keyword to search
+	 * @return as arraylist of object ID
+	 * 		   if error it returns null
 	 */
 	public ArrayList<Integer> search(String searchBy, String key) {
 		ArrayList<Integer> searchList = new ArrayList<Integer>();
@@ -315,12 +310,11 @@ public class Management {
 	    }
 		return searchList; 
 	}
-
 	/**
-	 * Function with parameter For Deleting Data follow by Key
-	 * 
+	 * Function delete with one parameter 
+	 * For Deleting Article Object follow with the key given 
 	 * @param Key
-	 *            : Key as ID
+	 *            : Key as object ID to delete
 	 */
 	public void remove(String key) {
 		sort("i", true);
@@ -330,73 +324,68 @@ public class Management {
 			waiting();
 			return;
 		}
-/*Pisal*/FileArticle.getInstance().writeLog(logfile, new String[]{"Remove-->",articles.get(index).toString()});
-		articles.remove(index); /*
-												 * index value came from
-												 * method search()
-												 */
+		/*Pisal*/
+		FileArticle.getInstance().writeLog(logfile, new String[]{"Remove-->",articles.get(index).toString()});
+		articles.remove(index); /*				 */
 		System.out.println("Remove Completed!");
 		waiting();
 	}
 	/**
-	 * Function with parameter For Sorting Data By ID By Author By Title By
-	 * PublishDate BY ModifiedDate
-	 * 
+	 * Function sort with 2 parameter 
+	 * For Sorting Data By ID, By Author, By Title, and By PublishDate	 
 	 * @param SortBy
-	 *            : new Objects sort By
+	 *            : key option to sort
 	 * @param isAscending
 	 *            : true Ascending, false Descending
 	 */
 	public void sort(String sortBy,boolean isAscending) {
 		switch (sortBy.toLowerCase()) {
-		
-		case "i":// sort by id
-			Collections.sort(articles, new Comparator<Article>() {
-				@Override
-				public int compare(Article art1, Article art2) {
-					return art1.getId() > art2.getId() ? 1 : -1; /* Sort Object By Ascending */
-				}
-			});	
-			break;
-		
-		case "au":// sort by author
-			Collections.sort(articles, new Comparator<Article>() {
-				@Override
-				public int compare(Article art1, Article art2) {
-					return art1.getAuthor().compareTo(art2.getAuthor());/* Sort Object By Ascending */
-				}
-			});
-			break;	
-		
-		case "t":// Sort by title
-			Collections.sort(articles, new Comparator<Article>() {
-				@Override
-				public int compare(Article art1, Article art2) {
-					return art1.getTitle().compareTo(art2.getTitle());/* Sort Object By Ascending */
-				}
-			});
-			break;
-		
-		case "p":// sort by Publish Date
-			Collections.sort(articles, new Comparator<Article>() {
-				@Override
-				public int compare(Article art1, Article art2) {
-					return art1.getPublishDate().compareTo(art2.getPublishDate());/* Sort Object By Ascending */
-				}
-			});			
-			break;	
-		default:
-			System.out.println("Invalid Type!");
-			waiting();
+			case "i":// sort by id
+				Collections.sort(articles, new Comparator<Article>() {
+					@Override
+					public int compare(Article art1, Article art2) {
+						return art1.getId() > art2.getId() ? 1 : -1; /* Sort Object By Ascending */
+					}
+				});	
+				break;
+			
+			case "au":// sort by author
+				Collections.sort(articles, new Comparator<Article>() {
+					@Override
+					public int compare(Article art1, Article art2) {
+						return art1.getAuthor().compareTo(art2.getAuthor());/* Sort Object By Ascending */
+					}
+				});
+				break;	
+			
+			case "t":// Sort by title
+				Collections.sort(articles, new Comparator<Article>() {
+					@Override
+					public int compare(Article art1, Article art2) {
+						return art1.getTitle().compareTo(art2.getTitle());/* Sort Object By Ascending */
+					}
+				});
+				break;
+			
+			case "p":// sort by Publish Date
+				Collections.sort(articles, new Comparator<Article>() {
+					@Override
+					public int compare(Article art1, Article art2) {
+						return art1.getPublishDate().compareTo(art2.getPublishDate());/* Sort Object By Ascending */
+					}
+				});			
+				break;	
+			default:
+				System.out.println("Invalid Type!");
+				waiting();
 		}//End of switch
 		if(!isAscending)
 			Collections.reverse(articles); /* Sort Object by Descending */
 		//display();
 	}//End of sort();
-
 	/**
-	 * Function without parameter for display all of elements
-	 * @
+	 * Function display without parameter and no return type
+	 * for manipulating articles and display all of elements
 	 */
 	public void display(){
 		Scanner input = new Scanner(System.in);
@@ -491,7 +480,7 @@ public class Management {
 				display.viewDetail(art);
 				waiting(); 
 				break;
-/*Pisal*/	/*Menu File*/
+				/*Pisal*/	/*Menu File*/
 			case "w":// Write To File
 				FileArticle.getInstance().writeFile(articles);
 				break;
@@ -527,6 +516,9 @@ public class Management {
 			display.process();
 		}while(true);
 	}//End of function display;
+	/**no idea what this do
+	 * 
+	 */
 	private void waiting(){
 		System.out.print("Press Enter to continue...");
 		try
@@ -535,8 +527,4 @@ public class Management {
         }  
         catch(Exception e){}
 	}
-	/*public static void main(String[] args) {
-		//new Management();
-		System.out.println(1111);
-	}*/
 }// End of class;
