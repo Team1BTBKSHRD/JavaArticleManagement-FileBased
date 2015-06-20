@@ -4,6 +4,8 @@ import java.io.BufferedWriter;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+
+import Model.Article;
 public class LogFile {   
 	private static LogFile logFile  = null;
 	private LogFile() {
@@ -13,27 +15,39 @@ public class LogFile {
 		if(logFile == null)	logFile = new LogFile();		
 		return logFile;
 	}	
-	public void writeLogOpenningFile() throws IOException{
+	public void writeLogOpenFile(String fileName) throws IOException{
 		BufferedWriter output = new BufferedWriter(new FileWriter("LogFile.log", true));
-		output.write("Open File at\t" + getCurrentDate());
+		output.write("Open File " + fileName + " at\t" + getCurrentDate());
 		output.write(System.getProperty("line.separator"));
 		output.close();
 	}
-	public void writeLogClosingFile() throws IOException{
+	public void writeLogCloseFile(String fileName) throws IOException{
 		BufferedWriter output = new BufferedWriter(new FileWriter("LogFile.log", true));
-		output.write("Close File at\t" + getCurrentDate());
+		output.write("Close File " + fileName + " at\t" + getCurrentDate());
 		output.write(System.getProperty("line.separator"));
 		output.close();
 	}
-	public void writeLogEditingFile() throws IOException{
+	public void writeLogAdd(Article a) throws IOException{
 		BufferedWriter output = new BufferedWriter(new FileWriter("LogFile.log", true));
-		output.write("Edit File File at\t" + getCurrentDate());
+		output.write("Add Item at\t" + getCurrentDate());
+		output.write(System.getProperty("line.separator"));
+		output.write("\t" + a.toString());
 		output.write(System.getProperty("line.separator"));
 		output.close();
 	}
-	public void writeLogDeletingItem() throws IOException{
+	public void writeLogEdit(Article a) throws IOException{
 		BufferedWriter output = new BufferedWriter(new FileWriter("LogFile.log", true));
-		output.write("Delete Item In File at\t" + getCurrentDate());
+		output.write("Edit Item at\t" + getCurrentDate());
+		output.write(System.getProperty("line.separator"));
+		output.write("\t" + a.toString());
+		output.write(System.getProperty("line.separator"));
+		output.close();
+	}
+	public void writeLogDelete(Article a) throws IOException{
+		BufferedWriter output = new BufferedWriter(new FileWriter("LogFile.log", true));
+		output.write("Delete Item at\t" + getCurrentDate());
+		output.write(System.getProperty("line.separator"));
+		output.write("\t" + a.toString());
 		output.write(System.getProperty("line.separator"));
 		output.close();
 	}

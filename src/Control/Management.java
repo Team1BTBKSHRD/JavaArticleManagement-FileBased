@@ -27,7 +27,7 @@ public class Management {
 		/*for(int  i=0; i<1e6; i++){
 			articles.add(new Article("Vichea", "JAVA ", "CBD" , now));
 	}*/
-		String now = new SimpleDateFormat("dd/MM/YYYY HH:mm:ss").format(new Date());;
+		String now = new SimpleDateFormat("dd/MM/YYYY HH:mm:ss").format(new Date());
 		articles.add(new Article("Srey LeangHeng", "Web Application Development", "CBD" , now));
 		articles.add(new Article("Sun VicheyChetra", "Java Programming Language", "CBD" , now));	
 		articles.add(new Article("Dara Po", "Object Oreinted Analysis & Design", "CBD" , now));
