@@ -1,42 +1,49 @@
 package LogFile;
-
-import java.nio.file.Path;
-import java.util.Date;
-import java.text.SimpleDateFormat;
+import java.io.FileWriter;
+import java.io.BufferedWriter;
 import java.io.IOException;
-
+import java.text.SimpleDateFormat;
+import java.util.Date;
 public class LogFile {   
 	private static LogFile logFile  = null;
 	private LogFile() {
 		// Exists only to defeat instantiation.
 	}
-	public static LogFile getLogFile(){
-		if(logFile == null)	logFile = new LogFile();
+	public static LogFile getLogFile() throws IOException{	
+		if(logFile == null)	logFile = new LogFile();		
 		return logFile;
+	}	
+	public void writeLogOpenningFile() throws IOException{
+		BufferedWriter output = new BufferedWriter(new FileWriter("LogFile.log", true));
+		output.write("Open File at\t" + getCurrentDate());
+		output.write(System.getProperty("line.separator"));
+		output.close();
 	}
-
-	
-	public void writeLogOpenningFile(){
-	    
+	public void writeLogClosingFile() throws IOException{
+		BufferedWriter output = new BufferedWriter(new FileWriter("LogFile.log", true));
+		output.write("Close File at\t" + getCurrentDate());
+		output.write(System.getProperty("line.separator"));
+		output.close();
 	}
-	public void writeLogClosingFile(){}
-	public void writeLogModifingFile(){}
-	public void writeLogDeletingFile(){}
-	public void writeLogException(){}
-		
-		
-		
-	private Path fileName;
-	public Path getFileName() {
-		return fileName;
+	public void writeLogEditingFile() throws IOException{
+		BufferedWriter output = new BufferedWriter(new FileWriter("LogFile.log", true));
+		output.write("Edit File File at\t" + getCurrentDate());
+		output.write(System.getProperty("line.separator"));
+		output.close();
 	}
-	public void setFileName(Path fileName) {
-		this.fileName = fileName;
+	public void writeLogDeletingItem() throws IOException{
+		BufferedWriter output = new BufferedWriter(new FileWriter("LogFile.log", true));
+		output.write("Delete Item In File at\t" + getCurrentDate());
+		output.write(System.getProperty("line.separator"));
+		output.close();
 	}
-
+	public void writeLogException(Exception ex) throws IOException{
+		BufferedWriter output = new BufferedWriter(new FileWriter("LogFile.log", true));
+		output.write(ex + " at\t" + getCurrentDate());
+		output.write(System.getProperty("line.separator"));
+		output.close();
+	}		
 	private String getCurrentDate(){ 
-    return new SimpleDateFormat("dd/MM/YYYY HH:mm:ss").format(new Date());
-	}
-  
-
+		return new SimpleDateFormat("dd/MM/YYYY HH:mm:ss").format(new Date());
+	} 
 }
