@@ -84,18 +84,21 @@ public class Management {
 	 * Stop Scanner when user input period
 	 */
 	private String inputContent(){
-		String content = "";
+		StringBuilder contents = new StringBuilder();
 		try {
-			Scanner input = new Scanner(System.in);
-			while (input.hasNext()) {
-				content += input.nextLine();
-				if (content.endsWith("."))
+			Scanner put = new Scanner(System.in);			
+			while (put.hasNext()) {
+				contents.append(put.next());				
+				if (contents.toString().endsWith("...")) {
+					contents.setLength(contents.length() - 3);
 					break;
-			}//End while;
+				}
+				contents.append("\n");
+			}//End while;				
 		} catch (Exception e) {
 			logfile.writeLogException(e, "inputContent", "Management");
 		}
-		return content;
+		return contents.toString();
 	}//End of inputContent();
 	/**
 	 * get number from input keyboard 
@@ -109,7 +112,8 @@ public class Management {
 	      System.out.print(message);
 	      try	{	return put.nextInt();	}
 	      catch (java.util.InputMismatchException e) {
-	        System.out.println("Input Mismatch. Please Input Again.");
+	        System.out.println("Input Mismatch. Please Input Number Again.");
+	        logfile.writeLogException(e, "getNumberKeyboard", "Management");
 	        put.nextLine();
 	      }
 	    }
@@ -119,10 +123,14 @@ public class Management {
 	 * @param message : message to show on console screen
 	 * @return : string from keyboard
 	 */
-	public String getStringKeyboard(String message){
-		Scanner put = new Scanner(System.in);
-		System.out.print(message);
-		return put.next();
+	public static String getStringKeyboard(String message){
+ 		Scanner put = new Scanner(System.in);
+	    String str = "";
+	    while (str.equals("")) {      
+	    	System.out.print(message);
+	    	str = put.nextLine();	         
+	    }
+	    return str;
 	}
 	/**
 	 * Function add new article object with no parameter and no return type
@@ -135,11 +143,9 @@ public class Management {
 			String title;
 			String content;
 			do{
-				System.out.print("Please Enter Author : ");
-				author = input.next();
-				System.out.print("Please Enter Titile : ");
-				title = input.next();
-				System.out.println("Type period(.) to stop");
+				author = getStringKeyboard("Please Enter Author : ");
+				title = getStringKeyboard("Please Enter Title : ");
+				System.out.println("Type 3 periods (...) to stop");
 				System.out.print("Please Enter Content: ");
 				content = inputContent();
 				//insertArticle(author, title, content);
@@ -169,12 +175,10 @@ public class Management {
 	public void update() {
 		int index = -1;
 		try{
-			Scanner input = new Scanner(System.in);
-			System.out.print("Input ID to Update:");
 			String author="";
 			String title = "";
 			String content="";
-			String id = input.next();
+			String id = Integer.toString(getNumberKeyboard("Input ID to Update:"));			
 			String option = "";
 			sort("i", true);
 			index = search("i", id).get(0);
@@ -183,41 +187,27 @@ public class Management {
 				waiting();
 				return;
 			}
-			System.out.print("Update : Au) Author | T) Title) | C) Content | Al) All: ");
-			option = input.nextLine();
-			option = input.nextLine();
+			option = getStringKeyboard("Update : Au) Author | T) Title) | C) Content | Al) All: ");
 			switch (option.toLowerCase()) {
 				case "au":/* Updating Author by ID */
-					System.out.print("Enter Author: ");
-					author = input.nextLine();
+					author = getStringKeyboard("Please Enter Author : ");
 					articles.get(index).setAuthor(author);
 					break;
 				case "t":/* Updating Title by ID */
-					System.out.print("Enter Title : ");
-					title = input.nextLine();
+					title = getStringKeyboard("Please Enter Title : ");
 					articles.get(index).setTitle(title);
-					break;
-					
+					break;					
 				case "c":/* Updating Content by ID */
 					System.out.print("Enter Content :");
 					content = inputContent();
 					articles.get(index).setContent(content);
 					break;
 				case "al": /* Updating All Fields by ID */
-					System.out.print("Please Enter Author: ");
-					author = input.nextLine();
-					System.out.print("Please Enter Titile: ");
-					title = input.nextLine();
+					author = getStringKeyboard("Please Enter Author : ");
+					title = getStringKeyboard("Please Enter Title : ");
 					System.out.print("Please Enter Content: ");
-					content = inputContent();
-					
-					if (author.isEmpty() || title.isEmpty() || content.isEmpty()) {
-						System.out.println("Invalid value!");
-						waiting();
-						break;
-					} else {
-						articles.get(index).setData(author, title, content);
-					}
+					content = inputContent();					
+					articles.get(index).setData(author, title, content);
 					break;
 				default:/* Not Permit invalid Key */
 					System.err.println("Invalid");
@@ -441,14 +431,13 @@ public class Management {
 			display.process();	
 			do{
 				System.out.print("Please, Input Your Option-->");
-				option = input.nextLine();
+				option = input.next();
 				switch(option.toLowerCase()){
 				case "a":
 					add();
 					break;
-				case "r":
-					System.out.print("Input ID to remove: ");
-					key = input.next();
+				case "r":					
+					key = Integer.toString(getNumberKeyboard("Input ID to remove: "));
 					remove(key);
 					break;
 				case "u":
@@ -457,8 +446,7 @@ public class Management {
 				case "s": //Search
 					System.out.print("I) ID | Au)Author | T)Title | P)Publish Date--> ");
 					String searchBy = input.next();
-					System.out.print("Input Key to search: ");
-					key = input.next();
+					key = Integer.toString(getNumberKeyboard("Input ID to search: "));
 					ArrayList<Integer>searchList = search(searchBy, key);
 					tempArticles = new ArrayList<Article>();
 					for(Integer index : searchList){
@@ -494,13 +482,11 @@ public class Management {
 						isAscending = false;
 					break;
 				case "g":
-					System.out.print("Input Page Number: ");
-					int pageNumber = input.nextInt();
+					int pageNumber = getNumberKeyboard("Input Page Number: ");
 					display.gotoPage(pageNumber);
 					break;
 				case "#":
-					System.out.print("Input Page Size: ");
-					int pageSize = input.nextInt();
+					int pageSize = getNumberKeyboard("Input Page Size: ");
 					display.setPageSize(pageSize);
 					break;
 				case "p":
@@ -521,8 +507,7 @@ public class Management {
 					display.gotoFirstPage();
 					break;
 				case "v":
-					System.out.print("Input ID to view: ");
-					String id = input.next();
+					String id = Integer.toString(getNumberKeyboard("Input ID to view: "));
 					sort("i", true);
 					int index = search("i", id).get(0);
 					if(index < 0){
@@ -540,7 +525,7 @@ public class Management {
 					break;
 				case "re":// Read From File
 					System.out.print("Read from Backup File (Y/N)? : ");
-					String choice=input.next();
+					String choice = input.next();
 					if(choice.equalsIgnoreCase("y")){
 						System.out.print("Please input file name : ");
 						String filename=input.next();
@@ -554,15 +539,8 @@ public class Management {
 					}		
 					break;
 				case "b":// Back Up File
-					//System.out.print("Please input destination file : ");
-					//String destination = input.next();
-					String now = new SimpleDateFormat("ddMMYYYYHHmmss").format(new Date());
-					try {
-						FileArticle.getInstance().copyFile(FileArticle.getInstance().sourceFile(), new File("backup" + now + ".bin"));
-					} catch (IOException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
+					String now = new SimpleDateFormat("ddMMYYYYHHmmss").format(new Date());			
+					FileArticle.getInstance().copyFile(FileArticle.getInstance().sourceFile(), new File("backup" + now + ".bin"));				
 					break;
 				/*End Menu File*/
 				case "e" :

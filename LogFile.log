@@ -473,3 +473,66 @@ Read File ArticleData.bin at	21/06/2015 20:22:45
 Read File ArticleData.bin at	21/06/2015 20:22:46
 Read File ArticleData.bin at	21/06/2015 20:24:04
 Read File ArticleData.bin at	21/06/2015 20:24:04
+Read File ArticleData.bin at	21/06/2015 20:55:22
+Read File ArticleData.bin at	21/06/2015 20:55:23
+Edit Item at	21/06/2015 20:55:45
+	ID:100000, Author:asdfsdfsdf, Title:Web Application Development, Publish Date:21/06/2015 19:47:22, Content:CBD
+Edit Item at	21/06/2015 20:55:56
+	ID:100000, Author:asdfsdfsdf, Title:asdfasdfs, Publish Date:21/06/2015 19:47:22, Content:CBD
+Edit Item at	21/06/2015 20:56:48
+	ID:100000, Author:asdfsdfsdf, Title:asdfasdfs, Publish Date:21/06/2015 19:47:22, Content:asdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdf.
+Read File ArticleData.bin at	21/06/2015 21:03:07
+Read File ArticleData.bin at	21/06/2015 21:03:07
+java.lang.NumberFormatException: For input string: "asdfsdf" in METHOD search CLASS Management at	21/06/2015 21:03:11
+java.lang.IndexOutOfBoundsException: Index: 0, Size: 0 in METHOD update CLASS Management at	21/06/2015 21:03:11
+java.lang.ArrayIndexOutOfBoundsException: -1 in METHOD display CLASS Management at	21/06/2015 21:03:11
+Read File ArticleData.bin at	21/06/2015 21:03:22
+Read File ArticleData.bin at	21/06/2015 21:03:23
+Read File ArticleData.bin at	21/06/2015 21:04:02
+Read File ArticleData.bin at	21/06/2015 21:04:02
+Edit Item at	21/06/2015 21:04:09
+	ID:345, Author:34534, Title:Web Application Development, Publish Date:21/06/2015 19:47:21, Content:CBD
+Read File ArticleData.bin at	21/06/2015 21:04:57
+Read File ArticleData.bin at	21/06/2015 21:04:57
+Read File ArticleData.bin at	21/06/2015 21:05:14
+Read File ArticleData.bin at	21/06/2015 21:05:15
+Read File ArticleData.bin at	21/06/2015 21:05:43
+Read File ArticleData.bin at	21/06/2015 21:05:44
+Read File ArticleData.bin at	21/06/2015 21:05:56
+Read File ArticleData.bin at	21/06/2015 21:05:57
+Read File ArticleData.bin at	21/06/2015 22:19:11
+Read File ArticleData.bin at	21/06/2015 22:19:11
+java.util.InputMismatchException in METHOD getNumberKeyboard CLASS Management at	21/06/2015 22:19:21
+java.util.InputMismatchException in METHOD getNumberKeyboard CLASS Management at	21/06/2015 22:19:22
+java.util.InputMismatchException in METHOD getNumberKeyboard CLASS Management at	21/06/2015 22:19:24
+java.util.InputMismatchException in METHOD getNumberKeyboard CLASS Management at	21/06/2015 22:19:24
+java.util.InputMismatchException in METHOD getNumberKeyboard CLASS Management at	21/06/2015 22:19:25
+java.util.InputMismatchException in METHOD getNumberKeyboard CLASS Management at	21/06/2015 22:19:26
+java.util.InputMismatchException in METHOD getNumberKeyboard CLASS Management at	21/06/2015 22:19:41
+Edit Item at	21/06/2015 22:19:48
+	ID:345, Author:345, Title:Web Application Development, Publish Date:21/06/2015 19:47:21, Content:CBD
+Edit Item at	21/06/2015 22:20:24
+	ID:1, Author:heng, Title:Web Application Development, Publish Date:21/06/2015 19:47:21, Content:CBD
+Edit Item at	21/06/2015 22:20:34
+	ID:1, Author:heng, Title:sdf, Publish Date:21/06/2015 19:47:21, Content:CBD
+Edit Item at	21/06/2015 22:21:32
+	ID:1, Author:heng, Title:sdf, Publish Date:21/06/2015 19:47:21, Content:asdf
+sdfasdf
+asdf
+asdf
+.
+sdf
+...
+Edit Item at	21/06/2015 22:22:17
+	ID:1, Author:asdf, Title:asdf, Publish Date:21/06/2015 19:47:21, Content:sadf
+sadf
+asd
+f
+s.
+..
+...
+Read File ArticleData.bin at	21/06/2015 22:30:41
+Read File ArticleData.bin at	21/06/2015 22:30:42
+java.util.InputMismatchException in METHOD getNumberKeyboard CLASS Management at	21/06/2015 22:30:46
+Delete Item at	21/06/2015 22:30:51
+	ID:100000, Author:Srey LeangHeng, Title:Web Application Development, Publish Date:21/06/2015 19:47:22, Content:CBD
