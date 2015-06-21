@@ -50,12 +50,11 @@ public class Management {
 			logfile = LogFile.getLogFile();
 			articles = new ArrayList<Article>();		
 			
-			System.out.print("Testing 100 000 objects (o)");
-			System.out.print("\nRead Object From File ArticleData.bin (Any Key)");
-			String choose = new Scanner(System.in).next();
+			String choose = getStringKeyboard("Test creating objects (o)\nRead Object From File ArticleData.bin (Any Key)");
 			if(choose.equalsIgnoreCase("o")){
-				for(int  i=0; i<100_000; i++){
-					articles.add(new Article("Srey LeangHeng", "Web Application Development", "CBD" , currentDate()));	
+				int listSize = getNumberKeyboard("Number of object to create: ");
+				for(int  i=0; i<listSize; i++){
+					articles.add(new Article("HengWondering", "Web Application Development", "CBD" , currentDate()));	
 				}
 			}else{
 				if(FileArticle.getInstance().readFile().size()!=0){
@@ -98,6 +97,33 @@ public class Management {
 		}
 		return content;
 	}//End of inputContent();
+	/**
+	 * get number from input keyboard 
+	 * if error/mismatch input again
+	 * @param message : message to show on console screen
+	 * @return : number from keyboard
+	 */
+	public int getNumberKeyboard(String message){
+	    Scanner put = new Scanner(System.in);
+	    while (true) {
+	      System.out.print(message);
+	      try	{	return put.nextInt();	}
+	      catch (java.util.InputMismatchException e) {
+	        System.out.println("Input Mismatch. Please Input Again.");
+	        put.nextLine();
+	      }
+	    }
+	}
+	/**
+	 * get String from input keyboard
+	 * @param message : message to show on console screen
+	 * @return : string from keyboard
+	 */
+	public String getStringKeyboard(String message){
+		Scanner put = new Scanner(System.in);
+		System.out.print(message);
+		return put.next();
+	}
 	/**
 	 * Function add new article object with no parameter and no return type
 	 * inputing multiple object using do while loop
@@ -522,11 +548,10 @@ public class Management {
 						if(fileArgs.exists()){
 							articles=FileArticle.getInstance().readFile(fileArgs);
 							display.setArticles(articles);
-							System.out.println("asdfasdf");
 						}
 					}else{
 						articles=FileArticle.getInstance().readFile();
-					}	
+					}		
 					break;
 				case "b":// Back Up File
 					//System.out.print("Please input destination file : ");
