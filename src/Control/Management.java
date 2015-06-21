@@ -45,35 +45,39 @@ public class Management {
 		//System.out.println((ed1-ed)/1000);
 		//tempArticles = articles;
 		//sort("i", false);
-		System.gc();		
-		logfile = LogFile.getLogFile();
-		articles = new ArrayList<Article>();		
-		
-		System.out.print("Testing 100 000 objects (o)");
-		System.out.print("\nRead Object From File ArticleData.bin (Any Key)");
-		String choose = new Scanner(System.in).next();
-		if(choose.equalsIgnoreCase("o")){
-			for(int  i=0; i<100_000; i++){
-				articles.add(new Article("Srey LeangHeng", "Web Application Development", "CBD" , currentDate()));	
-			}
-		}else{
-			if(FileArticle.getInstance().readFile().size()!=0){
-				articles=FileArticle.getInstance().readFile();
+		try {
+			System.gc();		
+			logfile = LogFile.getLogFile();
+			articles = new ArrayList<Article>();		
+			
+			System.out.print("Testing 100 000 objects (o)");
+			System.out.print("\nRead Object From File ArticleData.bin (Any Key)");
+			String choose = new Scanner(System.in).next();
+			if(choose.equalsIgnoreCase("o")){
+				for(int  i=0; i<100_000; i++){
+					articles.add(new Article("Srey LeangHeng", "Web Application Development", "CBD" , currentDate()));	
+				}
 			}else{
-				System.out.print("No Data");				
+				if(FileArticle.getInstance().readFile().size()!=0){
+					articles=FileArticle.getInstance().readFile();
+				}else{
+					System.out.print("No Data");				
+				}
 			}
+			
+			display = new Display();
+			display.setTableStyle('╔', '╗', '╚', '╝', '╦', '╩', '╠', '╬', '╣', '║', '═');
+			display.setArticles(articles);
+		} catch (Exception e) {
+			logfile.writeLogException(e, "constructor", "Management");
 		}
-		
-		display = new Display();
-		display.setTableStyle('╔', '╗', '╚', '╝', '╦', '╩', '╠', '╬', '╣', '║', '═');
-		display.setArticles(articles);
 	}
 	/**
 	 * Function currentDate with no parameter and String as return type
 	 * @return string of current date and time
 	 */
 	private String currentDate(){
-		return  new SimpleDateFormat("dd-MM-YYYY HH-mm-ss").format(new Date());
+		return  new SimpleDateFormat("dd/MM/YYYY HH:mm:ss").format(new Date());
 	}
 	/**
 	 * Function inputContent  
@@ -109,13 +113,13 @@ public class Management {
 				author = input.next();
 				System.out.print("Please Enter Titile : ");
 				title = input.next();
+				System.out.println("Type period(.) to stop");
 				System.out.print("Please Enter Content: ");
 				content = inputContent();
 				//insertArticle(author, title, content);
 				Article newArticle = new Article(author, title, content, currentDate());
 				articles.add(newArticle);
 				logfile.writeLogAdd(newArticle);
-				input.close();
 				System.out.print("Do you want to continues?(Y/N)");
 				String confirm = input.next();
 				switch(confirm.toLowerCase()){
@@ -426,9 +430,9 @@ public class Management {
 					break;
 				case "s": //Search
 					System.out.print("I) ID | Au)Author | T)Title | P)Publish Date--> ");
-					String searchBy = input.nextLine();
+					String searchBy = input.next();
 					System.out.print("Input Key to search: ");
-					key = input.nextLine();
+					key = input.next();
 					ArrayList<Integer>searchList = search(searchBy, key);
 					tempArticles = new ArrayList<Article>();
 					for(Integer index : searchList){
@@ -440,6 +444,16 @@ public class Management {
 						}
 						tempArticles.add(articles.get(index));
 					}
+//					if(searchList == null){
+//						System.err.println("Key not found!");
+//						waiting();
+//						tempArticles = articles;
+//						break;
+//					}else{
+//						for(Integer index : searchList){
+//							tempArticles.add(articles.get(index));
+//						}
+//					}
 					display.setArticles(tempArticles);
 					break;
 				case "ss":

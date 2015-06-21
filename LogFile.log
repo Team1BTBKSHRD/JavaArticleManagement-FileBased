@@ -290,3 +290,118 @@ Write File ArticleData.bin at	21/06/2015 17:57:04
 Read File backup21062015175619.bin at	21/06/2015 17:57:18
 Read File ArticleData.bin at	21/06/2015 17:57:45
 java.io.FileNotFoundException: sdfsdf (The system cannot find the file specified) in METHOD readFile(File filename) CLASS FileArticle at	21/06/2015 17:57:52
+Read File ArticleData.bin at	21/06/2015 18:03:10
+Read File ArticleData.bin at	21/06/2015 18:03:10
+Add Item at	21/06/2015 18:03:31
+	ID:1, Author:dsf, Title:sdf, Publish Date:21/06/2015 18:03:31, Content:sdfsdf.
+java.lang.IllegalStateException: Scanner closed in METHOD add CLASS Management at	21/06/2015 18:03:31
+java.util.NoSuchElementException: No line found in METHOD display CLASS Management at	21/06/2015 18:03:31
+Read File ArticleData.bin at	21/06/2015 18:04:24
+Read File ArticleData.bin at	21/06/2015 18:04:25
+Add Item at	21/06/2015 18:04:39
+	ID:1, Author:sd, Title:sdf, Publish Date:21/06/2015 18:04:39, Content:sdf.
+java.lang.IllegalStateException: Scanner closed in METHOD add CLASS Management at	21/06/2015 18:04:39
+java.util.NoSuchElementException: No line found in METHOD display CLASS Management at	21/06/2015 18:04:39
+Read File ArticleData.bin at	21/06/2015 18:06:18
+Read File ArticleData.bin at	21/06/2015 18:06:18
+Read File ArticleData.bin at	21/06/2015 18:07:31
+Read File ArticleData.bin at	21/06/2015 18:07:31
+java.lang.NumberFormatException: For input string: "df" in METHOD search CLASS Management at	21/06/2015 18:07:40
+Read File ArticleData.bin at	21/06/2015 18:08:10
+Read File ArticleData.bin at	21/06/2015 18:08:10
+java.lang.NullPointerException in METHOD display CLASS Management at	21/06/2015 18:08:20
+Read File ArticleData.bin at	21/06/2015 18:08:39
+Read File ArticleData.bin at	21/06/2015 18:08:39
+java.lang.NullPointerException in METHOD display CLASS Management at	21/06/2015 18:08:43
+Read File ArticleData.bin at	21/06/2015 18:10:19
+Read File ArticleData.bin at	21/06/2015 18:10:19
+java.lang.NullPointerException in METHOD display CLASS Management at	21/06/2015 18:10:23
+Read File ArticleData.bin at	21/06/2015 18:10:35
+Read File ArticleData.bin at	21/06/2015 18:10:35
+java.lang.NullPointerException in METHOD display CLASS Management at	21/06/2015 18:10:41
+Read File ArticleData.bin at	21/06/2015 18:11:37
+Read File ArticleData.bin at	21/06/2015 18:11:37
+java.lang.NullPointerException in METHOD display CLASS Management at	21/06/2015 18:11:41
+Read File ArticleData.bin at	21/06/2015 18:11:49
+Read File ArticleData.bin at	21/06/2015 18:11:50
+java.lang.NullPointerException in METHOD display CLASS Management at	21/06/2015 18:11:55
+Read File ArticleData.bin at	21/06/2015 18:14:08
+Read File ArticleData.bin at	21/06/2015 18:14:08
+java.lang.ArrayIndexOutOfBoundsException: -99994 in METHOD display CLASS Management at	21/06/2015 18:14:45
+Read File ArticleData.bin at	21/06/2015 18:15:24
+Read File ArticleData.bin at	21/06/2015 18:15:24
+java.lang.ArrayIndexOutOfBoundsException: -99994 in METHOD display CLASS Management at	21/06/2015 18:15:31
+Read File ArticleData.bin at	21/06/2015 18:16:16
+Read File ArticleData.bin at	21/06/2015 18:16:16
+Read File ArticleData.bin at	21/06/2015 18:16:45
+Read File ArticleData.bin at	21/06/2015 18:16:45
+java.lang.ArrayIndexOutOfBoundsException: -99994 in METHOD display CLASS Management at	21/06/2015 18:16:59
+Read File ArticleData.bin at	21/06/2015 18:17:20
+Read File ArticleData.bin at	21/06/2015 18:17:20
+Read File ArticleData.bin at	21/06/2015 18:24:38
+Read File ArticleData.bin at	21/06/2015 18:24:39
+java.lang.NullPointerException in METHOD display CLASS Management at	21/06/2015 18:24:41
+Read File ArticleData.bin at	21/06/2015 19:09:43
+Read File ArticleData.bin at	21/06/2015 19:09:43
+Add Item at	21/06/2015 19:09:48
+	ID:1, Author:asdf, Title:sdf, Publish Date:21/06/2015 19:09:48, Content:sdf.
+java.lang.IllegalStateException: Scanner closed in METHOD add CLASS Management at	21/06/2015 19:09:48
+java.util.NoSuchElementException: No line found in METHOD display CLASS Management at	21/06/2015 19:09:48
+Read File ArticleData.bin at	21/06/2015 19:10:14
+Read File ArticleData.bin at	21/06/2015 19:10:15
+Add Item at	21/06/2015 19:10:18
+	ID:1, Author:sdf, Title:sdf, Publish Date:21/06/2015 19:10:18, Content:sfd.
+Add Item at	21/06/2015 19:10:22
+	ID:2, Author:sdf, Title:sdf, Publish Date:21/06/2015 19:10:22, Content:sdf.
+Read File ArticleData.bin at	21/06/2015 19:12:05
+Read File ArticleData.bin at	21/06/2015 19:12:05
+Add Item at	21/06/2015 19:12:10
+	ID:1, Author:sdf, Title:sdf, Publish Date:21/06/2015 19:12:10, Content:sdf.
+Add Item at	21/06/2015 19:12:17
+	ID:2, Author:sdf, Title:sdf, Publish Date:21/06/2015 19:12:17, Content:sdf.
+Read File ArticleData.bin at	21/06/2015 19:13:02
+Read File ArticleData.bin at	21/06/2015 19:13:02
+Read File ArticleData.bin at	21/06/2015 19:14:13
+Read File ArticleData.bin at	21/06/2015 19:14:13
+Add Item at	21/06/2015 19:14:21
+	ID:1, Author:sdf, Title:sdf, Publish Date:21/06/2015 19:14:21, Content:sdfsdfsdfasdfasdfasdfasdfasdsdsdsdfsdfsdfsdfsdfasdfsdfasdf.
+Read File ArticleData.bin at	21/06/2015 19:14:48
+Read File ArticleData.bin at	21/06/2015 19:14:49
+Add Item at	21/06/2015 19:14:55
+	ID:1, Author:ad, Title:asdf, Publish Date:21/06/2015 19:14:55, Content:asdfasdfsdfsdf.
+Read File ArticleData.bin at	21/06/2015 19:15:40
+Read File ArticleData.bin at	21/06/2015 19:15:40
+Add Item at	21/06/2015 19:15:45
+	ID:1, Author:a, Title:asf, Publish Date:21/06/2015 19:15:45, Content:sfdsdf.
+Add Item at	21/06/2015 19:15:48
+	ID:2, Author:s, Title:dsdf, Publish Date:21/06/2015 19:15:48, Content:sdfa.
+java.lang.NullPointerException in METHOD display CLASS Management at	21/06/2015 19:16:02
+Read File ArticleData.bin at	21/06/2015 19:19:29
+Read File ArticleData.bin at	21/06/2015 19:19:30
+java.lang.NullPointerException in METHOD display CLASS Management at	21/06/2015 19:19:33
+Read File ArticleData.bin at	21/06/2015 19:20:04
+Read File ArticleData.bin at	21/06/2015 19:20:04
+Read File ArticleData.bin at	21/06/2015 19:20:41
+Read File ArticleData.bin at	21/06/2015 19:20:41
+Read File ArticleData.bin at	21/06/2015 19:23:21
+Read File ArticleData.bin at	21/06/2015 19:23:21
+Read File ArticleData.bin at	21/06/2015 19:24:38
+Read File ArticleData.bin at	21/06/2015 19:24:39
+Edit Item at	21/06/2015 19:24:52
+	ID:1, Author:sdfsdfsdfsdfsdf, Title:Web Application Development, Publish Date:21/06/2015 14:33:17, Content:CBD
+Write File ArticleData.bin at	21/06/2015 19:25:00
+Read File ArticleData.bin at	21/06/2015 19:25:07
+Read File ArticleData.bin at	21/06/2015 19:25:07
+Copy File From ArticleData.bin to backup21062015192514.bin at	21/06/2015 19:25:14
+Read File backup21062015175619.bin at	21/06/2015 19:26:07
+Edit Item at	21/06/2015 19:26:45
+	ID:1, Author:asdasd, Title:Web Application Development, Publish Date:21/06/2015 14:33:17, Content:CBD
+Write File ArticleData.bin at	21/06/2015 19:26:51
+Read File ArticleData.bin at	21/06/2015 19:27:08
+Read File ArticleData.bin at	21/06/2015 19:27:08
+Read File backup21062015175619.bin at	21/06/2015 19:27:26
+Edit Item at	21/06/2015 19:28:40
+	ID:1, Author:asdfasdsdsdfsdfsdfsdfsdfsdfsdf, Title:Web Application Development, Publish Date:21/06/2015 14:33:17, Content:CBD
+Write File ArticleData.bin at	21/06/2015 19:28:46
+Read File ArticleData.bin at	21/06/2015 19:28:54
+Read File ArticleData.bin at	21/06/2015 19:28:54
