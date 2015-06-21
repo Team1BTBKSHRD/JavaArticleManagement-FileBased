@@ -56,14 +56,16 @@ public class Management {
 				for(int  i=0; i<listSize; i++){
 					articles.add(new Article("HengWondering", "Web Application Development", "CBD" , currentDate()));	
 				}
-			}else{
-				if(FileArticle.getInstance().readFile().size()!=0){
-					articles=FileArticle.getInstance().readFile();
+			}else{ //Any Key
+				ArrayList<Article> tmpList = FileArticle.getInstance().readFile();
+				if(tmpList.size()!=0){
+					articles = tmpList;
 				}else{
 					System.out.print("No Data");				
 				}
 				Article.MAX_ID = articles.get(0).getId() + 1;
 			}
+			
 			display = new Display();
 			display.setTableStyle('╔', '╗', '╚', '╝', '╦', '╩', '╠', '╬', '╣', '║', '═');
 			display.setArticles(articles);
@@ -436,7 +438,6 @@ public class Management {
 				switch(option.toLowerCase()){
 				case "a":
 					add();
-					display.setArticles(articles);
 					break;
 				case "r":					
 					key = Integer.toString(getNumberKeyboard("Input ID to remove: "));
@@ -542,7 +543,8 @@ public class Management {
 					break;
 				case "b":// Back Up File
 					String now = new SimpleDateFormat("ddMMYYYYHHmmss").format(new Date());			
-					FileArticle.getInstance().copyFile(FileArticle.getInstance().sourceFile(), new File("backup" + now + ".bin"));				
+					FileArticle.getInstance().copyFile(FileArticle.getInstance().sourceFile(), 
+														new File("backup" + now + ".bin"));				
 					break;
 				/*End Menu File*/
 				case "e" :
