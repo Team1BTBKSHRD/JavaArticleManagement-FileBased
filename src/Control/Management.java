@@ -45,12 +45,14 @@ public class Management {
 		//System.out.println((ed1-ed)/1000);
 		//tempArticles = articles;
 		//sort("i", false);
+		//-Xmx1000m
 		try {
 			System.gc();		
 			logfile = LogFile.getLogFile();
 			articles = new ArrayList<Article>();		
 			
-			String choose = getStringKeyboard("Test creating objects (o)\nRead Object From File ArticleData.bin (Any Key)");
+			String choose = getStringKeyboard("Test creating objects (o)"
+					+ "\nRead Object From File ArticleData.bin (Any Key)");
 			if(choose.equalsIgnoreCase("o")){
 				int listSize = getNumberKeyboard("Number of object to create: ");
 				for(int  i=0; i<listSize; i++){
@@ -429,7 +431,7 @@ public class Management {
 			String option;
 			String key;
 			String sortBy = "i";
-			boolean isAscending = false;
+			boolean isAscending = true;
 			sort(sortBy, isAscending);
 			display.process();	
 			do{
@@ -564,7 +566,7 @@ public class Management {
 			logfile.writeLogException(e, "display", "Management");
 		}
 	}//End of function display;
-	/**no idea what this do
+	/**Function waiting require user to input any key to continue
 	 * 
 	 */
 	private void waiting(){
