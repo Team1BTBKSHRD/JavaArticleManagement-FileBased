@@ -1,0 +1,155 @@
+Delete Item at	21/06/2015 11:15:28
+	ID:100000, Author:Srey LeangHeng, Title:Web Application Development, Publish Date:21/06/2015 11:15:09, Content:CBD
+Add Item at	21/06/2015 11:22:17
+	ID:100001, Author:asdf, Title:sadf, Publish Date:21/06/2015 11:22:17, Content:sfdasdfasdfsdf.
+java.util.NoSuchElementException: No line found at	21/06/2015 11:22:17
+java.util.NoSuchElementException: No line found at	21/06/2015 11:22:17
+Add Item at	21/06/2015 11:23:04
+	ID:100001, Author:sdf, Title:asdf, Publish Date:21/06/2015 11:23:04, Content:sdfsdf.
+java.util.NoSuchElementException: No line found at	21/06/2015 11:23:04
+java.util.NoSuchElementException: No line found at	21/06/2015 11:23:04
+Delete Item at	21/06/2015 11:28:18
+	ID:100000, Author:Srey LeangHeng, Title:Web Application Development, Publish Date:21/06/2015 11:28:00, Content:CBD
+Delete Item at	21/06/2015 11:28:47
+	ID:100000, Author:Srey LeangHeng, Title:Web Application Development, Publish Date:21/06/2015 11:28:38, Content:CBD
+Delete Item at	21/06/2015 11:31:34
+	ID:100000, Author:Srey LeangHeng, Title:Web Application Development, Publish Date:20/06/2015 23:51:17, Content:CBD
+Add Item at	21/06/2015 11:35:26
+	ID:1, Author:asdf, Title:asdf, Publish Date:21/06/2015 11:35:26, Content:asfdsdf.
+java.util.NoSuchElementException: No line found at	21/06/2015 11:35:26
+java.util.NoSuchElementException: No line found at	21/06/2015 11:35:26
+Add Item at	21/06/2015 11:36:02
+	ID:1, Author:asdf, Title:sdf, Publish Date:21/06/2015 11:36:02, Content:sdf.
+java.util.NoSuchElementException: No line found at	21/06/2015 11:36:02
+java.util.NoSuchElementException: No line found at	21/06/2015 11:36:02
+java.util.NoSuchElementException: No line found at	21/06/2015 11:36:57
+java.util.NoSuchElementException: No line found at	21/06/2015 11:36:59
+Add Item at	21/06/2015 11:42:32
+	ID:100001, Author:asdf, Title:asdf, Publish Date:21/06/2015 11:42:32, Content:sdf.
+Add Item at	21/06/2015 11:42:41
+	ID:100002, Author:sdf, Title:asdf, Publish Date:21/06/2015 11:42:41, Content:sdfnsdf.
+java.util.NoSuchElementException: No line found at	21/06/2015 11:42:42
+Add Item at	21/06/2015 11:43:56
+	ID:100001, Author:asdf, Title:sadf, Publish Date:21/06/2015 11:43:56, Content:sdfsdf.
+java.util.NoSuchElementException: No line found at	21/06/2015 11:43:56
+java.util.NoSuchElementException: No line found at	21/06/2015 11:43:56
+Add Item at	21/06/2015 11:57:16
+	ID:100001, Author:sdf, Title:sdf, Publish Date:21/06/2015 11:57:16, Content:sdf.
+add at	21/06/2015 11:57:16
+display at	21/06/2015 11:57:16
+Add Item at	21/06/2015 12:03:02
+	ID:100001, Author:sdf, Title:sdf, Publish Date:21/06/2015 12:03:02, Content:sdf.
+add at	21/06/2015 12:03:02
+Add Item at	21/06/2015 12:03:25
+	ID:100001, Author:sdf, Title:sdf, Publish Date:21/06/2015 12:03:25, Content:sdf.
+add at	21/06/2015 12:03:25
+Add Item at	21/06/2015 12:16:00
+	ID:100001, Author:asdf, Title:asdf, Publish Date:21/06/2015 12:16:00, Content:sdf.
+add at	21/06/2015 12:16:00
+Add Item at	21/06/2015 12:16:49
+	ID:100001, Author:asdf, Title:sdf, Publish Date:21/06/2015 12:16:49, Content:sdf.
+Add Item at	21/06/2015 12:16:55
+	ID:100002, Author:sdf, Title:sdf, Publish Date:21/06/2015 12:16:55, Content:sdfsdf.
+Add Item at	21/06/2015 12:22:43
+	ID:100001, Author:sdf, Title:sdfsdf, Publish Date:21/06/2015 12:22:43, Content:sdf.
+Add Item at	21/06/2015 12:23:43
+	ID:100001, Author:sdf, Title:sdf, Publish Date:21/06/2015 12:23:43, Content:sdf.
+Add Item at	21/06/2015 12:24:30
+	ID:100001, Author:sdf, Title:sdf, Publish Date:21/06/2015 12:24:30, Content:sdf.
+Add Item at	21/06/2015 12:25:23
+	ID:100001, Author:sdf, Title:sdf, Publish Date:21/06/2015 12:25:23, Content:sdfsdf.
+Add Item at	21/06/2015 12:25:55
+	ID:100001, Author:asdf, Title:sadf, Publish Date:21/06/2015 12:25:55, Content:sdf.
+Add Item at	21/06/2015 12:26:12
+	ID:100001, Author:asdf, Title:asdf, Publish Date:21/06/2015 12:26:12, Content:asdf.
+Add Item at	21/06/2015 12:26:42
+	ID:100001, Author:asdf, Title:asdf, Publish Date:21/06/2015 12:26:42, Content:asdf.
+Add Item at	21/06/2015 12:27:08
+	ID:100001, Author:sdf, Title:sdf, Publish Date:21/06/2015 12:27:08, Content:sdf.
+Add Item at	21/06/2015 12:27:18
+	ID:100001, Author:sdf, Title:sdf, Publish Date:21/06/2015 12:27:18, Content:sdf.
+Add Item at	21/06/2015 12:27:28
+	ID:100001, Author:sdf, Title:sdfas, Publish Date:21/06/2015 12:27:28, Content:dfsdf.
+Add Item at	21/06/2015 12:28:37
+	ID:100001, Author:sdf, Title:sdf, Publish Date:21/06/2015 12:28:37, Content:sdf.
+Add Item at	21/06/2015 12:31:00
+	ID:100001, Author:sdf, Title:sdf, Publish Date:21/06/2015 12:31:00, Content:sdf.
+Add Item at	21/06/2015 12:31:04
+	ID:100002, Author:sdf, Title:sdf, Publish Date:21/06/2015 12:31:04, Content:asdfs.
+java.lang.NumberFormatException: For input string: "a" at	21/06/2015 12:42:37
+java.lang.IndexOutOfBoundsException: Index: 0, Size: 0 at	21/06/2015 12:42:37
+Add Item at	21/06/2015 12:42:49
+	ID:100002, Author:sdfsd, Title:fsdf, Publish Date:21/06/2015 12:42:49, Content:sdf.
+java.util.NoSuchElementException: No line found at	21/06/2015 12:42:49
+java.util.NoSuchElementException: No line found at	21/06/2015 12:42:49
+Delete Item at	21/06/2015 12:43:55
+	ID:3, Author:Srey LeangHeng, Title:Web Application Development, Publish Date:21/06/2015 12:43:50, Content:CBD
+Add Item at	21/06/2015 12:46:10
+	ID:100001, Author:asdf, Title:sdf, Publish Date:21/06/2015 12:46:10, Content:sdfsdf.
+java.util.NoSuchElementException: No line found at	21/06/2015 12:46:10
+java.util.NoSuchElementException: No line found at	21/06/2015 12:46:10
+Add Item at	21/06/2015 12:47:14
+	ID:100001, Author:asd, Title:asdf, Publish Date:21/06/2015 12:47:14, Content:sdfsdf.
+Add Item at	21/06/2015 13:00:44
+	ID:100001, Author:sdf, Title:sdf, Publish Date:21/06/2015 13:00:44, Content:sf.
+Add Item at	21/06/2015 13:05:18
+	ID:100001, Author:sdf, Title:asdf, Publish Date:21/06/2015 13:05:18, Content:asdfsdf.
+Add Item at	21/06/2015 13:05:44
+	ID:100002, Author:asdfas, Title:asdf, Publish Date:21/06/2015 13:05:44, Content:asdfsdf.
+Add Item at	21/06/2015 13:27:13
+	ID:100001, Author:asdf, Title:asdf, Publish Date:21/06/2015 13:27:13, Content:asdfsd.
+java.lang.IllegalStateException: Scanner closed in Method addClassManagement at	21/06/2015 13:27:13
+java.util.NoSuchElementException: No line found in Method displayClassManagement at	21/06/2015 13:27:13
+Add Item at	21/06/2015 13:40:13
+	ID:100001, Author:asdf, Title:asdf, Publish Date:21/06/2015 13:40:13, Content:sdf.
+java.lang.IllegalStateException: Scanner closed in Method add ClassManagement at	21/06/2015 13:40:13
+java.util.NoSuchElementException: No line found in Method display ClassManagement at	21/06/2015 13:40:13
+Add Item at	21/06/2015 13:41:21
+	ID:100001, Author:asdf, Title:asdf, Publish Date:21/06/2015 13:41:21, Content:asdf.
+java.lang.IllegalStateException: Scanner closed in METHOD add CLASS Management at	21/06/2015 13:41:21
+java.util.NoSuchElementException: No line found in METHOD display CLASS Management at	21/06/2015 13:41:21
+Write File ArticleManagement.bin at	21/06/2015 14:09:07
+Write File ArticleManagement.bin at	21/06/2015 14:12:49
+Read File ArticleManagement.bin at	21/06/2015 14:013:27
+Read File ArticleManagement.bin at	21/06/2015 14:013:27
+Read File ArticleManagement.bin at	21/06/2015 14:13:38
+Read File ArticleManagement.bin at	21/06/2015 14:13:38
+BackUp File From ArticleManagement.bin to ArticleManagement.bin at	21/06/2015 14:14:28
+java.io.EOFException in METHOD readFile CLASS FileArticle at	21/06/2015 14:16:04
+java.lang.NullPointerException in METHOD display CLASS Management at	21/06/2015 14:16:04
+Write File ArticleManagement.bin at	21/06/2015 14:16:31
+Read File ArticleManagement.bin at	21/06/2015 14:16:39
+Read File ArticleManagement.bin at	21/06/2015 14:16:39
+Read File ArticleManagement.bin at	21/06/2015 14:17:06
+Read File ArticleManagement.bin at	21/06/2015 14:17:07
+Copy File From ArticleManagement.bin to zz.bin at	21/06/2015 14:17:31
+java.lang.NullPointerException in METHOD display CLASS Management at	21/06/2015 14:19:24
+java.lang.NullPointerException in METHOD display CLASS Management at	21/06/2015 14:21:31
+java.lang.NullPointerException in METHOD display CLASS Management at	21/06/2015 14:26:09
+Write File ArticleData.bin at	21/06/2015 14:28:51
+Copy File From ArticleData.bin to aa.bin at	21/06/2015 14:29:32
+Read File ArticleData.bin at	21/06/2015 14:29:56
+Read File ArticleData.bin at	21/06/2015 14:29:57
+Copy File From ArticleData.bin to sdfsdf.bin at	21/06/2015 14:30:21
+Read File ArticleData.bin at	21/06/2015 14:30:47
+Read File ArticleData.bin at	21/06/2015 14:30:47
+Write File ArticleData.bin at	21/06/2015 14:30:56
+Read File ArticleData.bin at	21/06/2015 14:31:11
+Copy File From ArticleData.bin to sdf.bin at	21/06/2015 14:31:25
+java.io.FileNotFoundException: sdssss.bin (The system cannot find the file specified) in METHOD readFile(File filename) CLASS FileArticle at	21/06/2015 14:31:39
+Write File ArticleData.bin at	21/06/2015 14:32:44
+java.lang.NullPointerException in METHOD display CLASS Management at	21/06/2015 14:33:12
+Write File ArticleData.bin at	21/06/2015 14:33:26
+Delete Item at	21/06/2015 14:33:47
+	ID:100000, Author:Srey LeangHeng, Title:Web Application Development, Publish Date:21/06/2015 14:33:18, Content:CBD
+Copy File From ArticleData.bin to sdfsdf.bin at	21/06/2015 14:33:52
+Delete Item at	21/06/2015 14:34:00
+	ID:3, Author:Srey LeangHeng, Title:Web Application Development, Publish Date:21/06/2015 14:33:17, Content:CBD
+Read File ArticleData.bin at	21/06/2015 14:34:16
+Read File ArticleData.bin at	21/06/2015 14:34:36
+java.util.NoSuchElementException: No line found at	21/06/2015 14:35:43
+java.util.NoSuchElementException: No line found at	21/06/2015 14:35:43
+java.util.NoSuchElementException: No line found in Method displayClassManagement at	21/06/2015 14:35:43
+java.util.NoSuchElementException: No line found in Method displayClassManagement at	21/06/2015 14:35:44
+java.util.NoSuchElementException: No line found in METHOD display CLASS Management at	21/06/2015 14:35:46
+java.util.NoSuchElementException: No line found in METHOD display CLASS Management at	21/06/2015 14:35:46

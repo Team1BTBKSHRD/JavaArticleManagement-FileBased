@@ -141,6 +141,9 @@ public class Display {
 	/*Method repaginate()
 	 * Use for get objects for view by page size and current page (add into subPages)*/
 	private void repaginate() {
+		for(int i=0;i<10;i++){
+			System.out.println();
+		}
 		if (!articles.isEmpty()) {
 			totalPage = (int) Math.ceil(this.articles.size() / (float)pageSize); /*Calculate the total page*/
 			int start = currentPage * pageSize; /* Start index */
