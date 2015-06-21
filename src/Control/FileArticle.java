@@ -83,18 +83,14 @@ public class FileArticle {
  *return as object of ArrayList collection 
  * */
 	@SuppressWarnings("unchecked")
-	public ArrayList<Article> readFile(File filename) {
+	public ArrayList<Article> readFile(File filename) throws IOException{
 		ArrayList<Article> list = new ArrayList<Article>();
-		if(file.exists()){
 		try (ObjectInputStream objectInput = new ObjectInputStream(
 				new BufferedInputStream(new FileInputStream(filename)))) {
 			list = (ArrayList<Article>) objectInput.readObject();
 			logfile.writeLogReadFile(filename.toString());
 		} catch (Exception e) {
 			logfile.writeLogException(e, "readFile(File filename)", "FileArticle");
-		}
-		}else{
-			System.out.println("File not found!!!");
 		}
 		return list;
 	}// End of readFile();

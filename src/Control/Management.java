@@ -518,11 +518,15 @@ public class Management {
 					if(choice.equalsIgnoreCase("y")){
 						System.out.print("Please input file name : ");
 						String filename=input.next();
-						articles=FileArticle.getInstance().readFile(new File(filename));
+						File fileArgs = new File(filename);
+						if(fileArgs.exists()){
+							articles=FileArticle.getInstance().readFile(fileArgs);
+							display.setArticles(articles);
+							System.out.println("asdfasdf");
+						}
 					}else{
 						articles=FileArticle.getInstance().readFile();
-					}				
-					display.setArticles(articles);
+					}	
 					break;
 				case "b":// Back Up File
 					//System.out.print("Please input destination file : ");
