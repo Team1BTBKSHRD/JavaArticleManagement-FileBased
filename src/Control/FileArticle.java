@@ -89,7 +89,7 @@ public class FileArticle {
 		try (ObjectInputStream objectInput = new ObjectInputStream(
 				new BufferedInputStream(new FileInputStream(filename)))) {
 			list = (ArrayList<Article>) objectInput.readObject();
-			logfile.writeLogReadFile(file.toString());
+			logfile.writeLogReadFile(filename.toString());
 		} catch (Exception e) {
 			logfile.writeLogException(e, "readFile(File filename)", "FileArticle");
 		}

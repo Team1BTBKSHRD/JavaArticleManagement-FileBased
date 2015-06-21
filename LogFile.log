@@ -153,3 +153,140 @@ java.util.NoSuchElementException: No line found in Method displayClassManagement
 java.util.NoSuchElementException: No line found in Method displayClassManagement at	21/06/2015 14:35:44
 java.util.NoSuchElementException: No line found in METHOD display CLASS Management at	21/06/2015 14:35:46
 java.util.NoSuchElementException: No line found in METHOD display CLASS Management at	21/06/2015 14:35:46
+Read File ArticleData.bin at	21/06/2015 17:10:31
+Read File ArticleData.bin at	21/06/2015 17:10:31
+Delete Item at	21/06/2015 17:10:40
+	ID:100000, Author:Srey LeangHeng, Title:Web Application Development, Publish Date:21/06/2015 14:33:18, Content:CBD
+Write File ArticleData.bin at	21/06/2015 17:10:44
+Read File ArticleData.bin at	21/06/2015 17:10:52
+Read File ArticleData.bin at	21/06/2015 17:10:53
+Read File ArticleData.bin at	21/06/2015 17:11:13
+Read File ArticleData.bin at	21/06/2015 17:13:16
+Read File ArticleData.bin at	21/06/2015 17:13:29
+Read File ArticleData.bin at	21/06/2015 17:13:47
+java.io.FileNotFoundException: BackUp-21\06\2015 17:16:27 (The system cannot find the path specified) in METHOD copyFile CLASS FileArticle at	21/06/2015 17:16:27
+java.lang.NullPointerException in METHOD display CLASS Management at	21/06/2015 17:16:27
+Copy File From ArticleData.bin to BackUp.bin at	21/06/2015 17:17:00
+java.io.FileNotFoundException: BackUp21\06\2015 17:17:46.bin (The system cannot find the path specified) in METHOD copyFile CLASS FileArticle at	21/06/2015 17:17:46
+java.lang.NullPointerException in METHOD display CLASS Management at	21/06/2015 17:17:46
+java.io.FileNotFoundException: BackUp21-06-2015 17:19:51.bin (The parameter is incorrect) in METHOD copyFile CLASS FileArticle at	21/06/2015 17:19:51
+java.lang.NullPointerException in METHOD display CLASS Management at	21/06/2015 17:19:51
+Copy File From ArticleData.bin to BackUp-21-06-2015.bin at	21/06/2015 17:21:30
+Read File ArticleData.bin at	21/06/2015 17:22:33
+Read File ArticleData.bin at	21/06/2015 17:22:33
+Copy File From ArticleData.bin to BackUp-21-06-2015 17-22-37.bin at	21/06/2015 17:22:37
+Copy File From ArticleData.bin to BackUp-21-06-2015 17-22-39.bin at	21/06/2015 17:22:39
+Read File ArticleData.bin at	21/06/2015 17:23:20
+Read File ArticleData.bin at	21/06/2015 17:23:20
+Delete Item at	21/06/2015 17:23:30
+	ID:5, Author:Srey LeangHeng, Title:Web Application Development, Publish Date:21/06/2015 14:33:17, Content:CBD
+Delete Item at	21/06/2015 17:23:33
+	ID:456, Author:Srey LeangHeng, Title:Web Application Development, Publish Date:21/06/2015 14:33:17, Content:CBD
+Delete Item at	21/06/2015 17:23:36
+	ID:345, Author:Srey LeangHeng, Title:Web Application Development, Publish Date:21/06/2015 14:33:17, Content:CBD
+Delete Item at	21/06/2015 17:23:39
+	ID:343, Author:Srey LeangHeng, Title:Web Application Development, Publish Date:21/06/2015 14:33:17, Content:CBD
+Copy File From ArticleData.bin to BackUp-21-06-2015 17-23-48.bin at	21/06/2015 17:23:48
+Read File ArticleData.bin at	21/06/2015 17:25:19
+Read File ArticleData.bin at	21/06/2015 17:25:20
+Read File ArticleData.bin at	21/06/2015 17:25:57
+java.io.FileNotFoundException: BackUp-21-06-2015 (The system cannot find the file specified) in METHOD readFile(File filename) CLASS FileArticle at	21/06/2015 17:26:23
+Read File ArticleData.bin at	21/06/2015 17:27:03
+Read File ArticleData.bin at	21/06/2015 17:27:04
+java.io.FileNotFoundException: BackUp-21-06-2015 (The system cannot find the file specified) in METHOD readFile(File filename) CLASS FileArticle at	21/06/2015 17:27:15
+Read File ArticleData.bin at	21/06/2015 17:28:13
+Read File ArticleData.bin at	21/06/2015 17:28:13
+java.lang.NumberFormatException: For input string: "asdf" in METHOD search CLASS Management at	21/06/2015 17:28:17
+java.lang.IndexOutOfBoundsException: Index: 0, Size: 0 in METHOD remove CLASS Management at	21/06/2015 17:28:17
+Delete Item at	21/06/2015 17:28:22
+	ID:4345, Author:Srey LeangHeng, Title:Web Application Development, Publish Date:21/06/2015 14:33:17, Content:CBD
+Delete Item at	21/06/2015 17:28:27
+	ID:3453, Author:Srey LeangHeng, Title:Web Application Development, Publish Date:21/06/2015 14:33:17, Content:CBD
+Delete Item at	21/06/2015 17:28:33
+	ID:23444, Author:Srey LeangHeng, Title:Web Application Development, Publish Date:21/06/2015 14:33:17, Content:CBD
+Copy File From ArticleData.bin to BackUp21-06-2015 17-28-42.bin at	21/06/2015 17:28:42
+Read File ArticleData.bin at	21/06/2015 17:29:19
+Read File ArticleData.bin at	21/06/2015 17:29:20
+java.io.FileNotFoundException: BackUp21-06-2015 (The system cannot find the file specified) in METHOD readFile(File filename) CLASS FileArticle at	21/06/2015 17:29:27
+Read File ArticleData.bin at	21/06/2015 17:30:18
+Read File ArticleData.bin at	21/06/2015 17:30:30
+Read File ArticleData.bin at	21/06/2015 17:30:58
+Read File ArticleData.bin at	21/06/2015 17:31:51
+Read File ArticleData.bin at	21/06/2015 17:31:52
+Read File ArticleData.bin at	21/06/2015 17:32:55
+Read File ArticleData.bin at	21/06/2015 17:32:55
+Copy File From ArticleData.bin to sdf at	21/06/2015 17:33:01
+Read File ArticleData.bin at	21/06/2015 17:33:08
+Delete Item at	21/06/2015 17:33:28
+	ID:99999, Author:Srey LeangHeng, Title:Web Application Development, Publish Date:21/06/2015 14:33:18, Content:CBD
+Read File ArticleData.bin at	21/06/2015 17:33:38
+Read File ArticleData.bin at	21/06/2015 17:37:34
+Read File ArticleData.bin at	21/06/2015 17:37:47
+java.lang.NumberFormatException: For input string: "sdf" in METHOD search CLASS Management at	21/06/2015 17:37:58
+java.lang.IndexOutOfBoundsException: Index: 0, Size: 0 in METHOD remove CLASS Management at	21/06/2015 17:37:58
+Delete Item at	21/06/2015 17:38:01
+	ID:345, Author:Srey LeangHeng, Title:Web Application Development, Publish Date:21/06/2015 14:33:17, Content:CBD
+Delete Item at	21/06/2015 17:38:04
+	ID:334, Author:Srey LeangHeng, Title:Web Application Development, Publish Date:21/06/2015 14:33:17, Content:CBD
+Delete Item at	21/06/2015 17:38:10
+	ID:99999, Author:Srey LeangHeng, Title:Web Application Development, Publish Date:21/06/2015 14:33:18, Content:CBD
+Write File ArticleData.bin at	21/06/2015 17:38:18
+Read File ArticleData.bin at	21/06/2015 17:38:26
+Read File ArticleData.bin at	21/06/2015 17:38:36
+Read File ArticleData.bin at	21/06/2015 17:41:15
+Read File ArticleData.bin at	21/06/2015 17:41:15
+Delete Item at	21/06/2015 17:41:29
+	ID:99998, Author:Srey LeangHeng, Title:Web Application Development, Publish Date:21/06/2015 14:33:18, Content:CBD
+Read File ArticleData.bin at	21/06/2015 17:41:35
+Read File ArticleData.bin at	21/06/2015 17:41:35
+Delete Item at	21/06/2015 17:41:57
+	ID:99998, Author:Srey LeangHeng, Title:Web Application Development, Publish Date:21/06/2015 14:33:18, Content:CBD
+Write File ArticleData.bin at	21/06/2015 17:42:01
+Read File ArticleData.bin at	21/06/2015 17:42:08
+Read File ArticleData.bin at	21/06/2015 17:42:08
+Read File ArticleData.bin at	21/06/2015 17:44:41
+Read File ArticleData.bin at	21/06/2015 17:44:41
+Read File ArticleData.bin at	21/06/2015 17:44:47
+Read File ArticleData.bin at	21/06/2015 17:44:47
+java.lang.NullPointerException in METHOD display CLASS Management at	21/06/2015 17:44:58
+Read File ArticleData.bin at	21/06/2015 17:46:11
+Read File ArticleData.bin at	21/06/2015 17:46:11
+Write File ArticleData.bin at	21/06/2015 17:46:43
+Write File ArticleData.bin at	21/06/2015 17:46:47
+Read File ArticleData.bin at	21/06/2015 17:46:52
+Read File ArticleData.bin at	21/06/2015 17:46:52
+Write File ArticleData.bin at	21/06/2015 17:47:13
+Read File ArticleData.bin at	21/06/2015 17:47:19
+Read File ArticleData.bin at	21/06/2015 17:47:19
+Read File ArticleData.bin at	21/06/2015 17:49:29
+Read File ArticleData.bin at	21/06/2015 17:49:29
+Copy File From ArticleData.bin to 21062015174947 at	21/06/2015 17:49:47
+Delete Item at	21/06/2015 17:49:57
+	ID:99997, Author:Srey LeangHeng, Title:Web Application Development, Publish Date:21/06/2015 14:33:18, Content:CBD
+Read File ArticleData.bin at	21/06/2015 17:50:20
+Read File ArticleData.bin at	21/06/2015 17:50:51
+Read File ArticleData.bin at	21/06/2015 17:51:26
+Read File ArticleData.bin at	21/06/2015 17:51:26
+Copy File From ArticleData.bin to a at	21/06/2015 17:51:32
+Delete Item at	21/06/2015 17:51:51
+	ID:99997, Author:Srey LeangHeng, Title:Web Application Development, Publish Date:21/06/2015 14:33:18, Content:CBD
+Write File ArticleData.bin at	21/06/2015 17:51:57
+Read File ArticleData.bin at	21/06/2015 17:52:03
+Read File ArticleData.bin at	21/06/2015 17:52:03
+Read File ArticleData.bin at	21/06/2015 17:52:26
+Read File ArticleData.bin at	21/06/2015 17:53:28
+Read File ArticleData.bin at	21/06/2015 17:53:29
+Read File a at	21/06/2015 17:53:32
+Read File 21062015174947 at	21/06/2015 17:54:04
+Read File ArticleData.bin at	21/06/2015 17:55:01
+Read File ArticleData.bin at	21/06/2015 17:55:02
+Copy File From ArticleData.bin to backup21062015175508 at	21/06/2015 17:55:08
+Read File ArticleData.bin at	21/06/2015 17:56:15
+Read File ArticleData.bin at	21/06/2015 17:56:15
+Copy File From ArticleData.bin to backup21062015175619.bin at	21/06/2015 17:56:20
+Delete Item at	21/06/2015 17:57:00
+	ID:99996, Author:Srey LeangHeng, Title:Web Application Development, Publish Date:21/06/2015 14:33:18, Content:CBD
+Write File ArticleData.bin at	21/06/2015 17:57:04
+Read File backup21062015175619.bin at	21/06/2015 17:57:18
+Read File ArticleData.bin at	21/06/2015 17:57:45
+java.io.FileNotFoundException: sdfsdf (The system cannot find the file specified) in METHOD readFile(File filename) CLASS FileArticle at	21/06/2015 17:57:52

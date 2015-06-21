@@ -50,13 +50,13 @@ public class Management {
 		articles = new ArrayList<Article>();		
 		
 		System.out.print("Testing 100 000 objects (o)");
-		System.out.print("\nTesting Read objects inside file (r)");
+		System.out.print("\nRead Object From File ArticleData.bin (Any Key)");
 		String choose = new Scanner(System.in).next();
 		if(choose.equalsIgnoreCase("o")){
 			for(int  i=0; i<100_000; i++){
 				articles.add(new Article("Srey LeangHeng", "Web Application Development", "CBD" , currentDate()));	
 			}
-		}else if(choose.equalsIgnoreCase("r")){
+		}else{
 			if(FileArticle.getInstance().readFile().size()!=0){
 				articles=FileArticle.getInstance().readFile();
 			}else{
@@ -73,7 +73,7 @@ public class Management {
 	 * @return string of current date and time
 	 */
 	private String currentDate(){
-		return  new SimpleDateFormat("dd/MM/YYYY HH:mm:ss").format(new Date());
+		return  new SimpleDateFormat("dd-MM-YYYY HH-mm-ss").format(new Date());
 	}
 	/**
 	 * Function inputContent  
@@ -511,10 +511,11 @@ public class Management {
 					display.setArticles(articles);
 					break;
 				case "b":// Back Up File
-					System.out.print("Please input destination file : ");
-					String destination = input.next();
+					//System.out.print("Please input destination file : ");
+					//String destination = input.next();
+					String now = new SimpleDateFormat("ddMMYYYYHHmmss").format(new Date());
 					try {
-						FileArticle.getInstance().copyFile(FileArticle.getInstance().sourceFile(), new File(destination));
+						FileArticle.getInstance().copyFile(FileArticle.getInstance().sourceFile(), new File("backup" + now + ".bin"));
 					} catch (IOException e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
@@ -522,7 +523,12 @@ public class Management {
 					break;
 				/*End Menu File*/
 				case "e" :
-					return;
+					System.out.print("Are you sure (Y/N)? : ");
+					choice = input.next();
+					if(choice.equalsIgnoreCase("y")){
+						FileArticle.getInstance().writeFile(articles);
+						return;
+					}					
 				default:
 					break;
 				}//End of switch;
