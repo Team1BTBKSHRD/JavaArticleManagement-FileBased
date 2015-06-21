@@ -536,3 +536,70 @@ Read File ArticleData.bin at	21/06/2015 22:30:42
 java.util.InputMismatchException in METHOD getNumberKeyboard CLASS Management at	21/06/2015 22:30:46
 Delete Item at	21/06/2015 22:30:51
 	ID:100000, Author:Srey LeangHeng, Title:Web Application Development, Publish Date:21/06/2015 19:47:22, Content:CBD
+Read File ArticleData.bin at	21/06/2015 22:35:04
+Read File ArticleData.bin at	21/06/2015 22:35:04
+Read File ArticleData.bin at	21/06/2015 22:35:12
+Add Item at	21/06/2015 22:35:32
+	ID:100001, Author:asdf, Title:asdf, Publish Date:21/06/2015 22:35:32, Content:sdf
+sdfsdfasdfasdf
+as
+df
+asdf
+asdf
+a.
+Add Item at	21/06/2015 22:36:06
+	ID:100002, Author:asds, Title:asdf, Publish Date:21/06/2015 22:36:06, Content:sadf
+sdf
+sdf
+Read File ArticleData.bin at	21/06/2015 22:37:45
+Read File ArticleData.bin at	21/06/2015 22:37:45
+Add Item at	21/06/2015 22:37:53
+	ID:100001, Author:34, Title:345, Publish Date:21/06/2015 22:37:53, Content:345
+asdf
+..
+
+Write File ArticleData.bin at	21/06/2015 22:37:59
+Read File ArticleData.bin at	21/06/2015 22:38:07
+Read File ArticleData.bin at	21/06/2015 22:38:07
+Delete Item at	21/06/2015 22:41:04
+	ID:100000, Author:HengWondering, Title:Web Application Development, Publish Date:21/06/2015 22:41:00, Content:CBD
+Add Item at	21/06/2015 22:41:11
+	ID:2, Author:asdf, Title:s, Publish Date:21/06/2015 22:41:11, Content:dfs
+fd
+java.lang.IndexOutOfBoundsException: Index: 0, Size: 0 in METHOD constructor CLASS Management at	21/06/2015 22:42:02
+java.lang.NullPointerException in METHOD display CLASS Management at	21/06/2015 22:42:02
+java.lang.IndexOutOfBoundsException: Index: 0, Size: 0 in METHOD constructor CLASS Management at	21/06/2015 22:42:11
+java.lang.NullPointerException in METHOD display CLASS Management at	21/06/2015 22:42:11
+Delete Item at	21/06/2015 22:42:59
+	ID:10000, Author:HengWondering, Title:Web Application Development, Publish Date:21/06/2015 22:42:56, Content:CBD
+Add Item at	21/06/2015 22:43:06
+	ID:2, Author:asdf, Title:asdf, Publish Date:21/06/2015 22:43:06, Content:asdf
+.
+
+Delete Item at	21/06/2015 22:44:05
+	ID:10000, Author:HengWondering, Title:Web Application Development, Publish Date:21/06/2015 22:44:02, Content:CBD
+Add Item at	21/06/2015 22:44:13
+	ID:10001, Author:asdf, Title:sf, Publish Date:21/06/2015 22:44:13, Content:sdfsdf
+.
+java.util.InputMismatchException in METHOD getNumberKeyboard CLASS Management at	21/06/2015 22:44:48
+Delete Item at	21/06/2015 22:44:54
+	ID:10000, Author:HengWondering, Title:Web Application Development, Publish Date:21/06/2015 22:44:51, Content:CBD
+Add Item at	21/06/2015 22:45:00
+	ID:10001, Author:a, Title:sdf, Publish Date:21/06/2015 22:45:00, Content:asdf
+sd
+fs
+Read File ArticleData.bin at	21/06/2015 22:45:10
+Read File ArticleData.bin at	21/06/2015 22:45:10
+Delete Item at	21/06/2015 22:45:22
+	ID:100001, Author:34, Title:345, Publish Date:21/06/2015 22:37:53, Content:345
+asdf
+..
+
+Add Item at	21/06/2015 22:45:28
+	ID:100002, Author:sdf, Title:asdf, Publish Date:21/06/2015 22:45:28, Content:sd
+fas
+dsadfasdf
+Write File ArticleData.bin at	21/06/2015 22:45:35
+Write File ArticleData.bin at	21/06/2015 22:45:43
+Read File ArticleData.bin at	21/06/2015 22:45:51
+Read File ArticleData.bin at	21/06/2015 22:45:51

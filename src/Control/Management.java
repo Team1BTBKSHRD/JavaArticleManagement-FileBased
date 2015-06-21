@@ -62,8 +62,8 @@ public class Management {
 				}else{
 					System.out.print("No Data");				
 				}
+				Article.MAX_ID = articles.get(0).getId() + 1;
 			}
-			Article.MAX_ID = articles.get(0).getId() + 1;
 			display = new Display();
 			display.setTableStyle('╔', '╗', '╚', '╝', '╦', '╩', '╠', '╬', '╣', '║', '═');
 			display.setArticles(articles);
@@ -152,6 +152,7 @@ public class Management {
 				Article newArticle = new Article(author, title, content, currentDate());
 				articles.add(newArticle);
 				logfile.writeLogAdd(newArticle);
+				
 				System.out.print("Do you want to continues?(Y/N)");
 				String confirm = input.next();
 				switch(confirm.toLowerCase()){
@@ -435,6 +436,7 @@ public class Management {
 				switch(option.toLowerCase()){
 				case "a":
 					add();
+					display.setArticles(articles);
 					break;
 				case "r":					
 					key = Integer.toString(getNumberKeyboard("Input ID to remove: "));
