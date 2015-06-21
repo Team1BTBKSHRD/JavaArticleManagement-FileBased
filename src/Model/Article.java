@@ -12,7 +12,7 @@ public class Article implements Serializable{
 	private String title;
 	private String publishDate;
 	private String content;
-	private static int MAX_ID = 1;
+	public static int MAX_ID = 1;
 
 	public Article(String author, String title, String content, String publishDate){
 		this.id = MAX_ID++;

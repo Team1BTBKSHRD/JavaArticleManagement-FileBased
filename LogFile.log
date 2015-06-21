@@ -405,3 +405,44 @@ Edit Item at	21/06/2015 19:28:40
 Write File ArticleData.bin at	21/06/2015 19:28:46
 Read File ArticleData.bin at	21/06/2015 19:28:54
 Read File ArticleData.bin at	21/06/2015 19:28:54
+Read File ArticleData.bin at	21/06/2015 19:34:38
+Read File ArticleData.bin at	21/06/2015 19:34:39
+Add Item at	21/06/2015 19:34:51
+	ID:1, Author:345, Title:345, Publish Date:21/06/2015 19:34:51, Content:345.
+Read File ArticleData.bin at	21/06/2015 19:36:40
+Read File ArticleData.bin at	21/06/2015 19:36:41
+Add Item at	21/06/2015 19:36:47
+	ID:1, Author:asdf, Title:asdf, Publish Date:21/06/2015 19:36:47, Content:sdf.
+Read File ArticleData.bin at	21/06/2015 19:38:09
+Read File ArticleData.bin at	21/06/2015 19:38:10
+Add Item at	21/06/2015 19:38:13
+	ID:1, Author:sdf, Title:sdf, Publish Date:21/06/2015 19:38:13, Content:sadf.
+java.lang.NullPointerException in METHOD display CLASS Management at	21/06/2015 19:38:14
+Read File ArticleData.bin at	21/06/2015 19:40:12
+Read File ArticleData.bin at	21/06/2015 19:40:12
+Read File ArticleData.bin at	21/06/2015 19:40:22
+Read File ArticleData.bin at	21/06/2015 19:40:23
+Add Item at	21/06/2015 19:40:27
+	ID:1, Author:asdf, Title:asdf, Publish Date:21/06/2015 19:40:27, Content:sdf.
+Add Item at	21/06/2015 19:41:21
+	ID:100001, Author:sdf, Title:sdf, Publish Date:21/06/2015 19:41:21, Content:sdf.
+Read File ArticleData.bin at	21/06/2015 19:44:25
+Read File ArticleData.bin at	21/06/2015 19:44:25
+java.lang.IndexOutOfBoundsException: Index: 99994, Size: 99994 in METHOD constructor CLASS Management at	21/06/2015 19:44:25
+java.lang.NullPointerException in METHOD display CLASS Management at	21/06/2015 19:44:25
+Read File ArticleData.bin at	21/06/2015 19:44:34
+Read File ArticleData.bin at	21/06/2015 19:44:35
+Read File ArticleData.bin at	21/06/2015 19:45:24
+Read File ArticleData.bin at	21/06/2015 19:45:24
+Read File ArticleData.bin at	21/06/2015 19:46:01
+Read File ArticleData.bin at	21/06/2015 19:46:01
+Add Item at	21/06/2015 19:46:13
+	ID:99996, Author:asf, Title:sdf, Publish Date:21/06/2015 19:46:13, Content:sdf.
+Read File ArticleData.bin at	21/06/2015 19:46:29
+Read File ArticleData.bin at	21/06/2015 19:46:29
+Add Item at	21/06/2015 19:46:35
+	ID:99997, Author:asdf, Title:sdf, Publish Date:21/06/2015 19:46:35, Content:sdf.
+Add Item at	21/06/2015 19:46:40
+	ID:99998, Author:sdf, Title:sdf, Publish Date:21/06/2015 19:46:40, Content:sdf.
+Write File ArticleData.bin at	21/06/2015 19:47:23
+Copy File From ArticleData.bin to backup21062015194728.bin at	21/06/2015 19:47:28

@@ -12,7 +12,7 @@ import java.util.Date;
 import java.util.Scanner;
 
 public class Management {	
-	ArrayList<Article> articles;
+	private ArrayList<Article> articles;
 	private Display display;
 	private ArrayList<Article> tempArticles;
 	private LogFile logfile;
@@ -64,7 +64,7 @@ public class Management {
 					System.out.print("No Data");				
 				}
 			}
-			
+			Article.MAX_ID = articles.get(0).getId() + 1;
 			display = new Display();
 			display.setTableStyle('╔', '╗', '╚', '╝', '╦', '╩', '╠', '╬', '╣', '║', '═');
 			display.setArticles(articles);
