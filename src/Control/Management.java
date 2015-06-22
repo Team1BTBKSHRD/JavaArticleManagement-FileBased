@@ -463,16 +463,6 @@ public class Management {
 						}
 						tempArticles.add(articles.get(index));
 					}
-//					if(searchList == null){
-//						System.err.println("Key not found!");
-//						waiting();
-//						tempArticles = articles;
-//						break;
-//					}else{
-//						for(Integer index : searchList){
-//							tempArticles.add(articles.get(index));
-//						}
-//					}
 					display.setArticles(tempArticles);
 					break;
 				case "ss":
@@ -577,33 +567,4 @@ public class Management {
         }  
         catch(Exception e){}
 	}
-	//##################deprecated function######################
-	//there's no need to validate when we use input.next() instead of input.nextLine()
-//	/**
-//	 * Function insertArticle with 3 parameter with no return type
-//	 * it's used for inserting data to collection and validating Data
-//	 * @param articles
-//	 *            : ArrayList<Article> articles
-//	 * @param author
-//	 *            : Author Name
-//	 * @param title
-//	 *            : Title
-//	 * @param content
-//	 *            : content
-//	 */
-//	private void insertArticle(String author, String title, String content) {
-//		try {
-//			if (author.isEmpty() || title.isEmpty() || content.isEmpty()) {
-//				System.out.println("Invalid value");
-//				waiting();
-//			} else {
-//				Article newArticle = new Article(author, title, content, new SimpleDateFormat("dd/MM/YYYY HH:mm:ss").format(new Date()));
-//				logfile.writeLogAdd(newArticle);
-//				articles.add(newArticle);
-//			}
-//		} catch (Exception e) {
-//			String methodName1 = Thread.currentThread().getStackTrace()[1].getMethodName();
-//			logfile.writeLogException(e, methodName1,this.getClass().getSimpleName());
-//		}
-//	}
 }// End of class;
