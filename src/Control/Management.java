@@ -52,7 +52,7 @@ public class Management {
 			articles = new ArrayList<Article>();		
 			
 			String choose = getStringKeyboard("Test creating objects (o)"
-					+ "\nRead Object From File ArticleData.bin (Any Key)");
+					+ "\nRead Object From File ArticleData.bin (Any Key)\n");
 			if(choose.equalsIgnoreCase("o")){
 				int listSize = getNumberKeyboard("Number of object to create: ");
 				for(int  i=0; i<listSize; i++){
@@ -431,7 +431,7 @@ public class Management {
 			String option;
 			String key;
 			String sortBy = "i";
-			boolean isAscending = true;
+			boolean isAscending = false;
 			sort(sortBy, isAscending);
 			display.process();	
 			do{
