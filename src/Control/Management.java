@@ -428,13 +428,15 @@ public class Management {
 	public void display(){		
 		try{
 			Scanner input = new Scanner(System.in);
+			String message = "";
 			String option;
 			String key;
 			String sortBy = "i";
 			boolean isAscending = false;
 			sort(sortBy, isAscending);
-			display.process();	
+			display.process();			
 			do{
+				message = "";
 				System.out.print("Please, Input Your Option-->");
 				option = input.next();
 				switch(option.toLowerCase()){
@@ -514,9 +516,10 @@ public class Management {
 					display.viewDetail(art);
 					waiting(); 
 					break;
-					/*Pisal*/	/*Menu File*/
+	/*Pisal*/	/*Menu File*/
 				case "w":// Write To File
 					FileArticle.getInstance().writeFile(articles);
+					message = "Write Default File ArticleData.bin Successfully.";
 					break;
 				case "re":// Read From File
 					System.out.print("Read from Backup File (Y/N)? : ");
@@ -528,15 +531,17 @@ public class Management {
 						if(fileArgs.exists()){
 							articles=FileArticle.getInstance().readFile(fileArgs);
 							display.setArticles(articles);
+							message = "Read " + articles.size() + " Records Successfully.";
 						}
 					}else{
 						articles=FileArticle.getInstance().readFile();
 					}		
 					break;
 				case "b":// Back Up File
-					String now = new SimpleDateFormat("ddMMYYYYHHmmss").format(new Date());			
-					FileArticle.getInstance().copyFile(FileArticle.getInstance().sourceFile(), 
-														new File("backup" + now + ".bin"));				
+					String now = new SimpleDateFormat("dd_MM_YYYY_HH_mm_ss").format(new Date());		
+					File backUpFile = new File("backup_" + now + ".bin");
+					FileArticle.getInstance().copyFile(FileArticle.getInstance().sourceFile(), backUpFile);		
+					message = "Back Up Successfully to " + backUpFile.toString();
 					break;
 				/*End Menu File*/
 				case "e" :
@@ -551,6 +556,7 @@ public class Management {
 				}//End of switch;
 				sort(sortBy, isAscending);
 				display.process();
+				System.out.println(message);
 			}while(true);
 		} catch (Exception e) {
 			logfile.writeLogException(e, "display", "Management");
